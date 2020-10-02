@@ -1,0 +1,71 @@
+{
+    "presets": [
+        [
+            "@babel/preset-env",
+            {
+                "modules": false,
+                "loose": true,
+                "targets": {
+                    "esmodules": true
+                }
+            }
+
+        ]
+    ],
+    "plugins": [
+        "@babel/plugin-transform-runtime",
+        "@babel/plugin-syntax-dynamic-import"
+    ],
+    "env": {
+        "legacy":  {
+            "presets": [
+                [
+                    "@babel/preset-env", {
+                    "modules": false,
+                    "useBuiltIns": "entry",
+                    "targets": "> 0.25%, last 2 versions, Firefox ESR",
+                    "corejs": 3
+                }
+                ]
+            ],
+            "plugins": [
+                "@babel/plugin-transform-runtime",
+                "@babel/plugin-syntax-dynamic-import"
+            ]
+        },
+        "modern": {
+            "presets": [
+                [
+                    "@babel/preset-env",
+                    {
+                        "modules": false,
+                        "loose": true,
+                        "targets": {
+                            "esmodules": true
+                        }
+                    }
+
+                ]
+            ],
+            "plugins": [
+                "@babel/plugin-transform-runtime",
+                "@babel/plugin-syntax-dynamic-import"
+            ]
+        },
+        "test": {
+            "presets": [["env", { "targets": { "node": "current" } }]]
+        },
+        "node": {
+            "presets": [
+                [
+                    "@babel/preset-env",
+                    {
+                        "targets": {
+                            "node": "current",
+                        },
+                    },
+                ],
+            ]
+        }
+    }
+}

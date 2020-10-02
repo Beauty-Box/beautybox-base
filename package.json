@@ -1,0 +1,24 @@
+{
+    "name": "@beautybox/core",
+    "version": "1.0.0",
+    "main": "config.js",
+    "license": "MIT",
+    "publishConfig": {
+        "access": "restricted"
+    },
+    "scripts": {
+        "serve": "cross-env NODE_ENV=development node ./webpack-dev.config.js"
+    },
+    "dependencies": {
+        "cross-env": "^7.0.2",
+        "socket.io-client": "^2.3.0",
+        "vue": "^2.6.12",
+        "vue-socket.io": "^3.0.9",
+        "vuetify": "^2.3.10"
+    },
+    "devDependencies": {
+        "cross-env": "^7.0.2",
+        "preload-webpack-plugin": "3.0.0-beta.3",
+        "script-ext-html-webpack-plugin": "^2.1.4"
+    }
+}
