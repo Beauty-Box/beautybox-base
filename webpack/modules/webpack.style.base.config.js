@@ -1,14 +1,14 @@
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
-const config = require('../../../../config');
+const isDev = process.env.NODE_ENV === 'development';
 
-module.exports = (module) => ({
+module.exports = (module = '') => ({
     module: {
         rules: [
             {
                 test: /\.css$/,
                 use: [
                     MiniCSSExtractPlugin.loader,
-                    { loader: 'css-loader', options: { sourceMap: config.isDev } },
+                    { loader: 'css-loader', options: { sourceMap: isDev } },
                 ],
             },
             {
@@ -17,12 +17,12 @@ module.exports = (module) => ({
                     MiniCSSExtractPlugin.loader,
                     {
                         loader: 'css-loader',
-                        options: { sourceMap: config.isDev },
+                        options: { sourceMap: isDev },
                     },
                     {
                         loader: 'sass-loader',
                         options: {
-                            sourceMap: config.isDev,
+                            sourceMap: isDev,
                             additionalData: `@import "@${module}/scss/variables.scss";`,
                             implementation: require('sass'),
                         },
@@ -35,12 +35,12 @@ module.exports = (module) => ({
                     MiniCSSExtractPlugin.loader,
                     {
                         loader: 'css-loader',
-                        options: { sourceMap: config.isDev },
+                        options: { sourceMap: isDev },
                     },
                     {
                         loader: 'sass-loader',
                         options: {
-                            sourceMap: config.isDev,
+                            sourceMap: isDev,
                             additionalData: `@import "@${module}/scss/variables.scss"`,
                             implementation: require('sass'),
                         },
