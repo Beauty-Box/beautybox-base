@@ -5,16 +5,16 @@ const EmptyLayout = () =>
 const ErrorLayout = () =>
     import(/* webpackChunkName: "ErrorLayout" */ '@beautybox/ui-kit/layouts/ErrorLayout');
 const Forbidden = () =>
-    import(/* webpackChunkName: "Forbidden" */ '@beautybox/ui-kit/src/pages/Errors/Forbidden');
+    import(/* webpackChunkName: "Forbidden" */ '@beautybox/ui-kit/pages/Errors/Forbidden');
 const NotFound = () =>
-    import(/* webpackChunkName: "NotFound" */ '@beautybox/ui-kit/src/pages/Errors/NotFound');
+    import(/* webpackChunkName: "NotFound" */ '@beautybox/ui-kit/pages/Errors/NotFound');
 const ServerError = () =>
-    import(/* webpackChunkName: "ServerError" */ '@beautybox/ui-kit/src/pages/Errors/ServerError');
+    import(/* webpackChunkName: "ServerError" */ '@beautybox/ui-kit/pages/Errors/ServerError');
 const BadRequest = () =>
-    import(/* webpackChunkName: "BadRequest" */ '@beautybox/ui-kit/src/pages/Errors/BadRequest');
+    import(/* webpackChunkName: "BadRequest" */ '@beautybox/ui-kit/pages/Errors/BadRequest');
 const UnknownError = () =>
     import(
-        /* webpackChunkName: "UnknownError" */ '@beautybox/ui-kit/src/pages/Errors/UnknownError'
+        /* webpackChunkName: "UnknownError" */ '@beautybox/ui-kit/pages/Errors/UnknownError'
     );
 
 export const useApp = {
