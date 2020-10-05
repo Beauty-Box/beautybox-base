@@ -10,6 +10,7 @@
         "serve": "cross-env NODE_ENV=development node ./webpack-dev.config.js"
     },
     "dependencies": {
+        "@beautybox/ui-kit": "git+ssh://git@gitlab.beautybox.ru:beautybox/frontend/beautybox-ui-kit.git",
         "socket.io-client": "^2.3.0",
         "vue": "^2.6.12",
         "vue-socket.io": "^3.0.9",
