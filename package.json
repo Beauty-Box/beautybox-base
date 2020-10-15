@@ -23,7 +23,6 @@
         "vue-loader": "^15.9.3",
         "vue-socket.io": "^3.0.9",
         "vuelidate": "^0.7.5",
-        "vuetify": "^2.3.14",
         "vuetify-loader": "^1.6.0",
         "webpack": "^4.44.2"
     }
