@@ -1,4 +1,4 @@
-import { Api } from '@beautybox/api/index';
+import { Api } from '../api';
 
 export default {
     install(Vue, options) {
