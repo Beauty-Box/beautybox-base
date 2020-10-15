@@ -1,6 +1,6 @@
 import { mapActions, mapGetters } from 'vuex';
 
-export const notificationsProps = {
+const notificationsProps = {
     computed: {
         ...mapGetters(['NOTIFICATIONS', 'NOTIFICATIONS_LENGTH', 'UNREAD']),
     },
@@ -13,3 +13,6 @@ export const notificationsProps = {
         },
     },
 };
+
+export {notificationsProps};
+export default notificationsProps;

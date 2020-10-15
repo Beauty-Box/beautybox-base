@@ -1,4 +1,4 @@
-export const modalProps = {
+const modalProps = {
     props: {
         value: {
             type: [Boolean, String, Array, Number, Object],
@@ -16,3 +16,6 @@ export const modalProps = {
         },
     },
 };
+
+export {modalProps};
+export default modalProps;

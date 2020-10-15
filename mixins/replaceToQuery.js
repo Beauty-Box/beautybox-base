@@ -1,4 +1,4 @@
-export default {
+const replaceToQuery = {
     methods: {
         getQuery() {
             const index = this.$route.fullPath.indexOf('?');
@@ -31,3 +31,6 @@ export default {
         },
     },
 };
+
+export { replaceToQuery };
+export default replaceToQuery;

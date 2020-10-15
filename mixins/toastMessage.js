@@ -35,9 +35,11 @@ const mixin = {
     },
 };
 
-export default {
+const toastMessage = {
     install(Vue) {
         Vue.use(Toasted);
         Vue.mixin(mixin);
     },
 };
+export { toastMessage };
+export default toastMessage;

@@ -1,6 +1,6 @@
 import { mapGetters } from 'vuex';
 
-export default {
+const checkPermission = {
     install(Vue, options) {
         Vue.mixin({
             computed: {
@@ -30,3 +30,6 @@ export default {
         });
     },
 };
+
+export { checkPermission };
+export default checkPermission;

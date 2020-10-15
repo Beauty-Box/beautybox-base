@@ -1,4 +1,4 @@
-export default {
+const request = {
     data: () => ({
         mainRequest: null,
     }),
@@ -32,3 +32,6 @@ export default {
         },
     },
 };
+
+export { request };
+export default request;

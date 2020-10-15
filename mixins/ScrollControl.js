@@ -7,7 +7,7 @@
  * @param {Number} heightForActiveScroll - Количество пикселей до срабатывания функции по умолчанию 800
  * */
 
-export const scroll = {
+const scrollControl = {
     data: () => ({
         bottom: false,
         heightForActiveScroll: 800,
@@ -48,3 +48,6 @@ export const scroll = {
         },
     },
 };
+
+export { scrollControl };
+export default scrollControl;

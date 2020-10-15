@@ -17,7 +17,7 @@ const UnknownError = () =>
         /* webpackChunkName: "UnknownError" */ '@beautybox/ui-kit/pages/Errors/UnknownError'
     );
 
-export const useApp = {
+const useApp = {
     components: {
         EmptyLayout,
         ErrorLayout,
@@ -49,3 +49,6 @@ export const useApp = {
     //     checkBrowserType,
     // },
 };
+
+export { useApp };
+export default useApp;

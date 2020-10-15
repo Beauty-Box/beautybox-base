@@ -1,4 +1,4 @@
-export default {
+const errorHandler = {
     created() {
         document.addEventListener('server-error', (e) => {
             this.$store.dispatch('SERVER_ERROR', e.code);
@@ -20,3 +20,6 @@ export default {
         });
     },
 };
+
+export { errorHandler };
+export default errorHandler;
