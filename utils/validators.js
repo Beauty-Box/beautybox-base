@@ -1,5 +1,5 @@
 import { maxLength, minLength, required } from 'vuelidate/lib/validators';
-import { genFullTime } from '@beautybox/utils/index';
+import { genFullTime } from './index';
 
 let timeArray = genFullTime();
 
