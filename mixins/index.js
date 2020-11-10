@@ -1,5 +1,4 @@
 export * from './app.mixin';
-export * from './checkPermission';
 export * from './modalProps';
 export * from './notificationsProps';
 export * from './replaceToQuery';
