@@ -1,5 +1,5 @@
-import { Api } from '@beautybox/api';
-import config from '@beautybox/core/config';
+import { Api } from '../api';
+import config from '../config';
 
 export class Provider {
     constructor(module) {
