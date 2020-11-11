@@ -1,7 +1,6 @@
-import { Api } from '@beautybox/api/index';
-import config from '@beautybox/core/config';
-import { parseJwt } from '@beautybox/core/router/utils';
-import checkPermission from '@beautybox/core/mixins/checkPermission';
+import { Api } from '../../api';
+import config from '../../config';
+import { parseJwt } from '../../router/utils';
 
 let provider = new Api(config.BASE_URL, 'crm');
 
