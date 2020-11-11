@@ -1,7 +1,7 @@
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
 const isDev = process.env.NODE_ENV === 'development';
 
-module.exports = (module = '') => ({
+module.exports = {
     module: {
         rules: [
             {
@@ -23,7 +23,7 @@ module.exports = (module = '') => ({
                         loader: 'sass-loader',
                         options: {
                             sourceMap: isDev,
-                            additionalData: `@import "@${module}/scss/variables.scss";`,
+                            additionalData: `@import "@/scss/variables.scss";`,
                             implementation: require('sass'),
                         },
                     },
@@ -41,7 +41,7 @@ module.exports = (module = '') => ({
                         loader: 'sass-loader',
                         options: {
                             sourceMap: isDev,
-                            additionalData: `@import "@${module}/scss/variables.scss"`,
+                            additionalData: `@import "@/scss/variables.scss"`,
                             implementation: require('sass'),
                         },
                     },
@@ -49,4 +49,4 @@ module.exports = (module = '') => ({
             },
         ],
     },
-});
+};
