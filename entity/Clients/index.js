@@ -14,6 +14,7 @@ export class Client extends Person {
             coming: [],
         };
         this.categories = [];
+        this.clientTypeID = 0;
     }
 
     _initFormData(formData) {
