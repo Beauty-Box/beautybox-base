@@ -1,4 +1,4 @@
-import { Provider } from '@beautybox/entity/Provider';
+import { Provider } from '../Provider';
 
 export class Online extends Provider {
     constructor(addressID) {

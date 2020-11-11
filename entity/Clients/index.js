@@ -1,5 +1,5 @@
-import { Person } from '@beautybox/entity/Person';
-import { Provider } from '@beautybox/entity/Provider';
+import { Person } from '../Person';
+import { Provider } from '../Provider';
 
 export class Client extends Person {
     constructor(id) {

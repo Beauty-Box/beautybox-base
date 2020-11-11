@@ -1,10 +1,10 @@
 import { required } from 'vuelidate/lib/validators';
-import { Clients } from '@beautybox/entity/Clients';
-import { scroll } from '@beautybox/core/mixins/ScrollControl';
-import { clients } from '@beautybox/core/mixins/clients/clients-list.mixin';
+import { Clients } from '../../entity/Clients';
+import { scrollControl } from '../ScrollControl';
+import { clients } from '../clients/clients-list.mixin';
 
 export const searchClient = {
-    mixins: [scroll, clients],
+    mixins: [scrollControl, clients],
     inject: ['$v'],
     data: () => ({
         searchClient: '',

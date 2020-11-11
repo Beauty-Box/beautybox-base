@@ -1,7 +1,7 @@
 /**
  * Миксин содержит инициализацию клиента валидацию для полей клиента
  * */
-import { Client } from '@beautybox/entity/Clients';
+import { Client } from '../../entity/Clients';
 
 import { maxLength, minLength, required } from 'vuelidate/lib/validators';
 

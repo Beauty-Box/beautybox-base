@@ -1,4 +1,4 @@
-import { Clients } from '@beautybox/entity/Clients';
+import { Clients } from '../../entity/Clients';
 
 export const clients = {
     data: () => ({
