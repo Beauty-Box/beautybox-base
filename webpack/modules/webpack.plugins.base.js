@@ -2,7 +2,7 @@ const isDev = process.env.NODE_ENV === 'development';
 const { resolve } = require('path');
 const { ProgressPlugin } = require('webpack');
 const { VueLoaderPlugin } = require('vue-loader');
-const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin');
+const { VuetifyLoaderPlugin } = require('vuetify-loader');
 
 module.exports = {
     module: {
