@@ -10,7 +10,6 @@ module.exports = {
             {
                 test: /\.vue$/,
                 loader: 'vue-loader',
-                include: resolve(process.cwd(), 'src'),
                 options: {
                     hotReload: process.env.NODE_ENV === 'production',
                     extractCSS: true,
