@@ -1,9 +1,7 @@
 const isDev = process.env.NODE_ENV === 'development';
-const { resolve } = require('path');
 const { ProgressPlugin } = require('webpack');
-const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const { VueLoaderPlugin } = require('vue-loader');
 const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin');
-const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
     module: {
