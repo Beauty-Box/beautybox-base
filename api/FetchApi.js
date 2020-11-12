@@ -11,14 +11,17 @@ if (typeof window !== 'undefined') {
 }
 
 export class FetchApi {
-    constructor(baseUrl, module) {
+    constructor(baseUrl, module, token) {
         this.BASE_URL = baseUrl;
         this.MODULE = module;
+        this.token = token || '';
     }
     _genHeaders(data) {
-        let opt = {
-            // Authorization: 'bearer ' + window.localStorage.getItem('access_token'),
+        const opt = {
         };
+        if (this.token) {
+            opt['Authorization'] = 'bearer ' + this.token;
+        }
         if (toString.call(data).slice(8, -1) !== 'FormData') {
             opt['content-type'] = 'application/json';
         }

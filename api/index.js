@@ -1,13 +1,15 @@
-import { BaseApi } from './BaseApi';
+import { TestStatus } from './TestStatus';
 import { FetchApi as Provider } from './FetchApi';
 
-export class Api extends BaseApi {
-    constructor(baseUrl, module) {
-        super(baseUrl, module);
-        this._setProvider();
+export class Api extends TestStatus {
+    constructor(baseUrl, module, token) {
+        super();
+        this.baseUrl = baseUrl;
+        this.module = module;
+        this._setProvider(baseUrl, module, token);
     }
-    _setProvider() {
-        this.provider = new Provider(this.baseUrl, this.module);
+    _setProvider(baseUrl, module, token) {
+        this.provider = new Provider(baseUrl, module, token);
     }
     get(url, data) {
         return this.provider
@@ -76,5 +78,8 @@ export class Api extends BaseApi {
             return result;
         }
         return result;
+    }
+    updateToken(token) {
+        this._setProvider(this.baseUrl, this.module, token)
     }
 }
