@@ -80,6 +80,6 @@ export class Api extends TestStatus {
         return result;
     }
     updateToken(token) {
-        this._setProvider(this.baseUrl, this.module, token)
+        this.provider.updateToken(token);
     }
 }

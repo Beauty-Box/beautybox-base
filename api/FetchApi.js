@@ -42,4 +42,7 @@ export class FetchApi {
     res(url, data, method) {
         return fetch(`${this.BASE_URL}/api/${this.MODULE}` + url, this._genBody(data, method));
     }
+    updateToken(token) {
+        this.token = token;
+    }
 }
