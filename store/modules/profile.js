@@ -2,8 +2,8 @@ import { Api } from '../../api';
 
 let provider;
 
-function init(baseUrl, token) {
-    provider = new Api(baseUrl, 'crm', token);
+function init(config) {
+    provider = new Api(config.BASE_URL, 'crm', config.token);
 }
 
 export const state = () => ({
