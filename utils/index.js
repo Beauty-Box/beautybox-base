@@ -1,4 +1,4 @@
-import { monthArray } from '@beautybox/utils/helpers';
+import { monthArray } from './helpers';
 
 /**
  * IsoToRu Возвращает дату в формате 31.01.2020

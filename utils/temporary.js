@@ -1,4 +1,4 @@
-import { Provider } from '@beautybox/entity/Provider';
+import { Provider } from '../entity/Provider';
 
 export async function logout(e) {
     e.preventDefault();
