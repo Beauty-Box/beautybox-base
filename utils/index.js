@@ -1,10 +1,9 @@
-import { monthArray } from './helpers';
+import { monthArray } from '@beautybox/utils/helpers';
 
 /**
  * IsoToRu Возвращает дату в формате 31.01.2020
  * @param {String} date формат '2020-01-31'
  * */
-
 export function IsoToRu(date) {
     if (!date) {
         return null;
@@ -18,7 +17,6 @@ export function IsoToRu(date) {
  * @param {String} date формат '31.01.2020'
  * @return {String, Null}
  * */
-
 export function RuToIso(date) {
     if (!date) {
         return null;
@@ -34,7 +32,6 @@ export function RuToIso(date) {
  * @param {Number} stepMinute Шаг времени
  * @return {Array}
  * */
-
 export function genTime(fromHour = 0, toHour = 24, stepMinute = 15) {
     let arr = [];
     for (let i = fromHour; i < toHour; i++) {
@@ -44,6 +41,7 @@ export function genTime(fromHour = 0, toHour = 24, stepMinute = 15) {
     }
     return arr;
 }
+
 export function genFullTime(fromHour = 0, stepMinute = 15) {
     let arr = [];
     for (let i = 0; i < 24; i++) {
@@ -59,7 +57,6 @@ export function genFullTime(fromHour = 0, stepMinute = 15) {
  * getFirstLastDayToWeek Возвращает первый и последний день недели
  * @param {String} date формат '2020-01-31'
  * */
-
 export function getFirstLastDayToWeek(date) {
     let tempDate = new Date(date);
     let first =
@@ -124,7 +121,6 @@ export function getFirstAndLastDayOfYearAsRange() {
  * hoursLocalTest Возвращает правильное скланение часа
  * @param {Number} t диапазон от 0 до 99 включительно
  * */
-
 export function hoursLocalTest(t) {
     if (!(t >= 10 && t <= 20)) {
         let temp = t % 10;
@@ -142,7 +138,6 @@ export function hoursLocalTest(t) {
  * genArrayTime15min Возвращает массив формата [{text: 15 минут, value: 15}]
  * @param {Number} number лимит от 0 до 99 включительно
  * */
-
 export function genArrayTime15min(number) {
     if (number < 15) {
         return;
@@ -169,7 +164,6 @@ export function genArrayTime15min(number) {
  * @param {Number} number лимит от 0 до 99 включительно
  * @param {Boolean} short формат времени
  * */
-
 export function convertMinutesToHours(number, short = false) {
     const hours = Math.floor(number / 60);
     const minute = hours * 60;
@@ -183,8 +177,8 @@ export function convertMinutesToHours(number, short = false) {
  * genNumberArray Возвращает массив чисел формата [0, 1, 2]
  * @param {Number} from начало
  * @param {Number} to конец
+ * @return {Array<Number>}
  * */
-
 export function genNumberArray(from, to) {
     let array = [];
     for (let i = from; i <= to; i++) {
@@ -197,8 +191,8 @@ export function genNumberArray(from, to) {
  * genNumberStringArray Возвращает массив чисел в виде строки формата ['0', '1', '2']
  * @param {Number} from начало
  * @param {Number} to конец
+ * @return {Array<String>}
  * */
-
 export function genNumberStringArray(from, to) {
     let array = [];
     for (let i = from; i <= to; i++) {
@@ -212,7 +206,6 @@ export function genNumberStringArray(from, to) {
  * @param {Number} from начало
  * @param {Number} to конец
  * */
-
 export function genNumberStringArrayRevert(from, to) {
     let array = [];
     for (let i = to; i >= from; i--) {
@@ -225,7 +218,6 @@ export function genNumberStringArrayRevert(from, to) {
  * genDayArrayForSelect Возвращает массив чисел в виде строки формата [{ text: 1, value: '01'}]
     @param {Number} to
  * */
-
 export function genDayArrayForSelect(to) {
     let array = [];
     for (let i = 1; i <= to; i++) {
@@ -244,11 +236,11 @@ export function getBaseUrl() {
 }
 
 /**
- * joinQueryString Возвращает строку queryString параметров вида ?query=1&query=2
+ * joinQueryObj Возвращает строку queryString параметров вида ?query=1&query=2
  * @param {Object} queryObj принимаемы обьект вида { query: 1 }
  * @param {String} queryString принимаемая и возращаемая строка query параметров
  * */
-export function joinQueryString(queryObj = {}, queryString = '') {
+export function joinQueryObj(queryObj = {}, queryString = '') {
     let first = true;
     let symbol = queryString.length ? '&' : '?';
 
@@ -265,6 +257,22 @@ export function joinQueryString(queryObj = {}, queryString = '') {
         first = false;
         return acc;
     }, queryString);
+}
+
+/**
+ * joinQuery Возвращает строку queryString параметров вида ?query=1&query=2
+ * @param {String} uri принимаемы обьект вида { query: 1 }
+ * @param {String} key ключ параметра
+ * @param {String, Number} value значение параметра
+ * */
+export function joinQuery(uri = '', key = '', value = '') {
+    const re = new RegExp('([?&])' + key + '=.*?(&|$)', 'i');
+    const separator = uri.indexOf('?') !== -1 ? '&' : '?';
+    if (uri.match(re)) {
+        return uri.replace(re, '$1' + key + '=' + value + '$2');
+    } else {
+        return uri + separator + key + '=' + value;
+    }
 }
 
 /**
@@ -305,7 +313,7 @@ export function objectToURLParams(object) {
 }
 
 /**
- * isNumber Возвращает Boolean
+ * isNumber проверяет входную строку на число
  * @param {String} string Тестируемая строка
  * @return {Boolean}
  * */
@@ -314,6 +322,11 @@ export function isNumber(string = '') {
     return regexp.test(string);
 }
 
+/**
+ * getCoordinatesFromYandex получает кординаты адреса через Яндекс API
+ * @param {String} address
+ * @return {Array} Массив с координатами
+ * */
 export async function getCoordinatesFromYandex(address = '') {
     try {
         let coordinates = await fetch(
@@ -332,4 +345,12 @@ export async function getCoordinatesFromYandex(address = '') {
     } catch (e) {
         console.log('--- getCoordinatesFromYandex', e);
     }
+}
+
+/**
+ * parsePhone преобразует телефон формата +7 (999) 999-99-99 к 89999999999
+ * @param {String} phone
+ * */
+export function parsePhone(phone = '') {
+    return String(phone).replace(/^\+7/, '8').replace(/\W/g, '');
 }

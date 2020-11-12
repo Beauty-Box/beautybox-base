@@ -1,28 +1,28 @@
 import { maxLength, minLength, required } from 'vuelidate/lib/validators';
-import { genFullTime } from './index';
+import { genFullTime } from '@beautybox/utils/index';
 
 let timeArray = genFullTime();
 
-export const name = {
+export const validatorName = {
     required,
     minLength: minLength(3),
     maxLength: maxLength(75),
 };
 
-export const phone = {
+export const validatorPhone = {
     required,
     minLength: minLength(18),
 };
 
-export const password = {
+export const validatorPassword = {
     required,
     minLength: minLength(6),
     maxLength: maxLength(28),
 };
 
-export const textarea = {
+export const validatorTextarea = {
     required,
-    minLength: minLength(30),
+    minLength: minLength(10),
 };
 
 function getIndex(first, last) {

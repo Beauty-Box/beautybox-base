@@ -1,4 +1,4 @@
-import { Provider } from '../entity/Provider';
+import { Provider } from '@beautybox/entity/Provider';
 
 export async function logout(e) {
     e.preventDefault();
@@ -6,9 +6,7 @@ export async function logout(e) {
     try {
         await new Provider('auth')._provider.post('/logout');
         await window.localStorage.clear();
-        window.location.replace(
-            `${window.location.origin}/auth/sign-in?from=${window.location.href}`
-        );
+        window.location.replace(`${window.location.origin}/auth/sign-in`);
     } catch (e) {
         console.log(e);
     }
