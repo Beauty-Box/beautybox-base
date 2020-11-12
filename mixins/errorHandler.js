@@ -22,5 +22,4 @@ export function setErrorHandler(store) {
     });
 }
 
-export { setErrorHandler };
 export default setErrorHandler;
