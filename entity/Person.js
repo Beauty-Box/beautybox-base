@@ -1,8 +1,8 @@
 import { Provider } from './Provider';
 
 export class Person extends Provider {
-    constructor(module) {
-        super(module);
+    constructor(config) {
+        super(config);
         this.errors = {};
         this.name = '';
         this.phone = '';

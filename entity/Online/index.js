@@ -2,7 +2,7 @@ import { Provider } from '../Provider';
 
 export class Online extends Provider {
     constructor(addressID) {
-        super('crm');
+        super({ BASE_URL: process.env.BASE_URL, module: 'crm', token: localStorage.getItem('access_token') });
 
         if (!addressID) {
             throw new TypeError('addressID is undefined');

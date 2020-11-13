@@ -2,7 +2,7 @@ import { Provider } from '../Provider';
 
 export default class Addresses extends Provider {
     constructor() {
-        super('crm');
+        super({ BASE_URL: process.env.BASE_URL, module: 'crm' });
     }
 
     addresses() {

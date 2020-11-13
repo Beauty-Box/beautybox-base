@@ -3,7 +3,7 @@ import { Provider } from '../Provider';
 
 export class Client extends Person {
     constructor(id) {
-        super('crm');
+        super({ BASE_URL: process.env.BASE_URL, module: 'crm', token: localStorage.getItem('access_token') });
         if (id) {
             this.clientID = parseInt(id);
         }
@@ -116,7 +116,7 @@ export class Client extends Person {
 
 export class Clients extends Provider {
     constructor() {
-        super('crm');
+        super({ BASE_URL: process.env.BASE_URL, module: 'crm', token: localStorage.getItem('access_token') });
         this.clients = [];
         this.count = 0;
     }

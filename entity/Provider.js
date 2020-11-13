@@ -1,10 +1,9 @@
 import { Api } from '../api';
-import config from '../config';
 
 export class Provider {
-    constructor(module) {
+    constructor(config) {
         this.baseUrl = config.BASE_URL;
-        this.module = module;
+        this.module = config.module;
         this.setProvider();
     }
 

@@ -2,7 +2,7 @@ import { Provider } from '../Provider';
 
 export class Orders extends Provider {
     constructor() {
-        super('crm');
+        super({ BASE_URL: process.env.BASE_URL, module: 'crm', token: localStorage.getItem('access_token') });
     }
 
     // analyze(queryString = '') {
