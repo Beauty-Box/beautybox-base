@@ -40,4 +40,4 @@ export const getters = {
     TYPE: (state) => state.type,
 };
 
-export default { namespace: 'Errors', state, mutations, actions, getters };
+export default { state, mutations, actions, getters };
