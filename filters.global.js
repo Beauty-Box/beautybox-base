@@ -14,7 +14,7 @@ import timeFilter from './filters/time.filter.js';
 Vue.filter('dateFormat', dateFormatFilter);
 Vue.filter('dateDayFormat', dateDayFormat);
 Vue.filter('dateFullFormat', dateFullFormatFilter);
-Vue.filter('dateMonthShortFormat', dateMonthYearFormat);
+Vue.filter('dateMonthYearFormat', dateMonthYearFormat);
 //Price Filters
 Vue.filter('price', priceFilter);
 //Time Filters
