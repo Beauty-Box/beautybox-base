@@ -1,7 +1,7 @@
-export default function dateMonthShortFormat(date) {
+export default function dateMonthShortFormat(date, monthType = 'short') {
     return new Intl.DateTimeFormat('ru-RU', {
         year: 'numeric',
-        month: 'short',
+        month: monthType,
         day: 'numeric',
     })
         .format(new Date(date))
