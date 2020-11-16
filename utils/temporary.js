@@ -1,10 +1,10 @@
-import { Provider } from '../entity/Provider';
+import { Api } from "../api";
 
 export async function logout(e) {
     e.preventDefault();
 
     try {
-        await new Provider('auth')._provider.post('/logout');
+        await new Api(process.env.BASE_URL, 'auth').post('/logout');
         await window.localStorage.clear();
         window.location.replace(`${window.location.origin}/auth/sign-in`);
     } catch (e) {
