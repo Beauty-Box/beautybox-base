@@ -3,6 +3,7 @@ import { Api } from '../../api';
 let provider;
 
 function init(config) {
+    console.log('--- init config', config);
     provider = new Api(config.BASE_URL, 'crm', config.token);
 }
 
@@ -22,6 +23,7 @@ export const mutations = {
 
 export const actions = {
     async GET_USER_INFO({ commit }) {
+        console.log('--- provider', provider);
         let { errors = {}, ...response } = await provider.get('/user-info');
 
         if (!Object.keys(errors).length) {
