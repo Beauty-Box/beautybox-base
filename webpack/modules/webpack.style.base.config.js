@@ -25,6 +25,9 @@ module.exports = {
                             sourceMap: isDev,
                             additionalData: `@import "@/scss/variables.scss";`,
                             implementation: require('sass'),
+                            sassOptions: {
+                                fiber: require('fibers'),
+                            },
                         },
                     },
                 ],
@@ -43,6 +46,9 @@ module.exports = {
                             sourceMap: isDev,
                             additionalData: `@import "@/scss/variables.scss"`,
                             implementation: require('sass'),
+                            sassOptions: {
+                                fiber: require('fibers'),
+                            },
                         },
                     },
                 ],
