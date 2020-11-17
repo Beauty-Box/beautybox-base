@@ -1,5 +1,5 @@
 const isDev = process.env.NODE_ENV === 'development';
-const { resolve } = require('path');
+// const { resolve } = require('path');
 const { ProgressPlugin } = require('webpack');
 const { VueLoaderPlugin } = require('vue-loader');
 const { VuetifyLoaderPlugin } = require('vuetify-loader');
@@ -11,7 +11,7 @@ module.exports = {
                 test: /\.vue$/,
                 loader: 'vue-loader',
                 options: {
-                    hotReload: process.env.NODE_ENV === 'production',
+                    hotReload: process.env.NODE_ENV !== 'production',
                     extractCSS: true,
                 },
             },
