@@ -23,9 +23,9 @@ export class Client extends Person {
         formData.append('sale', this.sale);
     }
 
-    setFirstCategory() {
-        if (!Boolean(this.clientTypeID) && this.categories.length) {
-            this.clientTypeID = this.categories[0].value;
+    setFirstCategory(categories) {
+        if (!Boolean(this.clientTypeID) && categories.length) {
+            this.clientTypeID = categories[0].value;
         }
     }
 
