@@ -1,5 +1,3 @@
-import { monthArray } from './helpers';
-
 /**
  * IsoToRu Возвращает дату в формате 31.01.2020
  * @param {String} date формат '2020-01-31'
@@ -216,7 +214,7 @@ export function genNumberStringArrayRevert(from, to) {
 
 /**
  * genDayArrayForSelect Возвращает массив чисел в виде строки формата [{ text: 1, value: '01'}]
-    @param {Number} to
+ @param {Number} to
  * */
 export function genDayArrayForSelect(to) {
     let array = [];
@@ -283,7 +281,7 @@ export function joinQuery(uri = '', key = '', value = '') {
  * @return {Array} Отфильтрованный и отсортированный массив
  * */
 export function SortArrayByArray(fromArr = [], onArr = []) {
-    return onArr.filter((item) => {
+    return onArr.filter(item => {
         let result = fromArr.indexOf(item);
         if (result !== -1) {
             fromArr.splice(result, 1);
@@ -296,7 +294,7 @@ export function SortArrayByArray(fromArr = [], onArr = []) {
 
 /**
  * getDayOfWeek Возвращает текущий день недели в зависимости от переданной даты
- * @param {String} date формат '2020-01-31'
+ * @param {Date<String>} date формат '2020-01-31'
  * @return {String, Null}
  * */
 export function getDayOfWeek(date) {
@@ -340,7 +338,7 @@ export async function getCoordinatesFromYandex(address = '') {
             let { response } = await coordinates.json();
             return response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos.split(' ');
         } else {
-            throw coordinates.status;
+            console.log('--- getCoordinatesFromYandex', coordinates.status);
         }
     } catch (e) {
         console.log('--- getCoordinatesFromYandex', e);
@@ -352,5 +350,7 @@ export async function getCoordinatesFromYandex(address = '') {
  * @param {String} phone
  * */
 export function parsePhone(phone = '') {
-    return String(phone).replace(/^\+7/, '8').replace(/\W/g, '');
+    return String(phone)
+        .replace(/^\+7/, '8')
+        .replace(/\W/g, '');
 }
