@@ -5,9 +5,12 @@
  * @param {string} prefix префикс
  * @returns {Object} объект с зеркальными ключами, сгенерированный из массива строк
  */
-export const reflectKeys = (arr = [], prefix) =>
+const reflectKeys = (arr = [], prefix) =>
     arr.reduce((obj, key) => {
         obj[key] = prefix ? prefix + ' ' + key : key;
 
         return obj;
     }, {});
+
+export { reflectKeys };
+export default reflectKeys;
