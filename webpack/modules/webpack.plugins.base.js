@@ -12,7 +12,6 @@ module.exports = {
                 loader: 'vue-loader',
                 options: {
                     hotReload: process.env.NODE_ENV !== 'production',
-                    extractCSS: true,
                 },
             },
         ],
@@ -23,9 +22,5 @@ module.exports = {
             vue$: isDev ? 'vue/dist/vue.runtime.js' : 'vue/dist/vue.runtime.min.js',
         },
     },
-    plugins: [
-        new VueLoaderPlugin(),
-        new VuetifyLoaderPlugin(),
-        new ProgressPlugin(),
-    ],
+    plugins: [new VueLoaderPlugin(), new VuetifyLoaderPlugin(), new ProgressPlugin()],
 };
