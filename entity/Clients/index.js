@@ -3,7 +3,11 @@ import { Provider } from '../Provider';
 
 export class Client extends Person {
     constructor(id) {
-        super({ BASE_URL: process.env.BASE_URL, module: 'crm', token: localStorage.getItem('access_token') });
+        super({
+            BASE_URL: process.env.BASE_URL,
+            module: 'crm',
+            token: localStorage.getItem('access_token'),
+        });
         if (id) {
             this.clientID = parseInt(id);
         }
@@ -23,7 +27,7 @@ export class Client extends Person {
         formData.append('sale', this.sale);
     }
 
-    setFirstCategory(categories) {
+    setFirstCategory(categories = this.categories) {
         if (!Boolean(this.clientTypeID) && categories.length) {
             this.clientTypeID = categories[0].value;
         }
@@ -116,7 +120,11 @@ export class Client extends Person {
 
 export class Clients extends Provider {
     constructor() {
-        super({ BASE_URL: process.env.BASE_URL, module: 'crm', token: localStorage.getItem('access_token') });
+        super({
+            BASE_URL: process.env.BASE_URL,
+            module: 'crm',
+            token: localStorage.getItem('access_token'),
+        });
         this.clients = [];
         this.count = 0;
     }
