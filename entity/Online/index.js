@@ -2,7 +2,11 @@ import { Provider } from '../Provider';
 
 export class Online extends Provider {
     constructor(addressID) {
-        super({ BASE_URL: process.env.BASE_URL, module: 'crm', token: localStorage.getItem('access_token') });
+        super({
+            BASE_URL: process.env.BASE_URL,
+            module: 'crm',
+            token: localStorage.getItem('access_token'),
+        });
 
         if (!addressID) {
             throw new TypeError('addressID is undefined');
@@ -30,10 +34,11 @@ export class Online extends Provider {
         return this._provider.post('/settings/online', formData);
     }
 
-    update(addressID, recordNotPrev, settingsID) {
+    update(settingsID, { recordNotPrev, editableUntil }) {
         return this._provider.put(`/settings/online/${settingsID}`, {
             addressID: this.addressID,
             recordNotPrev,
+            editableUntil,
         });
     }
 }
