@@ -1,4 +1,4 @@
-import { maxLength, minLength, required } from 'vuelidate/lib/validators';
+import { maxLength, minLength, required, sameAs } from 'vuelidate/lib/validators';
 import { genFullTime } from './index';
 
 let timeArray = genFullTime();
@@ -17,12 +17,18 @@ export const validatorPhone = {
 export const validatorPassword = {
     required,
     minLength: minLength(6),
-    maxLength: maxLength(28),
+    maxLength: maxLength(255),
 };
+
+export function validatorPasswordRepeat(some) {
+    return {
+        sameAs: sameAs(some),
+    };
+}
 
 export const validatorTextarea = {
     required,
-    minLength: minLength(10),
+    minLength: minLength(3),
 };
 
 function getIndex(first, last) {
@@ -35,12 +41,12 @@ function getIndex(first, last) {
     };
 }
 
-export const lowerIndex = (time) => (value) => {
+export const lowerIndex = time => value => {
     let { firstIndex: first, lastIndex: last } = getIndex(value, time);
     return first < last;
 };
 
-export const largeIndex = (time) => (value) => {
+export const largeIndex = time => value => {
     let { firstIndex: first, lastIndex: last } = getIndex(value, time);
     return first > last;
 };
