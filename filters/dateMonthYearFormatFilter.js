@@ -1,4 +1,4 @@
-export function dateMonthYearFormat(date, monthType = 'short') {
+function dateMonthYearFormatFilter(date, monthType = 'short') {
     return new Intl.DateTimeFormat('ru-RU', {
         year: 'numeric',
         month: monthType,
@@ -8,3 +8,6 @@ export function dateMonthYearFormat(date, monthType = 'short') {
         .slice(0, -3)
         .replace('.', '');
 }
+
+export { dateMonthYearFormatFilter };
+export default dateMonthYearFormatFilter;
