@@ -155,13 +155,21 @@ export class Clients extends Provider {
     }
 
     async getClients({ nameFilter = '', clientsTypeFilter = 0 } = {}, skip = 0, limit = 15) {
-        const { clients = [], count = 0 } = await this._getClients(arguments);
+        const { clients = [], count = 0 } = await this._getClients([
+            { nameFilter, clientsTypeFilter },
+            skip,
+            limit,
+        ]);
         this.clients = [...this.clients, ...clients];
         this.count = count || this.clients.length;
     }
 
     async searchClients({ nameFilter = '', clientsTypeFilter = 0 } = {}, skip = 0, limit = 15) {
-        const { clients = [], count = 0 } = await this._getClients(arguments);
+        const { clients = [], count = 0 } = await this._getClients([
+            { nameFilter, clientsTypeFilter },
+            skip,
+            limit,
+        ]);
         this.clients = [...clients];
         this.count = count || this.clients.length;
     }
