@@ -14,42 +14,42 @@ export class Api extends TestStatus {
     get(url, data) {
         return this.provider
             .res(url, data, 'get')
-            .then((response) =>
+            .then(response =>
                 this.test(response)
-                    .then((result) => result)
-                    .catch((result) => this.redirectTo(result))
+                    .then(result => result)
+                    .catch(result => this.redirectTo(result))
             )
-            .catch((result) => this.redirectTo(result));
+            .catch(result => this.redirectTo(result));
     }
     delete(url, data) {
         return this.provider
             .res(url, data, 'delete')
-            .then((response) =>
+            .then(response =>
                 this.test(response)
-                    .then((result) => result)
-                    .catch((result) => this.redirectTo(result))
+                    .then(result => result)
+                    .catch(result => this.redirectTo(result))
             )
-            .catch((result) => this.redirectTo(result));
+            .catch(result => this.redirectTo(result));
     }
     post(url, data) {
         return this.provider
             .res(url, data, 'post')
-            .then((response) =>
+            .then(response =>
                 this.test(response)
-                    .then((result) => result)
-                    .catch((result) => this.redirectTo(result))
+                    .then(result => result)
+                    .catch(result => this.redirectTo(result))
             )
-            .catch((result) => this.redirectTo(result));
+            .catch(result => this.redirectTo(result));
     }
     put(url, data) {
         return this.provider
             .res(url, data, 'put')
-            .then((response) =>
+            .then(response =>
                 this.test(response)
-                    .then((result) => result)
-                    .catch((result) => this.redirectTo(result))
+                    .then(result => result)
+                    .catch(result => this.redirectTo(result))
             )
-            .catch((result) => this.redirectTo(result));
+            .catch(result => this.redirectTo(result));
     }
     redirectTo(result) {
         if (result.status >= 500) {
@@ -83,3 +83,13 @@ export class Api extends TestStatus {
         this.provider.updateToken(token);
     }
 }
+
+/**
+ *  Функия инициализации модуля запросов к серверу
+ * @param {Object} config - Объект конфигурации
+ * @param {String} module - Название модуля запросов
+ * @return {Api} Проинициализированный модуль запросов
+ */
+export const initProvider = (config, module) => new Api(config.BASE_URL, module, config.token);
+
+export default { Api, initProvider };
