@@ -12,7 +12,8 @@
         "access": "restricted"
     },
     "scripts": {
-        "test": "jest -u"
+        "test": "jest -u",
+        "test:watch": "jest -u --watch"
     },
     "husky": {
         "hooks": {
@@ -75,6 +76,7 @@
         "webpack": "^4.44.2"
     },
     "jest": {
+        "collectCoverage": true,
         "transform": {
             "^.+\\.js$": "babel-jest",
             "^.+\\.vue$": "vue-jest"
