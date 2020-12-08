@@ -53,7 +53,20 @@
             ]
         },
         "test": {
-            "presets": [["env", { "targets": { "node": "current" } }]]
+            "presets": [
+                [
+                    "@babel/preset-env",
+                    {
+                        "targets": { "node": "current" }
+                    }
+                ]
+            ],
+            "plugins": [
+                "require-context-hook",
+                "transform-es2015-modules-commonjs",
+                "@babel/plugin-transform-runtime",
+                "@babel/plugin-syntax-dynamic-import"
+            ]
         },
         "node": {
             "presets": [
@@ -61,10 +74,10 @@
                     "@babel/preset-env",
                     {
                         "targets": {
-                            "node": "current",
-                        },
-                    },
-                ],
+                            "node": "current"
+                        }
+                    }
+                ]
             ]
         }
     }

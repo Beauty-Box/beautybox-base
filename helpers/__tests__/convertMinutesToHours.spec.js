@@ -1,0 +1,45 @@
+import { convertMinutesToHours } from '../convertMinutesToHours';
+
+describe('convertMinutesToHours', () => {
+    it('Должен вернуть ожидаемый результат', () => {
+        const hours = convertMinutesToHours(75);
+        expect(hours).toBe('1 час 15 минут');
+    });
+    it('Должен вернуть ожидаемый результат', () => {
+        const hours = convertMinutesToHours(200);
+        expect(hours).toBe('3 часа 20 минут');
+    });
+    it('Должен вернуть ожидаемый результат', () => {
+        const hours = convertMinutesToHours(1200);
+        expect(hours).toBe('20 часов');
+    });
+    it('Должен вернуть ожидаемый результат', () => {
+        const hours = convertMinutesToHours(1000000000000);
+        expect(hours).toBe('16666666666 часов 40 минут');
+    });
+    it('Должен выбросить исключение при передаче нецелого числа', () => {
+        expect(() => convertMinutesToHours(75.5)).toThrowError('Аргумент number должен быть целым');
+    });
+
+    it('Должен выбросить исключение при передаче undefined', () => {
+        expect(() => convertMinutesToHours(undefined)).toThrowError(
+            'Аргумент number должен быть целым'
+        );
+    });
+
+    it('Должен выбросить исключение при передаче пустой строки', () => {
+        expect(() => convertMinutesToHours('')).toThrowError('Аргумент number должен быть целым');
+    });
+
+    it('Должен выбросить исключение при передаче строки ввиде целого числа', () => {
+        expect(() => convertMinutesToHours('75')).toThrowError('Аргумент number должен быть целым');
+    });
+
+    it('Должен выбросить исключение при передаче boolean значения', () => {
+        expect(() => convertMinutesToHours(true)).toThrowError('Аргумент number должен быть целым');
+    });
+
+    it('Должен выбросить исключение при передаче массива', () => {
+        expect(() => convertMinutesToHours([])).toThrowError('Аргумент number должен быть целым');
+    });
+});

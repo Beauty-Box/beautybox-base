@@ -1,10 +1,8 @@
 let globalFetch = null;
 
 if (typeof window !== 'undefined') {
-    console.log('client');
     globalFetch = window.fetch;
 } else if (typeof global !== 'undefined') {
-    console.log('server');
     globalFetch = require('node-fetch');
 } else {
     new TypeError('class Fetch is not defined');
@@ -17,8 +15,7 @@ export class FetchApi {
         this.token = token || '';
     }
     _genHeaders(data) {
-        const opt = {
-        };
+        const opt = {};
         if (this.token) {
             opt['Authorization'] = 'bearer ' + this.token;
         }
