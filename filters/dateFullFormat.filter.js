@@ -1,4 +1,4 @@
-export default function dateFullFormat(date) {
+function dateFullFormat(date) {
     return new Intl.DateTimeFormat('ru-RU', {
         weekday: 'long',
         year: 'numeric',
@@ -8,3 +8,6 @@ export default function dateFullFormat(date) {
         .format(new Date(date))
         .slice(0, -3);
 }
+
+export { dateFullFormat };
+export default dateFullFormat;
