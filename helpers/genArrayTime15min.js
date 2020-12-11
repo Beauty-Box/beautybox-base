@@ -5,14 +5,26 @@ import { hoursLocalTest } from './hoursLocalTest';
  * @param {Number} number лимит от 0 до 99 включительно
  * */
 function genArrayTime15min(number) {
+    if (!Number.isInteger(number)) {
+        throw new TypeError('Аргумент number должен быть целым');
+    }
+
+    if (number < 0) {
+        throw new TypeError('Число должно быть положительным');
+    }
+
+    if (number > 24 * 60) {
+        throw new TypeError('Число слишком большое, что может привести к переполнению памяти');
+    }
+
     if (number < 15) {
-        return;
+        return [];
     }
     let steps = Math.floor(number / 15);
     let array = [];
 
     for (let i = 1; i <= steps; i++) {
-        let step = i * 15;
+        const step = i * 15;
         const hours = Math.floor(step / 60);
         const minutes = step % 60;
         array.push({

@@ -1,0 +1,11 @@
+{
+    "errorEmpty": {
+        "errors": {}
+    },
+    "errorMessages": {
+        "errors": {
+            "messages": "Error"
+        }
+    },
+    "errorObject": {}
+}
