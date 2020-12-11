@@ -84,14 +84,14 @@ class Api extends TestStatus {
     }
 }
 
-
 /**
- *  Функия инициализации модуля запросов к серверу
- * @param {Object} config - Объект конфигурации
- * @param {String} module - Название модуля запросов
- * @return {Api} Проинициализированный модуль запросов
+ *  @description Функия инициализации модуля запросов к серверу
+ *  @function
+ *  @param {Object<BASE_URL, token>} config - Объект конфигурации
+ *  @param {String} module - Название модуля запросов
+ *  @return {Api} Проинициализированный модуль запросов
  */
-export const initProvider = (config, module) => new Api(config.BASE_URL, module, config.token);
+const initProvider = (config, module) => new Api(config.BASE_URL, module, config.token);
 
 export { Api, initProvider };
 export default { Api, initProvider };
