@@ -1,6 +1,7 @@
-const NotFound = () => import(/* webpackChunkName: "NotFound" */ '@beautybox/static/src/pages/Errors/NotFound');
+const AppPageNotFound = () =>
+    import(/* webpackChunkName: "page-not-found" */ '@beautybox/static/src/pages/Errors/NotFound');
 
-export default [
+const errorsRoutes = [
     {
         path: '*',
         name: '404',
@@ -8,6 +9,9 @@ export default [
             free: true,
             layout: 'empty',
         },
-        component: NotFound,
+        component: AppPageNotFound,
     },
 ];
+
+export { errorsRoutes };
+export default { errorsRoutes };
