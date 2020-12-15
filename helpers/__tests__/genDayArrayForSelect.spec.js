@@ -31,6 +31,16 @@ describe('genDayArrayForSelect', () => {
         expect(() => genDayArrayForSelect(75.5)).toThrowError('Аргумент number должен быть целым');
     });
 
+    it('Должен выбросить исключение при передаче нецелого отрицательного числа', () => {
+        expect(() => genDayArrayForSelect(-75.5)).toThrowError('Аргумент number должен быть целым');
+    });
+
+    it('Должен выбросить исключение при передаче целого отрицательного числа', () => {
+        expect(() => genDayArrayForSelect(-1)).toThrowError(
+            'Передаваемый параметр не должен быть меньше 0'
+        );
+    });
+
     it('Должен выбросить исключение при передаче undefined', () => {
         expect(() => genDayArrayForSelect(undefined)).toThrowError(
             'Аргумент number должен быть целым'

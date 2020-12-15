@@ -1,8 +1,15 @@
 import { hoursLocalTest } from './hoursLocalTest';
 
 /**
+ * @typedef { Object } DateItem
+ * @property { String } text 15 минут
+ * @property { Number } value 15
+ * */
+
+/**
  * @description genArrayTime15min Возвращает массив формата [{text: 15 минут, value: 15}]
  * @param {Number} number лимит от 0 до 99 включительно
+ * @return { Array<DateItem> }
  * */
 function genArrayTime15min(number) {
     if (!Number.isInteger(number)) {

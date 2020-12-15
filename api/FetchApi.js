@@ -25,8 +25,8 @@ export class FetchApi {
         return opt;
     }
     _genBody(data, method) {
-        let headers = this._genHeaders(data);
-        let body = {
+        const headers = this._genHeaders(data);
+        const body = {
             method,
             headers: new Headers(headers),
         };

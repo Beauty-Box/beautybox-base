@@ -38,6 +38,14 @@ describe('genArrayTime15min', () => {
         expect(() => genArrayTime15min(75.5)).toThrowError('Аргумент number должен быть целым');
     });
 
+    it('Должен выбросить исключение при передаче нецелого отрицательного числа', () => {
+        expect(() => genArrayTime15min(-75.5)).toThrowError('Аргумент number должен быть целым');
+    });
+
+    it('Должен выбросить исключение при передаче отрицалетьного числа', () => {
+        expect(() => genArrayTime15min(-1)).toThrowError('Число должно быть положительным');
+    });
+
     it('Должен выбросить исключение при передаче undefined', () => {
         expect(() => genArrayTime15min(undefined)).toThrowError(
             'Аргумент number должен быть целым'

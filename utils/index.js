@@ -338,7 +338,10 @@ export async function getCoordinatesFromYandex(address = '') {
         );
         if (coordinates.ok) {
             let { response } = await coordinates.json();
-            return response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos.split(' ');
+            console.log('--- coordinates', response);
+            return response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos
+                .split(' ')
+                .reverse();
         } else {
             console.log('--- getCoordinatesFromYandex', coordinates.status);
         }

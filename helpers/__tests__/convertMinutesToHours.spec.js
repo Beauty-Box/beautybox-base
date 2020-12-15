@@ -17,8 +17,24 @@ describe('convertMinutesToHours', () => {
         const hours = convertMinutesToHours(1000000000000);
         expect(hours).toBe('16666666666 часов 40 минут');
     });
+
+    it('Должен вернуть строку 0 при передаче числа 0', () => {
+        const hours = convertMinutesToHours(0);
+        expect(hours).toEqual('0');
+    });
+
     it('Должен выбросить исключение при передаче нецелого числа', () => {
         expect(() => convertMinutesToHours(75.5)).toThrowError('Аргумент number должен быть целым');
+    });
+
+    it('Должен выбросить исключение при передаче нецелого отрицательного числа', () => {
+        expect(() => convertMinutesToHours(-75.5)).toThrowError(
+            'Аргумент number должен быть целым'
+        );
+    });
+
+    it('Должен выбросить исключение при передаче целого отрицательного числа', () => {
+        expect(() => convertMinutesToHours(-1)).toThrowError('Число должно быть положительным');
     });
 
     it('Должен выбросить исключение при передаче undefined', () => {
