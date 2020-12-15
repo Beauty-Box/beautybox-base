@@ -1,4 +1,4 @@
-import Api from '../../api';
+import { Api } from '../../api';
 import { isNumber } from '../../helpers/isNumber';
 function testInputData(params) {
     if (typeof params === 'undefined') {
