@@ -1,0 +1,11 @@
+image: node:12-alpine
+
+before_script:
+  - apk update && apk upgrade && apk add --no-cache bash git openssh
+  - yarn
+
+Build and testing:
+  tags: [test]
+  script:
+    - yarn test
+    
