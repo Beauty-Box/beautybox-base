@@ -1,5 +1,16 @@
 import { Api } from '../../api';
-import { isNumber } from '../../helpers/isNumber';
+// import { isNumber } from '../../helpers/isNumber';
+function testInteger(value) {
+    if (!Number.isInteger(value)) {
+        throw 'Значение не является целым числом';
+    }
+}
+function testArray(value) {
+    if (!Array.isArray(value)) {
+        throw 'Значение не является массивом';
+    }
+}
+
 function testInputData(params) {
     if (typeof params === 'undefined') {
         throw 'Не переданы входные параметры для создания экземпляра';
@@ -30,8 +41,8 @@ class PayrollRule {
 
     addCategory() {
         const category = {
-            categoryID: 0,
-            serviceID: 0,
+            categoryID: null,
+            serviceID: null,
             value: this.value,
             value_type: this.value_type,
         };
@@ -39,38 +50,53 @@ class PayrollRule {
         this.categories.push(category);
     }
 
-    setValue(value) {
-        if (!isNumber(value)) {
-            throw 'Значение не является числом';
-        }
-        if (this.value_type === 0) {
-            if (value < 0) {
-                this.salary = 0;
-            } else if (value < 1000000000) {
-                this.salary = value;
-            } else {
-                this.salary = 1000000000;
-            }
+    removeCategory(index) {
+        testInteger(index);
+        if (index < 0) {
+            throw 'Индекс меньше допустимого значения';
+        } else if (index >= this.categories.length) {
+            throw 'Индекс больше допустимого значения';
         } else {
-            if (value < 0) {
-                this.salary = 0;
-            } else if (value <= 100) {
-                this.salary = value;
-            } else {
-                this.salary = 100;
-            }
+            this.categories.splice(index, 1);
         }
     }
+
+    // setValue(value) {
+    //     if (!isNumber(value)) {
+    //         throw 'Значение не является числом';
+    //     }
+    //     if (this.value_type === 0) {
+    //         if (value < 0) {
+    //             this.salary = 0;
+    //         } else if (value < 1000000000) {
+    //             this.salary = value;
+    //         } else {
+    //             this.salary = 1000000000;
+    //         }
+    //     } else {
+    //         if (value < 0) {
+    //             this.salary = 0;
+    //         } else if (value <= 100) {
+    //             this.salary = value;
+    //         } else {
+    //             this.salary = 100;
+    //         }
+    //     }
+    // }
 
     static createProvider(config = {}) {
         _provider = new Api(config.baseUrl || process.env.BASE_URL, 'crm', config.token || null);
     }
     static async store(payrollRule) {
-        const { errors = {} } = await _provider.post('/payroll-rules', { ...payrollRule });
+        const newPayrollRule = { ...payrollRule };
+        newPayrollRule.categories = newPayrollRule.categories.filter((item) => !!item.categoryID)
+        const { errors = {} } = await _provider.post('/payroll-rules', newPayrollRule);
         console.log('errors', errors);
     }
-    static async update(id, rule) {
-        const { errors = {}, ...res } = await _provider.put(`/payroll-rules/${id}`, rule);
+    static async update(id, payrollRule) {
+        const newPayrollRule = { ...payrollRule };
+        newPayrollRule.categories = newPayrollRule.categories.filter((item) => !!item.categoryID)
+        const { errors = {}, ...res } = await _provider.put(`/payroll-rules/${id}`, newPayrollRule);
         return { errors, ...res };
     }
     static async show(id) {
@@ -114,17 +140,6 @@ class PayrollRules {
         return this._items;
     }
 
-    set total(value) {
-        if (!Number.isInteger(value)) {
-            throw 'total должен быть целым числом';
-        } else {
-            this._total = value;
-        }
-    }
-    get total() {
-        return this._total;
-    }
-
     static createProvider(config = {}) {
         _provider = new Api(config.baseUrl || process.env.BASE_URL, 'crm', config.token || null);
     }
@@ -132,6 +147,8 @@ class PayrollRules {
     /** Публичне методы работы с экземпляром класса */
     static async getRules() {
         const { errors = {}, total = 0, payrollRules = [] } = await _provider.get('/payroll-rules');
+        testInteger(total);
+        testArray(payrollRules);
         return { errors, total, payrollRules };
     }
 
@@ -139,15 +156,9 @@ class PayrollRules {
         const { errors = {}, total = 0, payrollRules = [] } = await _provider.get(
             `/payroll-rules?skip=${payrollRulesLength}`
         );
+        testInteger(total);
+        testArray(payrollRules);
         return { errors, total, payrollRules };
-    }
-    /** Служебные методы работы с экземпляром класса */
-    pushInPayrollRules(value) {
-        if (!Array.isArray(value)) {
-            throw 'Устанавливаемое значение не явъяется массивом';
-        } else {
-            this._items.push(...value);
-        }
     }
 }
 
