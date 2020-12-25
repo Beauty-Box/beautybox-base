@@ -19,11 +19,13 @@ export class Client extends Person {
         };
         this.categories = [];
         this.clientTypeID = 0;
+        this.blockingOnline = 0;
     }
 
     _initFormData(formData) {
         super._initFormData(formData);
         formData.append('clientTypeID', this.clientTypeID);
+        formData.append('blockingOnline', this.blockingOnline);
         formData.append('sale', this.sale);
     }
 
