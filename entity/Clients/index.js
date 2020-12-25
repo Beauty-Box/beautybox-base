@@ -125,6 +125,8 @@ export class Clients extends Provider {
             module: 'crm',
             token: localStorage.getItem('access_token'),
         });
+        this.sortOrder = false;
+        this.sortBy = '';
         this.clients = [];
         this.count = 0;
     }
@@ -139,7 +141,9 @@ export class Clients extends Provider {
     _getQuery(args) {
         return `skip=${args[1]}&limit=${args[2]}${
             args[0].nameFilter ? `&nameFilter=${args[0].nameFilter}` : ''
-        }${args[0].clientsTypeFilter ? `&clientsTypeFilter=${args[0].clientsTypeFilter}` : ''}`;
+        }${args[0].clientsTypeFilter ? `&clientsTypeFilter=${args[0].clientsTypeFilter}` : ''}${
+            this.sortBy ? `&sortBy=${this.sortBy}&sortOrder=${this.sortOrder ? 'desc' : 'asc'}` : ''
+        }`;
     }
 
     get clientsList() {

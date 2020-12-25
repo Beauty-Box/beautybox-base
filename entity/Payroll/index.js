@@ -39,12 +39,12 @@ class PayrollRule {
         this.categories = [];
     }
 
-    addCategory() {
+    addCategory(copy = true) {
         const category = {
             categoryID: null,
             serviceID: null,
-            value: this.value,
-            value_type: this.value_type,
+            value: copy ? this.value : 0,
+            value_type: copy ? this.value_type : 0,
         };
         console.log('category', category);
         this.categories.push(category);
