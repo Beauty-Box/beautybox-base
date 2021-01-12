@@ -12,7 +12,7 @@ function addGetError(api, data) {
         });
 }
 
-function addPost(api, data) {
+function addPostSuccess(api, data) {
     api.prototype.post = () =>
         new Promise((resolve, reject) => {
             resolve(data);
@@ -33,5 +33,5 @@ function addDelete(api, data) {
         });
 }
 
-export { addGetSuccess, addGetError, addPost, addPut, addDelete };
-export default { addGetSuccess, addGetError, addPost, addPut, addDelete };
+export { addGetSuccess, addGetError, addPostSuccess, addPut, addDelete };
+export default { addGetSuccess, addGetError, addPostSuccess, addPut, addDelete };

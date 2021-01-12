@@ -1,5 +1,4 @@
-import { Api } from '../../api';
-// import { isNumber } from '../../helpers/isNumber';
+import { ProviderClass } from '../../api';
 function testInteger(value) {
     if (!Number.isInteger(value)) {
         throw 'Значение не является целым числом';
@@ -11,23 +10,9 @@ function testArray(value) {
     }
 }
 
-function testInputData(params) {
-    if (typeof params === 'undefined') {
-        throw 'Не переданы входные параметры для создания экземпляра';
-    } else if (toString.call(params).slice(8, -1) !== 'Object') {
-        throw 'Параметры конструкторы должны быть объектом вида { baseUrl: "http://baseUrl", token: "cmAD3cae3Fafvcae.vfaeFcEEECA3.FEAfaAdawd" }';
-    }
-    if (!params.token) {
-        throw 'Не удается получить токен из входных параметров';
-    }
-    if (!params.baseUrl) {
-        throw 'Не удается получить baseUrl из входных параметров';
-    }
-}
-let _provider = null;
-
-class PayrollRule {
+class PayrollRule extends ProviderClass {
     constructor() {
+        super();
         this.name = '';
         this.value = 0;
         this.salary = 0;
@@ -46,14 +31,13 @@ class PayrollRule {
             value: copy ? this.value : 0,
             value_type: copy ? this.value_type : 0,
         };
-        console.log('category', category);
         this.categories.push(category);
     }
 
     removeCategory(index) {
         testInteger(index);
         if (index < 0) {
-            throw 'Индекс меньше допустимого значения';
+            throw 'Индекс не может быть отрицательным';
         } else if (index >= this.categories.length) {
             throw 'Индекс больше допустимого значения';
         } else {
@@ -83,36 +67,34 @@ class PayrollRule {
     //         }
     //     }
     // }
-
-    static createProvider(config = {}) {
-        _provider = new Api(config.baseUrl || process.env.BASE_URL, 'crm', config.token || null);
-    }
     static async store(payrollRule) {
         const newPayrollRule = { ...payrollRule };
-        newPayrollRule.categories = newPayrollRule.categories.filter((item) => !!item.categoryID)
-        const { errors = {} } = await _provider.post('/payroll-rules', newPayrollRule);
-        console.log('errors', errors);
+        newPayrollRule.categories = newPayrollRule.categories.filter(item => !!item.categoryID);
+        const { errors = {} } = await PayrollRule._provider.post('/payroll-rules', newPayrollRule);
+        return { errors };
     }
     static async update(id, payrollRule) {
         const newPayrollRule = { ...payrollRule };
-        newPayrollRule.categories = newPayrollRule.categories.filter((item) => !!item.categoryID)
-        const { errors = {}, ...res } = await _provider.put(`/payroll-rules/${id}`, newPayrollRule);
+        newPayrollRule.categories = newPayrollRule.categories.filter(item => !!item.categoryID);
+        const { errors = {}, ...res } = await PayrollRule._provider.put(
+            `/payroll-rules/${id}`,
+            newPayrollRule
+        );
         return { errors, ...res };
     }
     static async show(id) {
-        const { errors = {}, ...res } = await _provider.get(`/payroll-rules/${id}`);
+        const { errors = {}, ...res } = await PayrollRule._provider.get(`/payroll-rules/${id}`);
         return { errors, ...res };
     }
     static async delete(id) {
-        const { errors = {} } = await _provider.delete(`/payroll-rules/${id}`);
+        const { errors = {} } = await PayrollRule._provider.delete(`/payroll-rules/${id}`);
         return { errors };
     }
-    static async create() {}
 }
 
-class PayrollRules {
-    constructor(params) {
-        // testInputData(params);
+class PayrollRules extends ProviderClass {
+    constructor() {
+        super();
         this._errors = {};
         this._total = 0;
         this._items = [];
@@ -140,20 +122,18 @@ class PayrollRules {
         return this._items;
     }
 
-    static createProvider(config = {}) {
-        _provider = new Api(config.baseUrl || process.env.BASE_URL, 'crm', config.token || null);
-    }
-
     /** Публичне методы работы с экземпляром класса */
     static async getRules() {
-        const { errors = {}, total = 0, payrollRules = [] } = await _provider.get('/payroll-rules');
+        const { errors = {}, total = 0, payrollRules = [] } = await PayrollRules._provider.get(
+            '/payroll-rules'
+        );
         testInteger(total);
         testArray(payrollRules);
         return { errors, total, payrollRules };
     }
 
     static async addRules(payrollRulesLength = 0) {
-        const { errors = {}, total = 0, payrollRules = [] } = await _provider.get(
+        const { errors = {}, total = 0, payrollRules = [] } = await PayrollRules._provider.get(
             `/payroll-rules?skip=${payrollRulesLength}`
         );
         testInteger(total);

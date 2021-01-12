@@ -1,9 +1,9 @@
 /**
  * @description isNumber проверяет входную строку на число
- * @param {String} string Тестируемая строка
- * @return {Boolean}
+ * @param { Any } string Тестируемая строка
+ * @return { Boolean }
  * */
-function isNumber(string = '') {
+function isNumber(string) {
     if (string === 0) {
         return true;
     }
