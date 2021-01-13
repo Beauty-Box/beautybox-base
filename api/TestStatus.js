@@ -63,6 +63,7 @@ export class TestStatus {
     }
     async getError(response, message) {
         const body = await this.getBody(response);
+        body.status = response.status;
         const errors = body.errors;
         return errors ? body : this.getErrorMessage(message, response.status);
     }

@@ -77,6 +77,9 @@ class Api extends TestStatus {
             return result;
         }
         if (result.status === 401) {
+            if (result.code === 100) {
+                return;
+            }
             window.location.replace(
                 `${window.location.origin}/auth/sign-in?from=${window.location.href}`
             );
@@ -107,6 +110,7 @@ class Api extends TestStatus {
                 }
                 resolve();
             } catch (e) {
+                console.log('e', JSON.stringify(e));
                 reject(e);
             }
         });
