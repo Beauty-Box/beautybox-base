@@ -1,55 +1,71 @@
 import { TestStatus } from './TestStatus';
 import { FetchApi as Provider } from './FetchApi';
 
+function parseJwt(token) {
+    const base64Url = token.split('.')[1];
+    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    const jsonPayload = decodeURIComponent(
+        atob(base64)
+            .split('')
+            .map(function(c) {
+                return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+            })
+            .join('')
+    );
+
+    return JSON.parse(jsonPayload);
+}
+
 class Api extends TestStatus {
     constructor(baseUrl, module, token) {
         super();
+        window.refresh = null;
         this.baseUrl = baseUrl;
         this.module = module;
         this._setProvider(baseUrl, module, token);
+
+        return new Proxy(this, {
+            get(target, p, receiver) {
+                if (['get', 'post', 'put', 'delete', 'patch'].includes(p)) {
+                    return (url, data, module = '') => target._response(url, data, p, module);
+                } else {
+                    return target[p];
+                }
+            },
+        });
     }
     _setProvider(baseUrl, module, token) {
         this.provider = new Provider(baseUrl, module, token);
     }
-    get(url, data) {
-        return this.provider
-            .res(url, data, 'get')
-            .then(response =>
-                this.test(response)
-                    .then(result => result)
-                    .catch(result => this.redirectTo(result))
-            )
-            .catch(result => this.redirectTo(result));
-    }
-    delete(url, data) {
-        return this.provider
-            .res(url, data, 'delete')
-            .then(response =>
-                this.test(response)
-                    .then(result => result)
-                    .catch(result => this.redirectTo(result))
-            )
-            .catch(result => this.redirectTo(result));
-    }
-    post(url, data) {
-        return this.provider
-            .res(url, data, 'post')
-            .then(response =>
-                this.test(response)
-                    .then(result => result)
-                    .catch(result => this.redirectTo(result))
-            )
-            .catch(result => this.redirectTo(result));
-    }
-    put(url, data) {
-        return this.provider
-            .res(url, data, 'put')
-            .then(response =>
-                this.test(response)
-                    .then(result => result)
-                    .catch(result => this.redirectTo(result))
-            )
-            .catch(result => this.redirectTo(result));
+    async _response(url, data, method, module = '') {
+        if (this.provider.token) {
+            const payload = parseJwt(this.provider.token);
+            const now = new Date();
+            const exp = new Date(parseInt(payload.exp) * 1000);
+            if (now >= exp) {
+                if (!window.refresh) {
+                    try {
+                        window.refresh = this.refreshToken();
+                        await window.refresh;
+                        return await this.test(await this.provider.res(url, data, method, module));
+                    } catch (e) {
+                        return this.redirectTo(e);
+                    }
+                } else {
+                    try {
+                        await window.refresh;
+                        return await this.test(await this.provider.res(url, data, method, module));
+                    } catch (e) {
+                        return this.redirectTo(e);
+                    }
+                }
+            }
+        }
+        try {
+            return await this.test(await this.provider.res(url, data, method, module));
+        } catch (e) {
+            return this.redirectTo(e);
+        }
     }
     redirectTo(result) {
         if (result.status >= 500) {
@@ -78,6 +94,29 @@ class Api extends TestStatus {
             return result;
         }
         return result;
+    }
+    refreshToken() {
+        return new Promise(async (resolve, reject) => {
+            try {
+                const res = await this.provider.res('/refresh-token', {}, 'post', 'auth');
+                const { access_token: token } = await this.test(res);
+                window.refresh = null;
+                this.updateToken(token);
+                if (localStorage) {
+                    localStorage.setItem('access_token', token);
+                }
+                resolve();
+            } catch (e) {
+                reject(e);
+            }
+        });
+    }
+    async errorHandler(result, url, data, method, module) {
+        if (result.status === 401 && !this.refresh && result.errors.code === 100) {
+            this.refresh = this.refreshToken();
+            return;
+        }
+        this.redirectTo(result);
     }
     updateToken(token) {
         this.provider.updateToken(token);

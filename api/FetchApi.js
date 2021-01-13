@@ -36,8 +36,11 @@ export class FetchApi {
         }
         return body;
     }
-    res(url, data, method) {
-        return fetch(`${this.BASE_URL}/api/${this.MODULE}` + url, this._genBody(data, method));
+    res(url, data, method, module = '') {
+        return fetch(
+            `${this.BASE_URL}/api/${module ? module : this.MODULE}` + url,
+            this._genBody(data, method)
+        );
     }
     updateToken(token) {
         this.token = token;

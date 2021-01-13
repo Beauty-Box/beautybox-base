@@ -1,7 +1,7 @@
 export class TestStatus {
     test(response) {
         return new Promise(async (resolve, reject) => {
-            let status = `s${response.status}`;
+            const status = `s${response.status}`;
             if (!this[status]) {
                 return reject(this.getErrorMessage('Статус не распознан', 0));
             }
@@ -62,9 +62,8 @@ export class TestStatus {
         return await response.json();
     }
     async getError(response, message) {
-        let body = await this.getBody(response);
-        body.status = response.status;
-        let errors = body.errors;
+        const body = await this.getBody(response);
+        const errors = body.errors;
         return errors ? body : this.getErrorMessage(message, response.status);
     }
     async s200(response) {
