@@ -54,6 +54,7 @@ class Api extends TestStatus {
                 } else {
                     try {
                         await window.refresh;
+                        this.updateToken(localStorage.getItem('access_token') || '');
                         return await this.test(await this.provider.res(url, data, method, module));
                     } catch (e) {
                         return this.redirectTo(e);
