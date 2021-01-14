@@ -39,26 +39,31 @@ class Api extends TestStatus {
     }
     async _response(url, data, method, module = '') {
         if (this.provider.token) {
-            const payload = parseJwt(this.provider.token);
-            const now = new Date();
-            const exp = new Date(parseInt(payload.exp) * 1000);
-            if (now >= exp) {
-                if (!window.refresh) {
+            const localToken = localStorage.getItem('access_token');
+            if (localToken !== this.provider.token) {
+                this.updateToken(localToken);
+            }
+            if (!window.refresh) {
+                const payload = parseJwt(this.provider.token);
+                const now = new Date().getTime();
+                const exp = parseInt(payload.exp) * 1000;
+                if (now >= exp) {
                     try {
                         window.refresh = this.refreshToken();
-                        await window.refresh;
+                        const token = await window.refresh;
+                        this.updateToken(token);
                         return await this.test(await this.provider.res(url, data, method, module));
                     } catch (e) {
                         return this.redirectTo(e);
                     }
-                } else {
-                    try {
-                        await window.refresh;
-                        this.updateToken(localStorage.getItem('access_token') || '');
-                        return await this.test(await this.provider.res(url, data, method, module));
-                    } catch (e) {
-                        return this.redirectTo(e);
-                    }
+                }
+            } else {
+                try {
+                    const token = await window.refresh;
+                    this.updateToken(token);
+                    return await this.test(await this.provider.res(url, data, method, module));
+                } catch (e) {
+                    return this.redirectTo(e);
                 }
             }
         }
@@ -104,14 +109,15 @@ class Api extends TestStatus {
             try {
                 const res = await this.provider.res('/refresh-token', {}, 'post', 'auth');
                 const { access_token: token } = await this.test(res);
-                window.refresh = null;
                 this.updateToken(token);
                 if (localStorage) {
                     localStorage.setItem('access_token', token);
                 }
-                resolve();
+                window.refresh = null;
+                resolve(token);
             } catch (e) {
                 console.log('e', JSON.stringify(e));
+                window.refresh = null;
                 reject(e);
             }
         });
