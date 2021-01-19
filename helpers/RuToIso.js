@@ -4,8 +4,8 @@
  * @return {String, Null}
  * */
 function RuToIso(date) {
-    if (!date) {
-        return null;
+    if (typeof date !== 'string' || !date.match(/^([0-2]\d|3[01])\.([0]\d|1[0-2])\.\d{4}$/)) {
+        throw new TypeError('Ожидалась дата формата ДД.ММ.ГГГГ');
     }
     const [day, month, year] = date.split('.');
     return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
