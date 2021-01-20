@@ -12,7 +12,7 @@
         "access": "restricted"
     },
     "scripts": {
-        "test": "cross-env NODE_ICU_DATA=node_modules/full-icu jest -u",
+        "test": "cross-env NODE_ICU_DATA=node_modules/full-icu jest",
         "test:watch": "jest -u --watch",
         "generate-docs": "jsdoc ./helpers -c jsdoc.json -r"
     },
@@ -81,6 +81,14 @@
         "webpack": "^4.44.2"
     },
     "jest": {
+        "coverageThreshold": {
+            "global": {
+                "branches": 44.85,
+                "functions": 33.73,
+                "lines": 40,
+                "statements": 40.7
+            }
+        },
         "collectCoverage": true,
         "collectCoverageFrom": [
             "api/**/*.js",
