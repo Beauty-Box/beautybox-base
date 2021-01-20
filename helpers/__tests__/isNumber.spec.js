@@ -23,11 +23,11 @@ describe('Тест функции isNumber', () => {
 
     it('Должна вернуть false', () => {
         const result = isNumber([]);
-        expect(result).toEqual(true);
+        expect(result).toEqual(false);
     });
 
     it('Должна вернуть false', () => {
         const result = isNumber('20.14.12');
-        expect(result).toEqual(true);
+        expect(result).toEqual(false);
     });
 });
