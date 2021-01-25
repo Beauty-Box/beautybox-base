@@ -3,7 +3,7 @@ function priceFilter(number) {
         minimumFractionDigits: 0,
         style: 'currency',
         currency: 'RUB',
-    }).format(number);
+    }).format(number || 0);
 }
 
 export { priceFilter };

@@ -122,13 +122,6 @@ class Api extends TestStatus {
             }
         });
     }
-    async errorHandler(result, url, data, method, module) {
-        if (result.status === 401 && !this.refresh && result.errors.code === 100) {
-            this.refresh = this.refreshToken();
-            return;
-        }
-        this.redirectTo(result);
-    }
     updateToken(token) {
         this.provider.updateToken(token);
     }
@@ -136,7 +129,7 @@ class Api extends TestStatus {
 
 class ProviderClass {
     constructor() {}
-    static createProvider(config = {}) {
+    static createProvider(config) {
         testInputData(config);
         ProviderClass._provider = new Api(
             config.baseUrl || process.env.BASE_URL,
@@ -159,10 +152,7 @@ function testInputData(params) {
     if (typeof params === 'undefined') {
         throw 'Не переданы входные параметры для создания экземпляра';
     } else if (toString.call(params).slice(8, -1) !== 'Object') {
-        throw 'Параметры конструкторы должны быть объектом вида { baseUrl: "http://baseUrl", token: "cmAD3cae3Fafvcae.vfaeFcEEECA3.FEAfaAdawd" }';
-    }
-    if (!params.token) {
-        throw 'Не удается получить токен из входных параметров';
+        throw 'Параметры конструкторы должны быть объектом вида { baseUrl: "http://baseUrl" }';
     }
     if (!params.baseUrl) {
         throw 'Не удается получить baseUrl из входных параметров';
