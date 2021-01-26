@@ -11,7 +11,7 @@ module.exports = {
     ],
     env: {
         test: {
-            plugins: ['require-context-hook'],
+            plugins: ['require-context-hook', '@babel/proposal-export-default-from'],
         },
     },
 };

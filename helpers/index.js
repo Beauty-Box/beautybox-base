@@ -14,7 +14,6 @@ export * from './genNumberArray';
 export * from './genNumberStringArray';
 export * from './genNumberStringArrayRevert';
 export * from './genDayArrayForSelect';
-export * from './getBaseUrl';
 export * from './joinQueryObj';
 export * from './joinQuery';
 export * from './SortArrayByArray';

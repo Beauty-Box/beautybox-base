@@ -1,7 +1,7 @@
 let globalFetch = null;
 
 if (typeof window !== 'undefined') {
-    globalFetch = window.fetch;
+    globalFetch = window.fetch || require('node-fetch');
 } else if (typeof global !== 'undefined') {
     globalFetch = require('node-fetch');
 } else {
@@ -37,7 +37,7 @@ export class FetchApi {
         return body;
     }
     res(url, data, method, module = '') {
-        return fetch(
+        return globalFetch(
             `${this.BASE_URL}/api/${module ? module : this.MODULE}` + url,
             this._genBody(data, method)
         );

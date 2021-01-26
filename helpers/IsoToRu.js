@@ -3,8 +3,8 @@
  * @param {String} date формат '2020-01-31'
  * */
 function IsoToRu(date) {
-    if (!date) {
-        return null;
+    if (typeof date !== 'string' || !date.match(/^\d{4}-([0]\d|1[0-2])-([0-2]\d|3[01])$/)) {
+        throw new TypeError('Ожидалась дата формата ГГГГ-ММ-ДД');
     }
     const [year, month, day] = date.split('-');
     return `${day}.${month}.${year}`;
