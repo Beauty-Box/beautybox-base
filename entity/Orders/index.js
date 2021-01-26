@@ -9,7 +9,7 @@ class Orders extends ProviderClass {
         this._status = [
             {
                 filterText: 'Все',
-                text: 'Все покупки',
+                text: 'Все заказы',
                 value: 0,
             },
         ];
