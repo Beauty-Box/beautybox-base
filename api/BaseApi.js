@@ -1,3 +1,5 @@
+// TODO: Удалить файл
+
 import { TestStatus } from './TestStatus';
 import { FetchApi as Provider } from './FetchApi';
 
