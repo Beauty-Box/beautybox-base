@@ -2,15 +2,15 @@ import { ProviderClass } from '../../api';
 
 class Sales extends ProviderClass {
     static async getPercent() {
-        return await Sales._provider.get('/market/percent');
+        return await Sales._provider.get('/percent');
     }
 
     static async getLevel() {
-        return await Sales._provider.get('/market/level');
+        return await Sales._provider.get('/level');
     }
 
     static async getDiscount() {
-        return await Sales._provider.get('/market/discount');
+        return await Sales._provider.get('/discount');
     }
 }
 

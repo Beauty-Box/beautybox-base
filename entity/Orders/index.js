@@ -53,7 +53,7 @@ class Orders extends ProviderClass {
     /** Получение списка покупок */
     static async getOrders(queryString = '') {
         const { errors = {}, count = 0, orders = [] } = await Orders._provider.get(
-            `/market/orders${queryString}`
+            `/orders${queryString}`
         );
         return { errors, count, orders };
     }
@@ -61,43 +61,43 @@ class Orders extends ProviderClass {
     /** Добавление к списку покупок при скроле */
     static async getOrdersOnScroll(ordersLength = 0) {
         const { errors = {}, orders = [] } = await Orders._provider.get(
-            `/market/orders?skip=${ordersLength}`
+            `/orders?skip=${ordersLength}`
         );
         return { errors, orders };
     }
 
     /** Получение списка статусов заказа */
     static async getOrderStatuses() {
-        const { errors = {}, status = [] } = await Orders._provider.get('/market/status/short');
+        const { errors = {}, status = [] } = await Orders._provider.get('/status/short');
         return { errors, status };
     }
 
     /*    orders(queryString = '') {
-        return this._provider.get(`/market${queryString}`);
+        return this._provider.get(`${queryString}`);
     }
 
     order(id) {
-        return this._provider.get(`/market/order/${id}`);
+        return this._provider.get(`/order/${id}`);
     }
 
     products(queryString = '', skip = 0) {
-        return this._provider.get(`/market/products${queryString}skip=${skip}`);
+        return this._provider.get(`/products${queryString}skip=${skip}`);
     }
 
     categories() {
-        return this._provider.get('/market/categories');
+        return this._provider.get('/categories');
     }
 
     addToCart(formData) {
-        this._provider.post('/market/products/cart', formData);
+        this._provider.post('/products/cart', formData);
     }
 
     removeFromCart(formData) {
-        this._provider.post('/market/products/cart-remove', formData);
+        this._provider.post('/products/cart-remove', formData);
     }
 
     itemsInCart() {
-        return this._provider.get('/market/products/cart');
+        return this._provider.get('/products/cart');
     }*/
 }
 
@@ -119,7 +119,7 @@ class Order extends ProviderClass {
     }
 
     static async show(id) {
-        const { errors = {}, ...res } = await Order._provider.get(`/market/orders/${id}`);
+        const { errors = {}, ...res } = await Order._provider.get(`/orders/${id}`);
         return { errors, ...res };
     }
 }
