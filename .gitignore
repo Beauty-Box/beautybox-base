@@ -2,8 +2,10 @@
 ###################
 dist
 **/dist
+dist_new
 **/dist_new
 coverage
+**/coverage
 # CONFIG's source #
 ###################
 .gitconfig

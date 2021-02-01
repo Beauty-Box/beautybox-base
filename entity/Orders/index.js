@@ -71,34 +71,6 @@ class Orders extends ProviderClass {
         const { errors = {}, status = [] } = await Orders._provider.get('/status/short');
         return { errors, status };
     }
-
-    /*    orders(queryString = '') {
-        return this._provider.get(`${queryString}`);
-    }
-
-    order(id) {
-        return this._provider.get(`/order/${id}`);
-    }
-
-    products(queryString = '', skip = 0) {
-        return this._provider.get(`/products${queryString}skip=${skip}`);
-    }
-
-    categories() {
-        return this._provider.get('/categories');
-    }
-
-    addToCart(formData) {
-        this._provider.post('/products/cart', formData);
-    }
-
-    removeFromCart(formData) {
-        this._provider.post('/products/cart-remove', formData);
-    }
-
-    itemsInCart() {
-        return this._provider.get('/products/cart');
-    }*/
 }
 
 class Order extends ProviderClass {
