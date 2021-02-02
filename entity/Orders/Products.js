@@ -64,24 +64,32 @@ class Products extends ProviderClass {
      * @description getCartItems Получение массива товаров в корзине
      * */
     static async getCartItems() {
-        console.log('--- getCartItems', await Products._provider.get('/products/cart'));
         return await Products._provider.get('/products/cart');
     }
 
     /**
      * @description getFavoritesProducts Получение массива избранных товаров
      * */
-    static async getFavoritesProducts() {
-        console.log('--- getCartItems', await Products._provider.get('/products/cart'));
-        return await Products._provider.get('/products/cart');
+    static async getFavoritesProducts(queryString = '') {
+        const { errors = {}, favorites = [], total = 0 } = await Products._provider.get(
+            `/favorites${queryString}`
+        );
+        return { errors, favorites, total };
+    }
+
+    /**
+     * @description getFavoritesProductsId Метод для получение количества избранных товаров
+     * */
+    static async getFavoriteProductsCount() {
+        const { count = 0 } = await Products._provider.get('/favorites?count=true');
+        return { count };
     }
 
     /**
      * @description getFavoritesProductsId Получение массива ID избранных товаров
      * */
     static async getFavoritesProductsId() {
-        console.log('--- getCartItems', await Products._provider.get('/products/cart'));
-        return await Products._provider.get('/products/cart');
+        return await Products._provider.get('/favorites/list');
     }
 
     /** Метод для получение количества закзов */
@@ -95,21 +103,23 @@ class Products extends ProviderClass {
         const { count = 0 } = await Products._provider.get('/products?count=true');
         return { count };
     }
-
-    /** Метод для получение избранных товаров */
-    static async getFavoriteProductsCount() {
-        const { count = 0 } = await Products._provider.get('/favorites?count=true');
-        return { count };
-    }
 }
 
 class Product extends ProviderClass {
     static async addToCart(formData) {
-        await Products.post('/products/cart', formData);
+        await Product._provider.post('/products/cart', formData);
     }
 
-    removeFromCart(formData) {
-        this._provider.post('/products/cart-remove', formData);
+    static async removeFromCart(formData) {
+        await Product._provider.post('/products/cart-remove', formData);
+    }
+
+    static async addToFavorites(productID) {
+        await Product._provider.post(`/favorites?productID=${productID}`);
+    }
+
+    static async removeFromFavorites(productID) {
+        await Product._provider.delete(`/favorites?productID=${productID}`);
     }
 }
 
