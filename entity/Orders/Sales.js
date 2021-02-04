@@ -1,16 +1,16 @@
 import { ProviderClass } from '../../api';
 
 class Sales extends ProviderClass {
-    static async getPercent() {
-        return await Sales._provider.get('/percent');
+    static async getPercent(phone) {
+        return await Sales._provider.get(`/loyalty/percent?phone=${phone}`);
     }
 
-    static async getLevel() {
-        return await Sales._provider.get('/level');
+    static async getLevel(phone) {
+        return await Sales._provider.get(`/loyalty/level?phone=${phone}`);
     }
 
-    static async getDiscount() {
-        return await Sales._provider.get('/discount');
+    static async getDiscount(phone) {
+        return await Sales._provider.get(`/loyalty/discount?phone=${phone}`);
     }
 }
 
