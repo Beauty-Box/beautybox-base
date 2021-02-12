@@ -1,4 +1,4 @@
-import { ProviderClass } from '../../api';
+import { ProviderClass } from '../../../api';
 
 class Orders extends ProviderClass {
     constructor() {
