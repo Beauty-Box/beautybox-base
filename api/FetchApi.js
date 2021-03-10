@@ -8,6 +8,16 @@ if (typeof window !== 'undefined') {
     new TypeError('class Fetch is not defined');
 }
 
+function fetchFactory() {
+    if (typeof window !== 'undefined') {
+        return window.fetch || require('node-fetch');
+    } else if (typeof global !== 'undefined') {
+        return require('node-fetch');
+    } else {
+        new TypeError('class Fetch is not defined');
+    }
+}
+
 export class FetchApi {
     constructor(baseUrl, module, token) {
         this.BASE_URL = baseUrl;
@@ -37,7 +47,8 @@ export class FetchApi {
         return body;
     }
     res(url, data, method, module = '') {
-        return globalFetch(
+        const fetch = fetchFactory();
+        return fetch(
             `${this.BASE_URL}/api/${module ? module : this.MODULE}` + url,
             this._genBody(data, method)
         );
