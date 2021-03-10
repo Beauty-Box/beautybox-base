@@ -21,7 +21,6 @@ const isPWA = () =>
 const isFlutterWebView = UA.indexOf('flutter webview') !== -1;
 
 function checkBrowserType() {
-    console.log("--- checkBrowserType");
     const html = document.querySelector('html');
 
     if (isAndroid) {
@@ -63,7 +62,6 @@ function checkBrowserType() {
     if (isFlutterWebView) {
         window.isWebView = true;
     }
-    console.log('--- isWebView', window.isWebView);
 }
 
 export { checkBrowserType };
