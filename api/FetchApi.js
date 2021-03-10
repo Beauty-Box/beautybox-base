@@ -1,13 +1,3 @@
-let globalFetch = null;
-
-if (typeof window !== 'undefined') {
-    globalFetch = window.fetch || require('node-fetch');
-} else if (typeof global !== 'undefined') {
-    globalFetch = require('node-fetch');
-} else {
-    new TypeError('class Fetch is not defined');
-}
-
 function fetchFactory() {
     if (typeof window !== 'undefined') {
         return window.fetch || require('node-fetch');
