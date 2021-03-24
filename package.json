@@ -57,6 +57,7 @@
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
+        "@jest/globals": "^26.6.2",
         "babel-loader": "^8.2.1",
         "cross-env": "^7.0.2",
         "css-loader": "^5.0.1",

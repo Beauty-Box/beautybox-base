@@ -5,7 +5,7 @@
 function getFirstLastDayToWeek(date) {
     let tempDate = new Date(date);
     let first =
-        tempDate.getDay() != 0
+        tempDate.getDay() !== 0
             ? tempDate.getDate() - tempDate.getDay() + 1
             : tempDate.getDate() - 6;
     let last = first + 6;
