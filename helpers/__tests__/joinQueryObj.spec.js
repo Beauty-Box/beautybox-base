@@ -7,6 +7,7 @@ describe('test building query string from object', () => {
         const queryString = '';
         expect(joinQueryObj()).toEqual('');
     });
+
     it('should return query string', () => {
         const queryObj = {
             key: 1,
