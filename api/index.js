@@ -74,6 +74,8 @@ class Api extends TestStatus {
         }
     }
     redirectTo(result) {
+        console.log('--- redirect', result);
+
         if (result.status >= 500) {
             document.dispatchEvent(new Event('server-error'));
             return result;
