@@ -1,0 +1,112 @@
+{
+    "employees": [
+        {
+            "userID": 37043,
+            "name": "123123123",
+            "avatar": "",
+            "percent": 0,
+            "returned": 0,
+            "recoverability": 0,
+            "clients": 0,
+            "userClients": 0
+        },
+        {
+            "userID": 37042,
+            "name": "123123123",
+            "avatar": "",
+            "percent": 0,
+            "returned": 0,
+            "recoverability": 0,
+            "clients": 0,
+            "userClients": 0
+        },
+        {
+            "userID": 36273,
+            "name": "123",
+            "avatar": "",
+            "percent": 0,
+            "returned": 0,
+            "recoverability": 0,
+            "clients": 0,
+            "userClients": 0
+        },
+        {
+            "userID": 35557,
+            "name": "Дмитрий Улитин",
+            "avatar": "",
+            "percent": 0,
+            "returned": 0,
+            "recoverability": 0,
+            "clients": 0,
+            "userClients": 0
+        },
+        {
+            "userID": 34714,
+            "name": "Василий Смолин",
+            "avatar": "",
+            "percent": 0,
+            "returned": 0,
+            "recoverability": 0,
+            "clients": 0,
+            "userClients": 0
+        },
+        {
+            "userID": 34400,
+            "name": "Анастасия Финогенова",
+            "avatar": "",
+            "percent": 0,
+            "returned": 0,
+            "recoverability": 0,
+            "clients": 0,
+            "userClients": 0
+        },
+        {
+            "userID": 32431,
+            "name": "Владислав Моцный",
+            "avatar": "",
+            "percent": 0,
+            "returned": 0,
+            "recoverability": 0,
+            "clients": 0,
+            "userClients": 0
+        },
+        {
+            "userID": 32430,
+            "name": "Дмитрий Перфилов",
+            "avatar": "",
+            "percent": 0,
+            "returned": 0,
+            "recoverability": 0,
+            "clients": 0,
+            "userClients": 0
+        },
+        {
+            "userID": 32065,
+            "name": "Артем Кудин",
+            "avatar": "",
+            "percent": 0,
+            "returned": 0,
+            "recoverability": 0,
+            "clients": 0,
+            "userClients": 0
+        },
+        {
+            "userID": 32063,
+            "name": "Антон Устинов",
+            "avatar": "",
+            "percent": 0,
+            "returned": 0,
+            "recoverability": 0,
+            "clients": 0,
+            "userClients": 0
+        }
+    ],
+    "count": 10,
+    "general": {
+        "name": "Всего",
+        "clients": 0,
+        "newClients": 0,
+        "returned": 0,
+        "recoverability": 0
+    }
+}

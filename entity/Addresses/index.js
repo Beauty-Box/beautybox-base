@@ -1,5 +1,4 @@
 import { Provider } from '../Provider';
-import {ProviderClass} from '../../api';
 
 export default class Addresses extends Provider {
     constructor() {
