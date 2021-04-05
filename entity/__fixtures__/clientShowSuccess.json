@@ -1,0 +1,23 @@
+{
+    "clientID": 2422,
+    "name": "Виктория Зубанова",
+    "email": "",
+    "phone": "+7 (927) 110-45-46",
+    "gender": 0,
+    "birthday": {
+        "day": "",
+        "month": "",
+        "year": ""
+    },
+    "status": 0,
+    "blockingOnline": 0,
+    "sale": "",
+    "comment": "",
+    "avatar": "",
+    "crop": "",
+    "clientTypeID": 13,
+    "clientType": "Постоянный клиент",
+    "isDeleted": false,
+    "clientTypeColor": "#ab00b6",
+    "bidsAllCount": 9
+}
