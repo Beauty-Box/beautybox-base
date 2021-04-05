@@ -1,0 +1,18 @@
+{
+    "name": "",
+    "email": "",
+    "phone": "",
+    "gender": 0,
+    "birthday": {
+        "day": "",
+        "month": "",
+        "year": ""
+    },
+    "status": 0,
+    "sale": "",
+    "comment": "",
+    "avatar": "",
+    "crop": "",
+    "clientTypeID": 0,
+    "bidsAllCount": 0
+}
