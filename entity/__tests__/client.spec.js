@@ -12,6 +12,10 @@ import clientEditSuccess from '../__fixtures__/clientEditSuccess.json';
 import clientAddPostSuccess from '../__fixtures__/clientAddPostSuccess.json';
 import clientAddPostError from '../__fixtures__/clientAddPostError.json';
 import clientDeleteError from '../__fixtures__/clientDeleteError.json';
+import clientGetBidsSuccess from '../__fixtures__/clientGetBidsSuccess.json';
+import clientGetCategoryShortSuccess from '../__fixtures__/clientGetCategoryShortSuccess.json';
+import clientGetAnalyticsSuccess from '../__fixtures__/clientGetAnalyticsSuccess.json';
+import clientGetAnalyticNullSuccess from '../__fixtures__/clientGetAnalyticNullSuccess.json';
 
 const config = {
     baseUrl: 'test',
@@ -112,5 +116,36 @@ describe('client testing', () => {
         client.clientID = 57554;
         addDelete(Api, {});
         expect(client.delete()).resolves;
+    });
+
+    it('должны выводится ставки по заданному клиенту', async () => {
+        client.clientID = 2258;
+        addGetSuccess(Api, clientGetBidsSuccess);
+        await client.getBids();
+        expect(client.bids.count).toEqual(3);
+        expect(client.bids.past).toHaveLength(3);
+        expect(client.bids.coming).toHaveLength(0);
+    });
+
+    it('должны выводится категории', async () => {
+        addGetSuccess(Api, clientGetCategoryShortSuccess);
+        await client.getCategories();
+        expect(client.categories).not.toHaveLength(0);
+    });
+
+    it('должна возвращатся аналитика', async () => {
+        addGetSuccess(Api, clientGetAnalyticsSuccess);
+        await client.getAnalytics();
+        expect(Object.keys(client.countBids)).not.toHaveLength(0);
+        expect(client.profit).toEqual(450);
+    });
+
+    it('должен вернуть среднее число ставок', async () => {
+        addGetSuccess(Api, clientGetAnalyticsSuccess);
+        await client.getAnalytics();
+        expect(client.averageCheck).toEqual(450);
+        addGetSuccess(Api, clientGetAnalyticNullSuccess);
+        await client.getAnalytics();
+        expect(client.averageCheck).toEqual(0);
     });
 });

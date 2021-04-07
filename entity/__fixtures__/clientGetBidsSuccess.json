@@ -1,0 +1,96 @@
+{
+    "count": 3,
+    "coming": [],
+    "past": [
+        {
+            "bidID": 7602,
+            "address": "ТЦ Проспект",
+            "addressID": 6045,
+            "cancelReason": "",
+            "client": "",
+            "comment": "в другой студии",
+            "date": {
+                "day": 16,
+                "weekday": "Пн",
+                "month": "Дек",
+                "year": "2019",
+                "timeFrom": "10:00",
+                "date": "2019-12-16"
+            },
+            "isChecked": false,
+            "isOnline": false,
+            "master": "Наталья Дудина",
+            "phone": "+7 (937) 999-22-99",
+            "price": 800,
+            "serviceName": "Поресничное наращивание",
+            "status": {
+                "text": "Отменена",
+                "value": "#F74969"
+            },
+            "statusID": 5,
+            "timeFrom": "10:00",
+            "timeTo": "13:00",
+            "timeSpent": "3 часа"
+        },
+        {
+            "bidID": 4789,
+            "address": "ТЦ ГринХаус",
+            "addressID": 152,
+            "cancelReason": "",
+            "client": "",
+            "comment": "",
+            "date": {
+                "day": 19,
+                "weekday": "Чт",
+                "month": "Сен",
+                "year": "2019",
+                "timeFrom": "10:30",
+                "date": "2019-09-19"
+            },
+            "isChecked": false,
+            "isOnline": true,
+            "master": "",
+            "phone": "+7 (937) 999-22-99",
+            "price": 300,
+            "serviceName": "Инкрустация",
+            "status": {
+                "text": "Отменена",
+                "value": "#F74969"
+            },
+            "statusID": 5,
+            "timeFrom": "10:30",
+            "timeTo": "11:00",
+            "timeSpent": "30 мин"
+        },
+        {
+            "bidID": 5002,
+            "address": "ТЦ ГринХаус",
+            "addressID": 152,
+            "cancelReason": "",
+            "client": "",
+            "comment": "",
+            "date": {
+                "day": 21,
+                "weekday": "Пт",
+                "month": "Сен",
+                "year": "2018",
+                "timeFrom": "08:15",
+                "date": "2018-09-21"
+            },
+            "isChecked": false,
+            "isOnline": false,
+            "master": "Ольга Копыт",
+            "phone": "+7 (937) 999-22-99",
+            "price": 1250,
+            "serviceName": "смгл",
+            "status": {
+                "text": "Выполнена",
+                "value": "#8CC152"
+            },
+            "statusID": 4,
+            "timeFrom": "08:15",
+            "timeTo": "10:15",
+            "timeSpent": "2 часа"
+        }
+    ]
+}
