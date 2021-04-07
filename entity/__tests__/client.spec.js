@@ -31,9 +31,11 @@ describe('client testing', () => {
 
     it('Должен создаваться объект formData', () => {
         let formData = new FormData();
+        client = new Client();
         client._initFormData(formData);
         expect(formData.get('clientTypeID')).toEqual('0');
         expect(formData.get('name')).toEqual('');
+
     });
 
     it('Должен корректно устанавливать первую категорию', () => {

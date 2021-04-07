@@ -11,6 +11,6 @@ describe('parsePhone testing', () => {
     });
 
     it('should return phone without letters', () => {
-        expect(parsePhone('+7 (800) abc-35-35')).toEqual('8800abc3535');
+        expect(parsePhone('+7 (800) abc-35-35')).toEqual('88003535');
     });
 });
