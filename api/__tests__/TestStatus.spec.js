@@ -25,7 +25,7 @@ describe('TestStatus', () => {
             expect.assertions(ok ? 1 : 2);
             const spy = jest.spyOn(testStatus, `s${item}`);
             try {
-                await testStatus.test(
+                await testStatus.statusHandler(
                     genRequest(item, item < 500 ? requestData : errorsData, 'application/json', ok)
                 );
                 expect(spy).toHaveBeenCalled();
@@ -38,7 +38,7 @@ describe('TestStatus', () => {
     it('Должен вызвать нулевой метод', async () => {
         expect.assertions(1);
         try {
-            await testStatus.test(genRequest(202, requestData));
+            await testStatus.statusHandler(genRequest(202, requestData));
         } catch (e) {
             expect(e.status).toEqual(0);
         }
@@ -47,7 +47,7 @@ describe('TestStatus', () => {
         expect.assertions(1);
         const spy = jest.spyOn(testStatus, 's200');
         try {
-            await testStatus.test(genRequest(200, requestData, 'no-data'));
+            await testStatus.statusHandler(genRequest(200, requestData, 'no-data'));
             expect(spy).toHaveBeenCalled();
         } catch (e) {}
     });
