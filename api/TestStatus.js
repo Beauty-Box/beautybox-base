@@ -1,5 +1,5 @@
 export class TestStatus {
-    test(response) {
+    statusHandler(response) {
         return new Promise(async (resolve, reject) => {
             const status = `s${response.status}`;
             if (!this[status]) {

@@ -17,11 +17,12 @@ function parseJwt(token) {
 }
 
 class Api extends TestStatus {
-    constructor(baseUrl, module, token) {
+    constructor(baseUrl, module, token, secure = true) {
         super();
         window.refresh = null;
         this.baseUrl = baseUrl;
         this.module = module;
+        this.secure = secure;
         this._setProvider(baseUrl, module, token);
 
         return new Proxy(this, {
@@ -38,10 +39,16 @@ class Api extends TestStatus {
         this.provider = new Provider(baseUrl, module, token);
     }
     async _response(url, data, method, module = '') {
+        const request = async () => {
+            return await this.statusHandler(await this.provider.res(url, data, method, module));
+        };
         if (this.provider.token) {
             const localToken = localStorage.getItem('access_token');
             if (localToken !== this.provider.token) {
                 this.updateToken(localToken);
+            }
+            if (!this.secure) {
+                return await request();
             }
             if (!window.refresh) {
                 const payload = parseJwt(this.provider.token);
@@ -52,7 +59,7 @@ class Api extends TestStatus {
                         window.refresh = this.refreshToken();
                         const token = await window.refresh;
                         this.updateToken(token);
-                        return await this.test(await this.provider.res(url, data, method, module));
+                        return await request();
                     } catch (e) {
                         return this.redirectTo(e);
                     }
@@ -61,19 +68,21 @@ class Api extends TestStatus {
                 try {
                     const token = await window.refresh;
                     this.updateToken(token);
-                    return await this.test(await this.provider.res(url, data, method, module));
+                    return await request();
                 } catch (e) {
                     return this.redirectTo(e);
                 }
             }
         }
         try {
-            return await this.test(await this.provider.res(url, data, method, module));
+            return await request();
         } catch (e) {
             return this.redirectTo(e);
         }
     }
     redirectTo(result) {
+        console.log('--- redirect', result);
+
         if (result.status >= 500) {
             document.dispatchEvent(new Event('server-error'));
             return result;
@@ -113,7 +122,7 @@ class Api extends TestStatus {
         return new Promise(async (resolve, reject) => {
             try {
                 const res = await this.provider.res('/refresh-token', {}, 'post', 'auth');
-                const { access_token: token } = await this.test(res);
+                const { access_token: token } = await this.statusHandler(res);
                 this.updateToken(token);
                 if (localStorage) {
                     localStorage.setItem('access_token', token);
