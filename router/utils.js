@@ -6,7 +6,7 @@ function getTokenFromCookie() {
         window.localStorage.setItem('access_token', token);
         return token;
     }
-    window.location.href = `/auth/sign-in?module=cabinet&from=${window.location.href}`;
+    window.location.href = `/auth/index.html/#/sign-in?module=cabinet&from=${window.location.href}`;
     return '';
 }
 
@@ -46,7 +46,7 @@ function setParams() {
     console.log('--- addressID', addressID);
 
     if (!userID && !addressID) {
-        window.location.href = `/auth/sign-in?from=${window.location.href}`;
+        window.location.href = `/auth/index.html/#/sign-in?from=${window.location.href}`;
         return 0;
     } else {
         window.localStorage.setItem('userID', userID);

@@ -86,9 +86,14 @@ class Api extends TestStatus {
             if (result.code === 100) {
                 return;
             }
-            window.location.replace(
-                `${window.location.origin}/auth/sign-in?from=${window.location.href}`
-            );
+
+            if (navigator.userAgent.indexOf('Android') > -1) {
+                // Android
+                window.open('file:///android_asset/www/auth/index.html');
+            } else {
+                // IOS
+                window.location.href = 'app://localhost/auth/index.html';
+            }
         }
         if (result.status === 403) {
             document.dispatchEvent(new Event('forbidden'));
