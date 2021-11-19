@@ -24,7 +24,6 @@ export async function logoutWithFrom(e, from) {
 
     try {
         await new Api(process.env.BASE_URL, 'auth', localStorage.getItem('access_token')).post('/logout');
-        //const fromUri = window.localStorage.getItem('from');
         if (from) {
             window.location.replace(`${window.location.origin}/auth/sign-in?from=${from}`);
         } else {
