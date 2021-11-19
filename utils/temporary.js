@@ -11,3 +11,29 @@ export async function logout(e) {
         console.log(e);
     }
 }
+
+/**
+ *  после логаута вставляет в параметры uri предыдущей страницы, для повторного логина
+ *  Используется только в Линке
+ * @param e - event
+ * @param from - origin uri, to relogin after logout
+ * @returns {Promise<void>}
+ */
+export async function logoutWithFrom(e, from) {
+    e.preventDefault();
+
+    try {
+        console.log('from uri', from);
+        await new Api(process.env.BASE_URL, 'auth', localStorage.getItem('access_token')).post('/logout');
+        //const fromUri = window.localStorage.getItem('from');
+        if (from) {
+            console.log('with from');
+            window.location.replace(`${window.location.origin}/auth/sign-in?from=${from}`);
+        } else {
+            window.location.replace(`${window.location.origin}/auth/sign-in`);
+        }
+        await window.localStorage.clear();
+    } catch (e) {
+        console.log(e);
+    }
+}
