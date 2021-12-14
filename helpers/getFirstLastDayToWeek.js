@@ -22,3 +22,5 @@ function getFirstLastDayToWeek(date) {
 
 export { getFirstLastDayToWeek };
 export default getFirstLastDayToWeek;
+
+
