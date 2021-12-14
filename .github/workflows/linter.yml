@@ -1,0 +1,23 @@
+name: linter
+
+on:
+  push:
+    branches:
+      - '**'
+    tags:
+      - '**'
+
+jobs:
+  app-make-lint:
+    name: Linter code
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: eslint
+        run: make setup
+
+      - name: eslint
+        run: make lint
