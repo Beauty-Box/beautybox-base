@@ -2,7 +2,11 @@ import { Provider } from '../Provider';
 
 export default class Analytics extends Provider {
     constructor() {
-        super({ BASE_URL: process.env.BASE_URL, module: 'crm', token: localStorage.getItem('access_token') });
+        super({
+            BASE_URL: process.env.BASE_URL,
+            module: 'crm',
+            token: localStorage.getItem('access_token'),
+        });
     }
 
     analyze(queryString = '') {

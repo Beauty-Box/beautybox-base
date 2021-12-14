@@ -35,7 +35,6 @@ describe('client testing', () => {
         client._initFormData(formData);
         expect(formData.get('clientTypeID')).toEqual('0');
         expect(formData.get('name')).toEqual('');
-
     });
 
     it('Должен корректно устанавливать первую категорию', () => {
