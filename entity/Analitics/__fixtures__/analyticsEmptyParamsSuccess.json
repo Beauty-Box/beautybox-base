@@ -1,0 +1,111 @@
+[
+    {
+        "title": "Заявки",
+        "value": 466,
+        "difference": 0,
+        "values": [
+            {
+                "label": "Выполнены",
+                "value": 285,
+                "difference": 57.3
+            },
+            {
+                "label": "Отменены",
+                "value": 99,
+                "difference": 19.9
+            }
+        ],
+        "currency": "",
+        "info": ""
+    },
+    {
+        "title": "Онлайн-заявки",
+        "value": 249,
+        "difference": 0,
+        "values": [
+            {
+                "label": "Выполнены",
+                "value": 120,
+                "difference": 48.2
+            },
+            {
+                "label": "Отменены",
+                "value": 69,
+                "difference": 27.7
+            }
+        ],
+        "currency": "",
+        "info": ""
+    },
+    {
+        "title": "Заполненность",
+        "value": 37.2,
+        "difference": 0,
+        "values": [
+            {
+                "label": "Рабочие часы",
+                "value": 2307
+            },
+            {
+                "label": "Отработанные часы",
+                "value": 859
+            },
+            {
+                "label": "Часы простоя",
+                "value": 1448
+            }
+        ],
+        "currency": "",
+        "info": ""
+    },
+    {
+        "title": "Средний чек",
+        "value": "802.3158",
+        "difference": 0,
+        "values": [
+            {
+                "label": "Офлайн-заявки",
+                "value": "737.9394",
+                "currency": "RUB"
+            },
+            {
+                "label": "Онлайн-заявки",
+                "value": "890.8333",
+                "currency": "RUB"
+            }
+        ],
+        "currency": "RUB",
+        "info": ""
+    },
+    {
+        "title": "Выручка",
+        "value": "228660",
+        "difference": 0,
+        "values": [
+            {
+                "label": "Офлайн-заявки",
+                "value": "121760",
+                "currency": "RUB"
+            },
+            {
+                "label": "Онлайн-заявки",
+                "value": "106900",
+                "currency": "RUB"
+            }
+        ],
+        "currency": "RUB",
+        "info": ""
+    },
+    {
+        "title": "Клиент",
+        "value": 213,
+        "difference": 0,
+        "values": [
+            {
+                "label": "Новые",
+                "value": 15
+            }
+        ],
+        "info": ""
+    }
+]

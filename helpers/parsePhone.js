@@ -3,9 +3,14 @@
  * @param {String} phone
  * */
 function parsePhone(phone = '') {
+    if (phone === '') {
+        return phone;
+    }
+    let pattern = new RegExp('');
     return String(phone)
         .replace(/^\+7/, '8')
         .replace(/\W/g, '');
+    // [0-9- ]
 }
 
 export { parsePhone };
