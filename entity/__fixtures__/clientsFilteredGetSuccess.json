@@ -1,0 +1,125 @@
+{
+    "count": 3491,
+    "clients": [
+        {
+            "clientID": 10635,
+            "name": "",
+            "phone": "+7 (977) 281-04-95",
+            "avatar": "",
+            "blockingOnline": 0,
+            "typeName": "Постоянный клиент"
+        },
+        {
+            "clientID": 16470,
+            "name": "????",
+            "phone": "+7 (926) 683-44-27",
+            "avatar": "",
+            "blockingOnline": 0,
+            "typeName": "Клиент"
+        },
+        {
+            "clientID": 18492,
+            "name": "1",
+            "phone": "+7 (927) 058-79-28",
+            "avatar": "",
+            "blockingOnline": 0,
+            "typeName": "Клиент"
+        },
+        {
+            "clientID": 4506,
+            "name": "123",
+            "phone": "+7 (123) 123-21-32",
+            "avatar": "",
+            "blockingOnline": 0,
+            "typeName": "Постоянный клиент"
+        },
+        {
+            "clientID": 2422,
+            "name": "aaaaaи",
+            "phone": "+7 (927) 222-22-21",
+            "avatar": "",
+            "blockingOnline": 0,
+            "typeName": "Постоянный клиент"
+        },
+        {
+            "clientID": 3795,
+            "name": "aaaaaи",
+            "phone": "+7 (927) 222-22-28",
+            "avatar": "",
+            "blockingOnline": 0,
+            "typeName": "Постоянный клиент"
+        },
+        {
+            "clientID": 9961,
+            "name": "Alisa",
+            "phone": "+7 (921) 915-74-44",
+            "avatar": "",
+            "blockingOnline": 0,
+            "typeName": "Постоянный клиент"
+        },
+        {
+            "clientID": 16135,
+            "name": "Olga",
+            "phone": "+7 (937) 241-10-33",
+            "avatar": "",
+            "blockingOnline": 0,
+            "typeName": ""
+        },
+        {
+            "clientID": 17140,
+            "name": "Zlata",
+            "phone": "+7 (926) 499-66-15",
+            "avatar": "",
+            "blockingOnline": 0,
+            "typeName": ""
+        },
+        {
+            "clientID": 11454,
+            "name": "Авдеева Анастасия Алексеевна",
+            "phone": "+7 (927) 056-09-57",
+            "avatar": "",
+            "blockingOnline": 0,
+            "typeName": "Постоянный клиент"
+        },
+        {
+            "clientID": 998,
+            "name": "Аделина Бикбаева",
+            "phone": "+7 (937) 817-12-48",
+            "avatar": "",
+            "blockingOnline": 0,
+            "typeName": "Постоянный клиент"
+        },
+        {
+            "clientID": 844,
+            "name": "Аза Овчинникова",
+            "phone": "+7 (927) 147-46-45",
+            "avatar": "",
+            "blockingOnline": 0,
+            "typeName": "Клиент"
+        },
+        {
+            "clientID": 4490,
+            "name": "Аида",
+            "phone": "+7 (977) 949-54-69",
+            "avatar": "",
+            "blockingOnline": 0,
+            "typeName": "Постоянный клиент"
+        },
+        {
+            "clientID": 10947,
+            "name": "Аида Гайдым",
+            "phone": "+7 (927) 115-82-36",
+            "avatar": "",
+            "blockingOnline": 0,
+            "typeName": "Постоянный клиент"
+        },
+        {
+            "clientID": 2138,
+            "name": "Айгуль Гамидова",
+            "phone": "+7 (919) 830-31-52",
+            "avatar": "",
+            "blockingOnline": 0,
+            "typeName": "Постоянный клиент"
+        }
+    ]
+}

@@ -1,7 +1,7 @@
 /**
  * @description RuToIso Возвращает дату в формате 2020-01-31
  * @param {String} date формат '31.01.2020'
- * @return {String, Null}
+ * @return {String}
  * */
 function RuToIso(date) {
     if (typeof date !== 'string' || !date.match(/^([0-2]\d|3[01])\.([0]\d|1[0-2])\.\d{4}$/)) {

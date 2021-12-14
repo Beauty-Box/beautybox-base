@@ -24,4 +24,14 @@ describe('Тест функции getFirstLastDayToWeek', () => {
         expect(array.first.toISOString().slice(0, 10)).toEqual('2020-12-28');
         expect(array.last.toISOString().slice(0, 10)).toEqual('2021-01-03');
     });
+    it('тест лог функции даты', () => {
+        const array = getFirstLastDayToWeek('2021-03-19');
+        expect(array.first.toISOString().slice(0, 10)).toEqual('2021-03-15');
+        expect(array.last.toISOString().slice(0, 10)).toEqual('2021-03-21');
+    });
+    it('тест перехода дня конца недели на след месяц', () => {
+        const array = getFirstLastDayToWeek('2021-04-04');
+        expect(array.first.toISOString().slice(0, 10)).toEqual('2021-03-29');
+        expect(array.last.toISOString().slice(0, 10)).toEqual('2021-04-04');
+    });
 });

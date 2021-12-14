@@ -1,0 +1,906 @@
+{
+    "errors": {
+        "code": 409,
+        "message": "Не найден клиент",
+        "trace": [
+            {
+                "file": "/var/www/beautybox-php/app/Modules/Crm/Controllers/Clients/ClientApiController.php",
+                "line": 212,
+                "function": "delete",
+                "class": "Beauty\\Modules\\Common\\Repositories\\ClientsRepository",
+                "type": "->",
+                "args": [
+                    20645
+                ]
+            },
+            {
+                "file": "/var/www/beautybox-php/vendor/laravel/framework/src/Illuminate/Routing/Controller.php",
+                "line": 54,
+                "function": "destroy",
+                "class": "Beauty\\Modules\\Crm\\Controllers\\Clients\\ClientApiController",
+                "type": "->",
+                "args": [
+                    "20645"
+                ]
+            },
+            {
+                "file": "/var/www/beautybox-php/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php",
+                "line": 45,
+                "function": "callAction",
+                "class": "Illuminate\\Routing\\Controller",
+                "type": "->",
+                "args": [
+                    "destroy",
+                    {
+                        "client": "20645"
+                    }
+                ]
+            },
+            {
+                "file": "/var/www/beautybox-php/vendor/laravel/framework/src/Illuminate/Routing/Route.php",
+                "line": 239,
+                "function": "dispatch",
+                "class": "Illuminate\\Routing\\ControllerDispatcher",
+                "type": "->",
+                "args": [
+                    {
+                        "uri": "api/crm/clients/{client}",
+                        "methods": [
+                            "DELETE"
+                        ],
+                        "action": {
+                            "middleware": [
+                                "api",
+                                "jwt.auth",
+                                "Beauty\\Modules\\Crm\\Middleware\\ValidateSecretMiddleware",
+                                "ClientCheckMiddleware"
+                            ],
+                            "as": "clients.destroy",
+                            "uses": "Beauty\\Modules\\Crm\\Controllers\\Clients\\ClientApiController@destroy",
+                            "controller": "Beauty\\Modules\\Crm\\Controllers\\Clients\\ClientApiController@destroy",
+                            "namespace": "Beauty\\Modules\\Crm\\Controllers",
+                            "where": [],
+                            "prefix": "api/crm"
+                        },
+                        "isFallback": false,
+                        "controller": {},
+                        "defaults": [],
+                        "wheres": [],
+                        "parameters": {
+                            "client": "20645"
+                        },
+                        "parameterNames": [
+                            "client"
+                        ],
+                        "computedMiddleware": [
+                            "api",
+                            "jwt.auth",
+                            "Beauty\\Modules\\Crm\\Middleware\\ValidateSecretMiddleware",
+                            "ClientCheckMiddleware",
+                            {},
+                            "permission:all-show-clients"
+                        ],
+                        "compiled": {}
+                    },
+                    {},
+                    "destroy"
+                ]
+            },
+            {
+                "file": "/var/www/beautybox-php/vendor/laravel/framework/src/Illuminate/Routing/Route.php",
+                "line": 196,
+                "function": "runController",
+                "class": "Illuminate\\Routing\\Route",
+                "type": "->",
+                "args": []
+            },
+            {
+                "file": "/var/www/beautybox-php/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+                "line": 685,
+                "function": "run",
+                "class": "Illuminate\\Routing\\Route",
+                "type": "->",
+                "args": []
+            },
+            {
+                "file": "/var/www/beautybox-php/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+                "line": 128,
+                "function": "Illuminate\\Routing\\{closure}",
+                "class": "Illuminate\\Routing\\Router",
+                "type": "->",
+                "args": [
+                    {
+                        "attributes": {},
+                        "request": {},
+                        "query": {},
+                        "server": {},
+                        "files": {},
+                        "cookies": {},
+                        "headers": {}
+                    }
+                ]
+            },
+            {
+                "file": "/var/www/beautybox-php/vendor/spiti/laravel-permission/src/Middlewares/PermissionMiddleware.php",
+                "line": 22,
+                "function": "Illuminate\\Pipeline\\{closure}",
+                "class": "Illuminate\\Pipeline\\Pipeline",
+                "type": "->",
+                "args": [
+                    {
+                        "attributes": {},
+                        "request": {},
+                        "query": {},
+                        "server": {},
+                        "files": {},
+                        "cookies": {},
+                        "headers": {}
+                    }
+                ]
+            },
+            {
+                "file": "/var/www/beautybox-php/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+                "line": 167,
+                "function": "handle",
+                "class": "Spatie\\Permission\\Middlewares\\PermissionMiddleware",
+                "type": "->",
+                "args": [
+                    {
+                        "attributes": {},
+                        "request": {},
+                        "query": {},
+                        "server": {},
+                        "files": {},
+                        "cookies": {},
+                        "headers": {}
+                    },
+                    {},
+                    "all-show-clients"
+                ]
+            },
+            {
+                "file": "/var/www/beautybox-php/app/Modules/Auth/Controllers/ApiController.php",
+                "line": 58,
+                "function": "Illuminate\\Pipeline\\{closure}",
+                "class": "Illuminate\\Pipeline\\Pipeline",
+                "type": "->",
+                "args": [
+                    {
+                        "attributes": {},
+                        "request": {},
+                        "query": {},
+                        "server": {},
+                        "files": {},
+                        "cookies": {},
+                        "headers": {}
+                    }
+                ]
+            },
+            {
+                "file": "/var/www/beautybox-php/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+                "line": 149,
+                "function": "Beauty\\Modules\\Auth\\Controllers\\{closure}",
+                "class": "Beauty\\Modules\\Auth\\Controllers\\ApiController",
+                "type": "->",
+                "args": [
+                    {
+                        "attributes": {},
+                        "request": {},
+                        "query": {},
+                        "server": {},
+                        "files": {},
+                        "cookies": {},
+                        "headers": {}
+                    },
+                    {}
+                ]
+            },
+            {
+                "file": "/var/www/beautybox-php/app/Modules/Crm/Middleware/ClientCheckMiddleware.php",
+                "line": 31,
+                "function": "Illuminate\\Pipeline\\{closure}",
+                "class": "Illuminate\\Pipeline\\Pipeline",
+                "type": "->",
+                "args": [
+                    {
+                        "attributes": {},
+                        "request": {},
+                        "query": {},
+                        "server": {},
+                        "files": {},
+                        "cookies": {},
+                        "headers": {}
+                    }
+                ]
+            },
+            {
+                "file": "/var/www/beautybox-php/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+                "line": 167,
+                "function": "handle",
+                "class": "Beauty\\Modules\\Crm\\Middleware\\ClientCheckMiddleware",
+                "type": "->",
+                "args": [
+                    {
+                        "attributes": {},
+                        "request": {},
+                        "query": {},
+                        "server": {},
+                        "files": {},
+                        "cookies": {},
+                        "headers": {}
+                    },
+                    {}
+                ]
+            },
+            {
+                "file": "/var/www/beautybox-php/app/Modules/Crm/Middleware/ValidateSecretMiddleware.php",
+                "line": 39,
+                "function": "Illuminate\\Pipeline\\{closure}",
+                "class": "Illuminate\\Pipeline\\Pipeline",
+                "type": "->",
+                "args": [
+                    {
+                        "attributes": {},
+                        "request": {},
+                        "query": {},
+                        "server": {},
+                        "files": {},
+                        "cookies": {},
+                        "headers": {}
+                    }
+                ]
+            },
+            {
+                "file": "/var/www/beautybox-php/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+                "line": 167,
+                "function": "handle",
+                "class": "Beauty\\Modules\\Crm\\Middleware\\ValidateSecretMiddleware",
+                "type": "->",
+                "args": [
+                    {
+                        "attributes": {},
+                        "request": {},
+                        "query": {},
+                        "server": {},
+                        "files": {},
+                        "cookies": {},
+                        "headers": {}
+                    },
+                    {}
+                ]
+            },
+            {
+                "file": "/var/www/beautybox-php/vendor/tymon/jwt-auth/src/Http/Middleware/Authenticate.php",
+                "line": 33,
+                "function": "Illuminate\\Pipeline\\{closure}",
+                "class": "Illuminate\\Pipeline\\Pipeline",
+                "type": "->",
+                "args": [
+                    {
+                        "attributes": {},
+                        "request": {},
+                        "query": {},
+                        "server": {},
+                        "files": {},
+                        "cookies": {},
+                        "headers": {}
+                    }
+                ]
+            },
+            {
+                "file": "/var/www/beautybox-php/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+                "line": 167,
+                "function": "handle",
+                "class": "Tymon\\JWTAuth\\Http\\Middleware\\Authenticate",
+                "type": "->",
+                "args": [
+                    {
+                        "attributes": {},
+                        "request": {},
+                        "query": {},
+                        "server": {},
+                        "files": {},
+                        "cookies": {},
+                        "headers": {}
+                    },
+                    {}
+                ]
+            },
+            {
+                "file": "/var/www/beautybox-php/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php",
+                "line": 41,
+                "function": "Illuminate\\Pipeline\\{closure}",
+                "class": "Illuminate\\Pipeline\\Pipeline",
+                "type": "->",
+                "args": [
+                    {
+                        "attributes": {},
+                        "request": {},
+                        "query": {},
+                        "server": {},
+                        "files": {},
+                        "cookies": {},
+                        "headers": {}
+                    }
+                ]
+            },
+            {
+                "file": "/var/www/beautybox-php/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+                "line": 167,
+                "function": "handle",
+                "class": "Illuminate\\Routing\\Middleware\\SubstituteBindings",
+                "type": "->",
+                "args": [
+                    {
+                        "attributes": {},
+                        "request": {},
+                        "query": {},
+                        "server": {},
+                        "files": {},
+                        "cookies": {},
+                        "headers": {}
+                    },
+                    {}
+                ]
+            },
+            {
+                "file": "/var/www/beautybox-php/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php",
+                "line": 59,
+                "function": "Illuminate\\Pipeline\\{closure}",
+                "class": "Illuminate\\Pipeline\\Pipeline",
+                "type": "->",
+                "args": [
+                    {
+                        "attributes": {},
+                        "request": {},
+                        "query": {},
+                        "server": {},
+                        "files": {},
+                        "cookies": {},
+                        "headers": {}
+                    }
+                ]
+            },
+            {
+                "file": "/var/www/beautybox-php/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+                "line": 167,
+                "function": "handle",
+                "class": "Illuminate\\Routing\\Middleware\\ThrottleRequests",
+                "type": "->",
+                "args": [
+                    {
+                        "attributes": {},
+                        "request": {},
+                        "query": {},
+                        "server": {},
+                        "files": {},
+                        "cookies": {},
+                        "headers": {}
+                    },
+                    {},
+                    200,
+                    "1"
+                ]
+            },
+            {
+                "file": "/var/www/beautybox-php/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+                "line": 103,
+                "function": "Illuminate\\Pipeline\\{closure}",
+                "class": "Illuminate\\Pipeline\\Pipeline",
+                "type": "->",
+                "args": [
+                    {
+                        "attributes": {},
+                        "request": {},
+                        "query": {},
+                        "server": {},
+                        "files": {},
+                        "cookies": {},
+                        "headers": {}
+                    }
+                ]
+            },
+            {
+                "file": "/var/www/beautybox-php/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+                "line": 687,
+                "function": "then",
+                "class": "Illuminate\\Pipeline\\Pipeline",
+                "type": "->",
+                "args": [
+                    {}
+                ]
+            },
+            {
+                "file": "/var/www/beautybox-php/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+                "line": 662,
+                "function": "runRouteWithinStack",
+                "class": "Illuminate\\Routing\\Router",
+                "type": "->",
+                "args": [
+                    {
+                        "uri": "api/crm/clients/{client}",
+                        "methods": [
+                            "DELETE"
+                        ],
+                        "action": {
+                            "middleware": [
+                                "api",
+                                "jwt.auth",
+                                "Beauty\\Modules\\Crm\\Middleware\\ValidateSecretMiddleware",
+                                "ClientCheckMiddleware"
+                            ],
+                            "as": "clients.destroy",
+                            "uses": "Beauty\\Modules\\Crm\\Controllers\\Clients\\ClientApiController@destroy",
+                            "controller": "Beauty\\Modules\\Crm\\Controllers\\Clients\\ClientApiController@destroy",
+                            "namespace": "Beauty\\Modules\\Crm\\Controllers",
+                            "where": [],
+                            "prefix": "api/crm"
+                        },
+                        "isFallback": false,
+                        "controller": {},
+                        "defaults": [],
+                        "wheres": [],
+                        "parameters": {
+                            "client": "20645"
+                        },
+                        "parameterNames": [
+                            "client"
+                        ],
+                        "computedMiddleware": [
+                            "api",
+                            "jwt.auth",
+                            "Beauty\\Modules\\Crm\\Middleware\\ValidateSecretMiddleware",
+                            "ClientCheckMiddleware",
+                            {},
+                            "permission:all-show-clients"
+                        ],
+                        "compiled": {}
+                    },
+                    {
+                        "attributes": {},
+                        "request": {},
+                        "query": {},
+                        "server": {},
+                        "files": {},
+                        "cookies": {},
+                        "headers": {}
+                    }
+                ]
+            },
+            {
+                "file": "/var/www/beautybox-php/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+                "line": 628,
+                "function": "runRoute",
+                "class": "Illuminate\\Routing\\Router",
+                "type": "->",
+                "args": [
+                    {
+                        "attributes": {},
+                        "request": {},
+                        "query": {},
+                        "server": {},
+                        "files": {},
+                        "cookies": {},
+                        "headers": {}
+                    },
+                    {
+                        "uri": "api/crm/clients/{client}",
+                        "methods": [
+                            "DELETE"
+                        ],
+                        "action": {
+                            "middleware": [
+                                "api",
+                                "jwt.auth",
+                                "Beauty\\Modules\\Crm\\Middleware\\ValidateSecretMiddleware",
+                                "ClientCheckMiddleware"
+                            ],
+                            "as": "clients.destroy",
+                            "uses": "Beauty\\Modules\\Crm\\Controllers\\Clients\\ClientApiController@destroy",
+                            "controller": "Beauty\\Modules\\Crm\\Controllers\\Clients\\ClientApiController@destroy",
+                            "namespace": "Beauty\\Modules\\Crm\\Controllers",
+                            "where": [],
+                            "prefix": "api/crm"
+                        },
+                        "isFallback": false,
+                        "controller": {},
+                        "defaults": [],
+                        "wheres": [],
+                        "parameters": {
+                            "client": "20645"
+                        },
+                        "parameterNames": [
+                            "client"
+                        ],
+                        "computedMiddleware": [
+                            "api",
+                            "jwt.auth",
+                            "Beauty\\Modules\\Crm\\Middleware\\ValidateSecretMiddleware",
+                            "ClientCheckMiddleware",
+                            {},
+                            "permission:all-show-clients"
+                        ],
+                        "compiled": {}
+                    }
+                ]
+            },
+            {
+                "file": "/var/www/beautybox-php/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
+                "line": 617,
+                "function": "dispatchToRoute",
+                "class": "Illuminate\\Routing\\Router",
+                "type": "->",
+                "args": [
+                    {
+                        "attributes": {},
+                        "request": {},
+                        "query": {},
+                        "server": {},
+                        "files": {},
+                        "cookies": {},
+                        "headers": {}
+                    }
+                ]
+            },
+            {
+                "file": "/var/www/beautybox-php/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
+                "line": 165,
+                "function": "dispatch",
+                "class": "Illuminate\\Routing\\Router",
+                "type": "->",
+                "args": [
+                    {
+                        "attributes": {},
+                        "request": {},
+                        "query": {},
+                        "server": {},
+                        "files": {},
+                        "cookies": {},
+                        "headers": {}
+                    }
+                ]
+            },
+            {
+                "file": "/var/www/beautybox-php/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+                "line": 128,
+                "function": "Illuminate\\Foundation\\Http\\{closure}",
+                "class": "Illuminate\\Foundation\\Http\\Kernel",
+                "type": "->",
+                "args": [
+                    {
+                        "attributes": {},
+                        "request": {},
+                        "query": {},
+                        "server": {},
+                        "files": {},
+                        "cookies": {},
+                        "headers": {}
+                    }
+                ]
+            },
+            {
+                "file": "/var/www/beautybox-php/vendor/barryvdh/laravel-debugbar/src/Middleware/InjectDebugbar.php",
+                "line": 67,
+                "function": "Illuminate\\Pipeline\\{closure}",
+                "class": "Illuminate\\Pipeline\\Pipeline",
+                "type": "->",
+                "args": [
+                    {
+                        "attributes": {},
+                        "request": {},
+                        "query": {},
+                        "server": {},
+                        "files": {},
+                        "cookies": {},
+                        "headers": {}
+                    }
+                ]
+            },
+            {
+                "file": "/var/www/beautybox-php/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+                "line": 167,
+                "function": "handle",
+                "class": "Barryvdh\\Debugbar\\Middleware\\InjectDebugbar",
+                "type": "->",
+                "args": [
+                    {
+                        "attributes": {},
+                        "request": {},
+                        "query": {},
+                        "server": {},
+                        "files": {},
+                        "cookies": {},
+                        "headers": {}
+                    },
+                    {}
+                ]
+            },
+            {
+                "file": "/var/www/beautybox-php/vendor/fideloper/proxy/src/TrustProxies.php",
+                "line": 57,
+                "function": "Illuminate\\Pipeline\\{closure}",
+                "class": "Illuminate\\Pipeline\\Pipeline",
+                "type": "->",
+                "args": [
+                    {
+                        "attributes": {},
+                        "request": {},
+                        "query": {},
+                        "server": {},
+                        "files": {},
+                        "cookies": {},
+                        "headers": {}
+                    }
+                ]
+            },
+            {
+                "file": "/var/www/beautybox-php/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+                "line": 167,
+                "function": "handle",
+                "class": "Fideloper\\Proxy\\TrustProxies",
+                "type": "->",
+                "args": [
+                    {
+                        "attributes": {},
+                        "request": {},
+                        "query": {},
+                        "server": {},
+                        "files": {},
+                        "cookies": {},
+                        "headers": {}
+                    },
+                    {}
+                ]
+            },
+            {
+                "file": "/var/www/beautybox-php/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php",
+                "line": 21,
+                "function": "Illuminate\\Pipeline\\{closure}",
+                "class": "Illuminate\\Pipeline\\Pipeline",
+                "type": "->",
+                "args": [
+                    {
+                        "attributes": {},
+                        "request": {},
+                        "query": {},
+                        "server": {},
+                        "files": {},
+                        "cookies": {},
+                        "headers": {}
+                    }
+                ]
+            },
+            {
+                "file": "/var/www/beautybox-php/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+                "line": 167,
+                "function": "handle",
+                "class": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest",
+                "type": "->",
+                "args": [
+                    {
+                        "attributes": {},
+                        "request": {},
+                        "query": {},
+                        "server": {},
+                        "files": {},
+                        "cookies": {},
+                        "headers": {}
+                    },
+                    {}
+                ]
+            },
+            {
+                "file": "/var/www/beautybox-php/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php",
+                "line": 21,
+                "function": "Illuminate\\Pipeline\\{closure}",
+                "class": "Illuminate\\Pipeline\\Pipeline",
+                "type": "->",
+                "args": [
+                    {
+                        "attributes": {},
+                        "request": {},
+                        "query": {},
+                        "server": {},
+                        "files": {},
+                        "cookies": {},
+                        "headers": {}
+                    }
+                ]
+            },
+            {
+                "file": "/var/www/beautybox-php/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+                "line": 167,
+                "function": "handle",
+                "class": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest",
+                "type": "->",
+                "args": [
+                    {
+                        "attributes": {},
+                        "request": {},
+                        "query": {},
+                        "server": {},
+                        "files": {},
+                        "cookies": {},
+                        "headers": {}
+                    },
+                    {}
+                ]
+            },
+            {
+                "file": "/var/www/beautybox-php/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php",
+                "line": 27,
+                "function": "Illuminate\\Pipeline\\{closure}",
+                "class": "Illuminate\\Pipeline\\Pipeline",
+                "type": "->",
+                "args": [
+                    {
+                        "attributes": {},
+                        "request": {},
+                        "query": {},
+                        "server": {},
+                        "files": {},
+                        "cookies": {},
+                        "headers": {}
+                    }
+                ]
+            },
+            {
+                "file": "/var/www/beautybox-php/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+                "line": 167,
+                "function": "handle",
+                "class": "Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize",
+                "type": "->",
+                "args": [
+                    {
+                        "attributes": {},
+                        "request": {},
+                        "query": {},
+                        "server": {},
+                        "files": {},
+                        "cookies": {},
+                        "headers": {}
+                    },
+                    {}
+                ]
+            },
+            {
+                "file": "/var/www/beautybox-php/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/CheckForMaintenanceMode.php",
+                "line": 63,
+                "function": "Illuminate\\Pipeline\\{closure}",
+                "class": "Illuminate\\Pipeline\\Pipeline",
+                "type": "->",
+                "args": [
+                    {
+                        "attributes": {},
+                        "request": {},
+                        "query": {},
+                        "server": {},
+                        "files": {},
+                        "cookies": {},
+                        "headers": {}
+                    }
+                ]
+            },
+            {
+                "file": "/var/www/beautybox-php/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+                "line": 167,
+                "function": "handle",
+                "class": "Illuminate\\Foundation\\Http\\Middleware\\CheckForMaintenanceMode",
+                "type": "->",
+                "args": [
+                    {
+                        "attributes": {},
+                        "request": {},
+                        "query": {},
+                        "server": {},
+                        "files": {},
+                        "cookies": {},
+                        "headers": {}
+                    },
+                    {}
+                ]
+            },
+            {
+                "file": "/var/www/beautybox-php/vendor/fruitcake/laravel-cors/src/HandleCors.php",
+                "line": 57,
+                "function": "Illuminate\\Pipeline\\{closure}",
+                "class": "Illuminate\\Pipeline\\Pipeline",
+                "type": "->",
+                "args": [
+                    {
+                        "attributes": {},
+                        "request": {},
+                        "query": {},
+                        "server": {},
+                        "files": {},
+                        "cookies": {},
+                        "headers": {}
+                    }
+                ]
+            },
+            {
+                "file": "/var/www/beautybox-php/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+                "line": 167,
+                "function": "handle",
+                "class": "Fruitcake\\Cors\\HandleCors",
+                "type": "->",
+                "args": [
+                    {
+                        "attributes": {},
+                        "request": {},
+                        "query": {},
+                        "server": {},
+                        "files": {},
+                        "cookies": {},
+                        "headers": {}
+                    },
+                    {}
+                ]
+            },
+            {
+                "file": "/var/www/beautybox-php/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+                "line": 103,
+                "function": "Illuminate\\Pipeline\\{closure}",
+                "class": "Illuminate\\Pipeline\\Pipeline",
+                "type": "->",
+                "args": [
+                    {
+                        "attributes": {},
+                        "request": {},
+                        "query": {},
+                        "server": {},
+                        "files": {},
+                        "cookies": {},
+                        "headers": {}
+                    }
+                ]
+            },
+            {
+                "file": "/var/www/beautybox-php/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
+                "line": 140,
+                "function": "then",
+                "class": "Illuminate\\Pipeline\\Pipeline",
+                "type": "->",
+                "args": [
+                    {}
+                ]
+            },
+            {
+                "file": "/var/www/beautybox-php/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
+                "line": 109,
+                "function": "sendRequestThroughRouter",
+                "class": "Illuminate\\Foundation\\Http\\Kernel",
+                "type": "->",
+                "args": [
+                    {
+                        "attributes": {},
+                        "request": {},
+                        "query": {},
+                        "server": {},
+                        "files": {},
+                        "cookies": {},
+                        "headers": {}
+                    }
+                ]
+            },
+            {
+                "file": "/var/www/beautybox-php/public/index.php",
+                "line": 55,
+                "function": "handle",
+                "class": "Illuminate\\Foundation\\Http\\Kernel",
+                "type": "->",
+                "args": [
+                    {
+                        "attributes": {},
+                        "request": {},
+                        "query": {},
+                        "server": {},
+                        "files": {},
+                        "cookies": {},
+                        "headers": {}
+                    }
+                ]
+            }
+        ]
+    }
+}
