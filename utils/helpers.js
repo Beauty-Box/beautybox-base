@@ -113,7 +113,7 @@ export const timeArray = [
 export function birthdayTransform(birthdayObj) {
     if (birthdayObj.day && birthdayObj.month) {
         return `${parseInt(birthdayObj.day)} ${
-            monthArray.find((item) => item.value == birthdayObj.month).text
+            monthArray.find(item => item.value == birthdayObj.month).text
         } ${birthdayObj.year || ''}`;
     } else {
         return false;

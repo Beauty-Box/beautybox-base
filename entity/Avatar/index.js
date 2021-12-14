@@ -11,13 +11,13 @@ export class Avatar {
         }
         const img = new Image();
         img.src = this.url;
-        img.onload = (e) => {
+        img.onload = e => {
             console.log(e);
         };
     }
     convertFromUrl() {
         let img = new Image();
-        img.onload = (e) => {
+        img.onload = e => {
             const canvas = document.createElement('canvas');
             const context = canvas.getContext('2d');
         };
@@ -25,7 +25,7 @@ export class Avatar {
     }
     convertFromBase64() {
         let img = new Image();
-        img.onload = (e) => {
+        img.onload = e => {
             const canvas = document.createElement('canvas');
             const context = canvas.getContext('2d');
         };

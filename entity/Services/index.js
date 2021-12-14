@@ -2,7 +2,11 @@ import { Provider } from '../Provider';
 
 export class Categories extends Provider {
     constructor() {
-        super({ BASE_URL: process.env.BASE_URL, module: 'crm', token: localStorage.getItem('access_token') });
+        super({
+            BASE_URL: process.env.BASE_URL,
+            module: 'crm',
+            token: localStorage.getItem('access_token'),
+        });
 
         this.categories = [];
         this.categoriesShort = [];
@@ -95,7 +99,11 @@ export class Categories extends Provider {
 
 export class Services extends Provider {
     constructor() {
-        super({ BASE_URL: process.env.BASE_URL, module: 'crm', token: localStorage.getItem('access_token') });
+        super({
+            BASE_URL: process.env.BASE_URL,
+            module: 'crm',
+            token: localStorage.getItem('access_token'),
+        });
     }
 
     /**
@@ -119,7 +127,11 @@ export class Services extends Provider {
 
 export class Service extends Provider {
     constructor(id) {
-        super({ BASE_URL: process.env.BASE_URL, module: 'crm', token: localStorage.getItem('access_token') });
+        super({
+            BASE_URL: process.env.BASE_URL,
+            module: 'crm',
+            token: localStorage.getItem('access_token'),
+        });
 
         this.serviceID = id || '';
         this.title = '';

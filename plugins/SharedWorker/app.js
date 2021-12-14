@@ -8,20 +8,20 @@ const ws = wio('http://localhost:3000/');
 ws.start();
 console.log('connecting...');
 
-ws.on('connect', function () {
+ws.on('connect', function() {
     console.log('connected!');
     ws.emit('message', 'Hi There!');
 });
 
-ws.on('message', function (data) {
+ws.on('message', function(data) {
     console.log('message', data);
 });
 
-ws.on('disconnect', function () {
+ws.on('disconnect', function() {
     console.log('disconnected!');
 });
 
-ws.on('error', function (data) {
+ws.on('error', function(data) {
     console.log('error', data);
 });
 

@@ -30,8 +30,8 @@ describe('Тест функции isNumber', () => {
         const result = isNumber('20.14.12');
         expect(result).toEqual(false);
     });
-    it('закдываю объект', ()=> {
-        const result = isNumber({sfkkasjf: 'sdffa'});
+    it('закдываю объект', () => {
+        const result = isNumber({ sfkkasjf: 'sdffa' });
         expect(result).toBeFalsy();
     });
 });

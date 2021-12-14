@@ -14,5 +14,5 @@ const notificationsProps = {
     },
 };
 
-export {notificationsProps};
+export { notificationsProps };
 export default notificationsProps;
