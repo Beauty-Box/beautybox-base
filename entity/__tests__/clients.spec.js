@@ -6,7 +6,7 @@ jest.mock('../../api/index.js');
 
 import { Clients } from '../Clients';
 
-import clientsFilteredGetSuccess from '../__fixtures__/clientsfilteredGetSuccess.json';
+import clientsFilteredGetSuccess from '../__fixtures__/clientsFilteredGetSuccess.json';
 
 describe('clients testing', () => {
     let clientsInstance;
