@@ -100,7 +100,7 @@ export class Client extends Person {
 
     async getBids() {
         let res = await this._provider.get(
-            `/clients/${this.clientID}/bids?skip=${this.uploadedBids}`
+            `/clients/${this.clientID}/visits?skip=${this.uploadedBids}`
         );
         this.bids.count = res.count;
         this.bids.past = [...this.bids.past, ...res.past];
