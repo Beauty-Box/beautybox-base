@@ -8,6 +8,7 @@ export * from './getYesterdayAsRange';
 export * from './getFirstAndLastDayOfMonthAsRange';
 export * from './getFirstAndLastDayOfYearAsRange';
 export * from './hoursLocalTest';
+export * from './serviceLocalTest';
 export * from './genArrayTime15min';
 export * from './convertMinutesToHours';
 export * from './genNumberArray';
