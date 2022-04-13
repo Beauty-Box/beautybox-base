@@ -36,8 +36,8 @@ export class Client extends Person {
     }
 
     get averageCheck() {
-        if (this.countBids.all && this.profit) {
-            return Math.floor(this.profit / this.countBids.done);
+        if (this.totalVisits.all && this.profit) {
+            return Math.floor(this.profit / this.totalVisits.done);
         } else {
             return 0;
         }
@@ -114,7 +114,7 @@ export class Client extends Person {
     }
 
     async getAnalytics() {
-        ({ countBids: this.countBids, profit: this.profit } = await this._provider.get(
+        ({ totalVisits: this.totalVisits, profit: this.profit } = await this._provider.get(
             `/clients/${this.clientID}/analytics`
         ));
     }
