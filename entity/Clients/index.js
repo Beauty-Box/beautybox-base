@@ -18,6 +18,8 @@ export class Client extends Person {
             coming: [],
         };
         this.categories = [];
+        this.totalVisits = {};
+        this.profit = 0;
         this.clientTypeID = 0;
         this.blockingOnline = 0;
     }
