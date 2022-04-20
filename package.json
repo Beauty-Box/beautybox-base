@@ -7,9 +7,6 @@
     },
     "main": "config.js",
     "license": "MIT",
-    "publishConfig": {
-        "access": "restricted"
-    },
     "scripts": {
         "test": "cross-env NODE_ICU_DATA=node_modules/full-icu jest",
         "test:watch": "jest -u --watch",
