@@ -1,5 +1,6 @@
 {
-    "name": "@beautybox/core",
+    "name": "beautybox-core",
+    "author": "brix-d",
     "version": "1.0.0",
     "repository": {
         "type": "git",
