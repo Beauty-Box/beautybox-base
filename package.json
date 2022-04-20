@@ -1,7 +1,7 @@
 {
-    "name": "beautybox-core",
-    "author": "brix-d",
+    "name": "@beautybox/core",
     "version": "1.0.0",
+    "private": true,
     "repository": {
         "type": "git",
         "url": "git@github.com:Beauty-Box/beautybox-base.git"
@@ -9,7 +9,7 @@
     "main": "config.js",
     "license": "MIT",
     "publishConfig": {
-        "access": "public"
+        "access": "restricted"
     },
     "scripts": {
         "test": "cross-env NODE_ICU_DATA=node_modules/full-icu jest",
