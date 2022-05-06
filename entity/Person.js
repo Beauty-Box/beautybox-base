@@ -29,9 +29,9 @@ export class Person extends Provider {
     _initFormData(formData) {
         formData.append('name', this.name);
         formData.append('phone', this.phone);
-        if (!!this.convertBirthday) {
-            formData.append('birthday', this.convertBirthday);
-        }
+        //if (!!this.convertBirthday) {
+        formData.append('birthday', this.convertBirthday);
+        //}
         formData.append('comment', this.comment);
         formData.append('gender', this.gender);
         formData.append('email', this.email);
