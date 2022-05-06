@@ -47,7 +47,7 @@ export class Person extends Provider {
 
     get convertBirthday() {
         if (!this.birthday.day || !this.birthday.month || !this.birthday.year) {
-            return 'null';
+            return null;
         } else {
             return `${this.birthday.year}-${this.birthday.month}-${this.birthday.day}`;
         }
