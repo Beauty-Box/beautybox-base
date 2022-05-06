@@ -1,4 +1,4 @@
-import {Provider} from './Provider';
+import { Provider } from './Provider';
 
 export class Person extends Provider {
     constructor(config) {
@@ -8,12 +8,12 @@ export class Person extends Provider {
         this.phone = '';
         this.email = '';
         this.gender = 0;
-        // this.birthday = {
-        //     day: '',
-        //     month: '',
-        //     year: '',
-        // };
-        this.birthday = '';
+        this.birthday = {
+            day: '',
+            month: '',
+            year: '',
+        };
+        //this.birthday = '';
     }
 
     _resConvert(res) {
@@ -22,13 +22,16 @@ export class Person extends Provider {
             console.log('res-error', res);
             return;
         }
+        if (!!res.birthday) {
+            res.birthday = this.parseBirthday(res.birthday);
+        }
         Object.assign(this, res);
     }
 
     _initFormData(formData) {
         formData.append('name', this.name);
         formData.append('phone', this.phone);
-        formData.append('birthday', this.birthday);
+        formData.append('birthday', this.convertBirthday);
         formData.append('comment', this.comment);
         formData.append('gender', this.gender);
         formData.append('email', this.email);
@@ -44,19 +47,16 @@ export class Person extends Provider {
         }
     }
 
-    // get convertBirthday() {
-    //     if (!this.birthday.day || !this.birthday.month) {
-    //         return 'null.null.null';
-    //     } else {
-    //         return `${this.birthday.day}.${this.birthday.month}.${this.birthday.year || null}`;
-    //     }
-    // }
-    /**
-     * конвертирует строку дня рождения в объект
-     */
     get convertBirthday() {
-        if (!!this.birthday) {
-            const date = new Date(this.birthday);
+        if (!this.birthday.day || !this.birthday.month) {
+            return 'null-null-null';
+        } else {
+            return `${this.birthday.year}-${this.birthday.month}-${this.birthday.day}`;
+        }
+    }
+    parseBirthday(birthday) {
+        if (!!birthday) {
+            const date = new Date(birthday);
             console.log('birthdate', date);
             return {
                 day: date.getDate().toString(),
@@ -71,19 +71,39 @@ export class Person extends Provider {
             };
         }
     }
-
-    /**
-     * записывает один параметр даты дня рождения в объект date и в строку
-     * @typedef { Object } Birthday
-     * @property { String } param ключ день месяц или год
-     * @property { String } value значение день месяц или год
-     * @param { Birthday } date объект с полями param и value
-     */
-    setBirthday({ param, value }) {
-        const date = this.convertBirthday;
-        date[param] = value;
-        this.birthday = `${date.day}.${date.month}.${date.year}`;
-    }
+    // /**
+    //  * конвертирует строку дня рождения в объект
+    //  */
+    // get convertBirthday() {
+    //     if (!!this.birthday) {
+    //         const date = new Date(this.birthday);
+    //         console.log('birthdate', date);
+    //         return {
+    //             day: date.getDate().toString(),
+    //             month: (date.getMonth() + 1).toString(),
+    //             year: date.getFullYear().toString(),
+    //         };
+    //     } else {
+    //         return {
+    //             day: '',
+    //             month: '',
+    //             year: '',
+    //         };
+    //     }
+    // }
+    //
+    // /**
+    //  * записывает один параметр даты дня рождения в объект date и в строку
+    //  * @typedef { Object } Birthday
+    //  * @property { String } param ключ день месяц или год
+    //  * @property { String } value значение день месяц или год
+    //  * @param { Birthday } date объект с полями param и value
+    //  */
+    // setBirthday({ param, value }) {
+    //     const date = this.convertBirthday;
+    //     date[param] = value;
+    //     this.birthday = `${date.day}-${date.month}-${date.year}`;
+    // }
 
     clearError(error) {
         if (!error) {

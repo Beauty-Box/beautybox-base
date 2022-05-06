@@ -16,18 +16,15 @@ describe('person testing', () => {
     beforeEach(() => {
         person = new Person(config);
     });
-    it('Должен вернуть дату рождения в виде объекта', () => {
-        expect(person.convertBirthday).toEqual({
-            day: '',
-            month: '',
-            year: '',
-        });
-        person.birthday = '1998-11-23';
-        expect(person.convertBirthday).toEqual({
+    it('Должен вернуть дату рождения разделенную тире', () => {
+        expect(person.convertBirthday).toEqual('null-null-null');
+        person.birthday = {
             day: '23',
             month: '11',
-            year: '1998',
-        });
+        };
+       // expect(person.convertBirthday).toEqual('23-11-null');
+        person.birthday.year = '1998';
+        expect(person.convertBirthday).toEqual('1998-11-23');
     });
     it('Должена очищатся ошибка с указанным ключом', () => {
         person.clearError();
