@@ -24,3 +24,4 @@ export * from './isNumber';
 export * from './getCoordinatesFromYandex';
 export * from './parsePhone';
 export * from './keyReflactor';
+export * from './declensions';
