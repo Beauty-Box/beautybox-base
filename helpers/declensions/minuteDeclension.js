@@ -1,6 +1,6 @@
 import wordDeclension from './wordDeclension';
 /**
- * @description hourDeclension Возвращает правильное скланение слова "минута"
+ * @description minuteDeclension Возвращает правильное скланение слова "минута"
  * 1 минута,
  * 2 минуты, 4 минуты,
  * 6 минут, 12 минут,
