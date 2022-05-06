@@ -22,9 +22,7 @@ export class Person extends Provider {
             console.log('res-error', res);
             return;
         }
-        if (!!res.birthday) {
-            res.birthday = this.parseBirthday(res.birthday);
-        }
+        res.birthday = this.parseBirthday(res.birthday);
         Object.assign(this, res);
     }
 
