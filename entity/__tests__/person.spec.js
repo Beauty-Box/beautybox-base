@@ -17,7 +17,7 @@ describe('person testing', () => {
         person = new Person(config);
     });
     it('Должен вернуть дату рождения разделенную тире', () => {
-        expect(person.convertBirthday).toEqual(null);
+        expect(person.convertBirthday).toEqual('');
         person.birthday = {
             day: '23',
             month: '11',
