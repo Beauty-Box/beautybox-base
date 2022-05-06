@@ -17,12 +17,11 @@ describe('person testing', () => {
         person = new Person(config);
     });
     it('Должен вернуть дату рождения разделенную тире', () => {
-        expect(person.convertBirthday).toEqual('null-null-null');
+        expect(person.convertBirthday).toEqual('null');
         person.birthday = {
             day: '23',
             month: '11',
         };
-       // expect(person.convertBirthday).toEqual('23-11-null');
         person.birthday.year = '1998';
         expect(person.convertBirthday).toEqual('1998-11-23');
     });
