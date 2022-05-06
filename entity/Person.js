@@ -79,7 +79,7 @@ export class Person extends Provider {
      * @property { String } value значение день месяц или год
      * @param { Birthday } date объект с полями param и value
      */
-    set setBirthday({ param, value }) {
+    setBirthday({ param, value }) {
         const date = this.convertBirthday;
         date[param] = value;
         this.birthday = `${date.day}.${date.month}.${date.year}`;
