@@ -18,9 +18,9 @@ class PayrollRule extends ProviderClass {
         this.salary = 0;
         this.addressID = 0;
         this.baseSalary = 0;
-        this.value_type = 0;
-        this.periodicity_type = 0;
-        this.base_periodicity_type = 0;
+        this.valueType = 0;
+        this.periodicityType = 0;
+        this.basePeriodicityType = 0;
         this.categories = [];
     }
 
@@ -29,7 +29,7 @@ class PayrollRule extends ProviderClass {
             categoryID: null,
             serviceID: null,
             value: copy ? this.value : 0,
-            value_type: copy ? this.value_type : 0,
+            valueType: copy ? this.valueType : 0,
         };
         this.categories.push(category);
     }
@@ -69,13 +69,13 @@ class PayrollRule extends ProviderClass {
     // }
     static async store(payrollRule) {
         const newPayrollRule = { ...payrollRule };
-        newPayrollRule.categories = newPayrollRule.categories.filter(item => !!item.categoryID);
+        newPayrollRule.categories = newPayrollRule.categories.filter((item) => !!item.categoryID);
         const { errors = {} } = await PayrollRule._provider.post('/payroll-rules', newPayrollRule);
         return { errors };
     }
     static async update(id, payrollRule) {
         const newPayrollRule = { ...payrollRule };
-        newPayrollRule.categories = newPayrollRule.categories.filter(item => !!item.categoryID);
+        newPayrollRule.categories = newPayrollRule.categories.filter((item) => !!item.categoryID);
         const { errors = {}, ...res } = await PayrollRule._provider.put(
             `/payroll-rules/${id}`,
             newPayrollRule
