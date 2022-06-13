@@ -4,6 +4,7 @@ import {
     dateFormat,
     dateFullFormat,
     dateDayFormatFilter,
+    dateDayMonthFormat,
     dateMonthYearFormatFilter,
     priceFilter,
     timeFilter,
@@ -12,6 +13,7 @@ import {
 //Date Filters
 Vue.filter('dateFormat', dateFormat);
 Vue.filter('dateDayFormatFilter', dateDayFormatFilter);
+Vue.filter('dateDayMonthFormat', dateDayMonthFormat);
 Vue.filter('dateFullFormat', dateFullFormat);
 Vue.filter('dateMonthYearFormatFilter', dateMonthYearFormatFilter);
 //Price Filters
