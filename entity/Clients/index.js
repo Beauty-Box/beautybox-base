@@ -143,11 +143,15 @@ export class Clients extends Provider {
     }
 
     _getQuery(args) {
-        return `skip=${args[1]}&limit=${args[2]}${
-            args[0].nameFilter ? `&nameFilter=${args[0].nameFilter}` : ''
-        }${args[0].clientsTypeFilter ? `&clientsTypeFilter=${args[0].clientsTypeFilter}` : ''}${
+        let query = `skip=${args[1]}&limit=${args[2]}`;
+
+        for (let key in args[0]) {
+            query += `${args[0][key] ? `&${key}=${args[0][key]}` : ''}`;
+        }
+        query += `${
             this.sortBy ? `&sortBy=${this.sortBy}&sortOrder=${this.sortOrder ? 'desc' : 'asc'}` : ''
         }`;
+        return query;
     }
 
     get clientsList() {
@@ -162,9 +166,13 @@ export class Clients extends Provider {
         ({ categories: this.types = [] } = await this._provider.get('/clients/category/short'));
     }
 
-    async getClients({ nameFilter = '', clientsTypeFilter = 0 } = {}, skip = 0, limit = 15) {
+    async getClients(
+        { nameFilter = '', clientsTypeFilter = 0, ...clientParams } = {},
+        skip = 0,
+        limit = 15
+    ) {
         const { clients = [], count = 0 } = await this._getClients([
-            { nameFilter, clientsTypeFilter },
+            { nameFilter, clientsTypeFilter, ...clientParams },
             skip,
             limit,
         ]);
@@ -172,9 +180,13 @@ export class Clients extends Provider {
         this.count = count || this.clients.length;
     }
 
-    async searchClients({ nameFilter = '', clientsTypeFilter = 0 } = {}, skip = 0, limit = 15) {
+    async searchClients(
+        { nameFilter = '', clientsTypeFilter = 0, ...clientParams } = {},
+        skip = 0,
+        limit = 15
+    ) {
         const { clients = [], count = 0 } = await this._getClients([
-            { nameFilter, clientsTypeFilter },
+            { nameFilter, clientsTypeFilter, ...clientParams },
             skip,
             limit,
         ]);
