@@ -146,7 +146,16 @@ export class Clients extends Provider {
         let query = `skip=${args[1]}&limit=${args[2]}`;
 
         for (let key in args[0]) {
-            query += `${args[0][key] ? `&${key}=${args[0][key]}` : ''}`;
+
+            if (!!args[0][key]) {
+                if (Array.isArray(args[0][key])) {
+                    for (let value of args[0][key]) {
+                        query += `&${key}=${value}`;
+                    }
+                } else {
+                    query += `&${key}=${args[0][key]}`;
+                }
+            }
         }
         query += `${
             this.sortBy ? `&sortBy=${this.sortBy}&sortOrder=${this.sortOrder ? 'desc' : 'asc'}` : ''
