@@ -9,9 +9,9 @@ import plural from 'plural-ru';
  * @param { Number } total число любое
  * @return { String } Возвращает правильное склонение слова "клиент"
  * */
-function serviceDeclension(total) {
+function clientDeclension(total) {
     return plural(total, 'клиент', 'клиента', 'клиентов');
 }
 
-export { serviceDeclension };
-export default serviceDeclension;
+export { clientDeclension };
+export default clientDeclension;
