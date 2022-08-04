@@ -9,6 +9,7 @@ import wordDeclension from './wordDeclension';
  * @return { String } Возвращает правильное склонение слова "услуга"
  * */
 function serviceDeclension(total) {
+    console.error('*** TEST UPDATE PACKAGE ***');
     return wordDeclension(total, { single: 'услуга', plural: 'услуги', pluralMoreFive: 'услуг' });
 }
 
