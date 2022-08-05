@@ -3,7 +3,7 @@ export function joinQueryRecursive(params, prefix = '') {
         const value = params[key];
 
         if (params.constructor === Array) {
-            key = `${prefix}[]`;
+            key = `${prefix}`;
         } else if (params.constructor === Object) {
             key = prefix ? `${prefix}[${key}]` : key;
         }
