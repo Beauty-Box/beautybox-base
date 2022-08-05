@@ -1,5 +1,6 @@
 import { Person } from '../Person';
 import { Provider } from '../Provider';
+import {joinQueryRecursive} from '../../helpers';
 
 export class Client extends Person {
     constructor(id) {
@@ -145,18 +146,19 @@ export class Clients extends Provider {
     _getQuery(args) {
         let query = `skip=${args[1]}&limit=${args[2]}`;
 
-        for (let key in args[0]) {
-
-            if (!!args[0][key]) {
-                if (Array.isArray(args[0][key])) {
-                    for (let value of args[0][key]) {
-                        query += `&${key}=${value}`;
-                    }
-                } else {
-                    query += `&${key}=${args[0][key]}`;
-                }
-            }
-        }
+        // for (let key in args[0]) {
+        //
+        //     if (!!args[0][key]) {
+        //         if (Array.isArray(args[0][key])) {
+        //             for (let value of args[0][key]) {
+        //                 query += `&${key}=${value}`;
+        //             }
+        //         } else {
+        //             query += `&${key}=${args[0][key]}`;
+        //         }
+        //     }
+        // }
+        query += joinQueryRecursive(args[0]);
         query += `${
             this.sortBy ? `&sortBy=${this.sortBy}&sortOrder=${this.sortOrder ? 'desc' : 'asc'}` : ''
         }`;
