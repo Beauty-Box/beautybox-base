@@ -17,7 +17,7 @@ export * from './genNumberStringArrayRevert';
 export * from './genDayArrayForSelect';
 export * from './joinQueryObj';
 export * from './joinQuery';
-export * from './joinQueryRecursive';
+export * from './joinQueryArray';
 export * from './SortArrayByArray';
 export * from './getDayOfWeek';
 export * from './objectToURLParams';

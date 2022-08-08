@@ -1,6 +1,6 @@
 import { Person } from '../Person';
 import { Provider } from '../Provider';
-import {joinQueryRecursive} from '../../helpers';
+import {joinQueryArray} from '../../helpers';
 
 export class Client extends Person {
     constructor(id) {
@@ -158,7 +158,7 @@ export class Clients extends Provider {
         //         }
         //     }
         // }
-        query += joinQueryRecursive(args[0]);
+        query += '&' + joinQueryArray(args[0]);
         query += `${
             this.sortBy ? `&sortBy=${this.sortBy}&sortOrder=${this.sortOrder ? 'desc' : 'asc'}` : ''
         }`;
