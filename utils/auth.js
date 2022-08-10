@@ -1,4 +1,4 @@
-import { setParams, parseJwt } from '../router';
+import { setParams, parseJwt } from '../router/utils';
 
 export function redirectToBack() {
     const from = window.localStorage.getItem('from');
