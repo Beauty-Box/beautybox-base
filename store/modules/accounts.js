@@ -66,6 +66,7 @@ export const actions = {
             if (!!accounts.length) {
                 const newAccountId = accounts[0].userID;
                 await dispatch('CHANGE_ACCOUNT', newAccountId);
+                window.location.reload();
             }
         }
         if (!!accounts.length) {
