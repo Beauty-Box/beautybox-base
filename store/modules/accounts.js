@@ -47,8 +47,8 @@ export const actions = {
             const avatar = currentProfile.avatar;
             const notifications = currentNotifications;
             const userID = currentProfile.userID;
-            const token = provider.token;
-            console.log('token', provider.token);
+            const token = provider.provider.token;
+            console.log('token', provider.provider.token);
             const newAccount = { userID, name, address, avatar, notifications, token };
 
             accounts.push(newAccount);
