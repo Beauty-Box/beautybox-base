@@ -66,6 +66,8 @@ export const actions = {
             if (!!accounts.length) {
                 const newAccountId = accounts[0].userID;
                 await dispatch('CHANGE_ACCOUNT', newAccountId);
+                commit('SET_ACCOUNTS', accounts);
+                commit('SAVE_TO_STORAGE');
                 window.location.reload();
             }
         }
