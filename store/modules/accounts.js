@@ -68,7 +68,7 @@ export const actions = {
                 await dispatch('CHANGE_ACCOUNT', newAccountId);
             }
         }
-        if (!accounts.length) {
+        if (!!accounts.length) {
             commit('SET_ACCOUNTS', accounts);
             commit('SAVE_TO_STORAGE');
         } else {
