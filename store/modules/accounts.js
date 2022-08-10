@@ -1,5 +1,6 @@
 import { Api } from '../../api';
 import { setAuthToken } from '../../utils/auth';
+import { logoutAll } from '../../utils/temporary';
 
 let provider;
 
@@ -56,12 +57,24 @@ export const actions = {
             commit('SAVE_TO_STORAGE');
         }
     },
-    async REMOVE_ACCOUNT({ commit, state }, id) {
+    async REMOVE_ACCOUNT({ commit, state, rootGetters, dispatch }, id) {
         const accounts = [...state.accounts];
+        const currentUserId = rootGetters.USER_ID;
         const index = accounts.findIndex((account) => account.userID === id);
         accounts.splice(index, 1);
-        commit('SET_ACCOUNTS', accounts);
-        commit('SAVE_TO_STORAGE');
+        if (id === currentUserId) {
+            if (!!accounts.length) {
+                const newAccountId = accounts[0].userID;
+                await dispatch('CHANGE_ACCOUNT', newAccountId);
+            }
+        }
+        if (!accounts.length) {
+            commit('SET_ACCOUNTS', accounts);
+            commit('SAVE_TO_STORAGE');
+        } else {
+            console.log('accounts none');
+            logoutAll();
+        }
     },
     async CHANGE_ACCOUNT({ commit, state }, id) {
         const accounts = [...state.accounts];
