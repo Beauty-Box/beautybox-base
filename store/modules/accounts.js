@@ -111,7 +111,7 @@ export const actions = {
 
 export const getters = {
     ACCOUNTS: (state) => state.accounts,
-    CURRENT_ACCOUNT: (rootGetters) => {
+    CURRENT_ACCOUNT: (state, getters, rootState, rootGetters) => {
         console.log('rootGetters', rootGetters);
         const currentProfile = rootGetters.USER_INFO;
         const currentNotifications = rootGetters.UNREAD;
