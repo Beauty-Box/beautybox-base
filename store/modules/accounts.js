@@ -61,7 +61,7 @@ export const actions = {
                 await dispatch('CHANGE_ACCOUNT', newAccountId);
                 commit('SET_ACCOUNTS', accounts);
                 commit('SAVE_TO_STORAGE');
-                window.location.reload();
+                window.location.replace(window.location.pathname);
             }
         }
         if (!!accounts.length) {
