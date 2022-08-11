@@ -112,6 +112,7 @@ export const actions = {
 export const getters = {
     ACCOUNTS: (state) => state.accounts,
     CURRENT_ACCOUNT: (rootGetters) => {
+        console.log('rootGetters', rootGetters);
         const currentProfile = rootGetters.USER_INFO;
         const currentNotifications = rootGetters.UNREAD;
         console.log('currentNotifications', currentNotifications);
