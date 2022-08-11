@@ -34,27 +34,20 @@ export const actions = {
             commit('SET_ACCOUNTS', []);
         }
     },
-    async ADD_ACCOUNT({ commit, state, rootGetters }) {
+    async ADD_ACCOUNT({ commit, state, rootGetters, getters, dispatch }) {
         const currentProfile = rootGetters.USER_INFO;
         const accounts = [...state.accounts];
         const foundAccount = accounts.some((account) => account.userID === currentProfile.userID);
         // если не найден текущий аккаунт в локал сторейдже то добавить текущий
         if (!foundAccount) {
-            const currentNotifications = rootGetters.UNREAD;
-            console.log('currentNotifications', currentNotifications);
-            const name = currentProfile.name;
-            const profileAddress = currentProfile.addresses[0];
-            const address = `${currentProfile.location.name}, ${profileAddress.street}, ${profileAddress.house}`;
-            const avatar = currentProfile.avatar;
-            const notifications = currentNotifications;
-            const userID = currentProfile.userID;
-            const token = provider.provider.token;
-            console.log('token', provider.provider.token);
-            const newAccount = { userID, name, address, avatar, notifications, token };
-
+            const newAccount = getters.CURRENT_ACCOUNT;
             accounts.push(newAccount);
             commit('SET_ACCOUNTS', accounts);
             commit('SAVE_TO_STORAGE');
+        } else {
+            // если аккаунт найден при загрузке мы проверяем его данные на изменения
+            console.log('checking account for changes on add');
+            await dispatch('CHECK_CHANGE_ACCOUNT');
         }
     },
     async REMOVE_ACCOUNT({ commit, state, rootGetters, dispatch }, id) {
@@ -82,12 +75,56 @@ export const actions = {
     async CHANGE_ACCOUNT({ commit, state }, id) {
         const accounts = [...state.accounts];
         const account = accounts.find((account) => account.userID === id);
-        setAuthToken(account.token);
+        if (!!account) {
+            setAuthToken(account.token);
+        }
+    },
+
+    async UPDATE_CURRENT_ACCOUNT({ commit, state, getters, rootGetters }) {
+        const accounts = [...state.accounts];
+        const currentUserId = rootGetters.USER_ID;
+        const index = accounts.findIndex((account) => account.userID === currentUserId);
+        accounts[index] = { ...getters.CURRENT_ACCOUNT };
+        commit('SET_ACCOUNTS', accounts);
+        commit('SAVE_TO_STORAGE');
+    },
+
+    async CHECK_CHANGE_ACCOUNT({ state, getters, rootGetters, dispatch }) {
+        const accounts = [...state.accounts];
+        const currentUserId = rootGetters.USER_ID;
+        const storedAccount = accounts.find((account) => account.userID === currentUserId);
+        // если аккаунт с текущим ид есть в локал сторейдже
+        if (!!storedAccount) {
+            const currentAccount = { ...getters.CURRENT_ACCOUNT };
+            console.log('storedAccount', storedAccount);
+            console.log('currentAccount', currentAccount);
+            const isChanged = JSON.stringify(storedAccount) !== JSON.stringify(currentAccount);
+            // и если в нем было изменено хотя бы одно поле (включая токен)
+            if (isChanged) {
+                console.log('change account detected');
+                // обновляем хранмые аднные о текущем аккаунте
+                await dispatch('UPDATE_CURRENT_ACCOUNT');
+            }
+        }
     },
 };
 
 export const getters = {
     ACCOUNTS: (state) => state.accounts,
+    CURRENT_ACCOUNT: (rootGetters) => {
+        const currentProfile = rootGetters.USER_INFO;
+        const currentNotifications = rootGetters.UNREAD;
+        console.log('currentNotifications', currentNotifications);
+        const name = currentProfile.name;
+        const profileAddress = currentProfile.addresses[0];
+        const address = `${currentProfile.location.name}, ${profileAddress.street}, ${profileAddress.house}`;
+        const avatar = currentProfile.avatar;
+        const notifications = currentNotifications;
+        const userID = currentProfile.userID;
+        const token = provider.provider.token;
+        console.log('token', provider.provider.token);
+        return { userID, name, address, avatar, notifications, token };
+    },
 };
 
 export default { init, state, mutations, actions, getters };
