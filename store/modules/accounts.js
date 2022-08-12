@@ -1,11 +1,10 @@
-import { Api } from '../../api';
 import { setAuthToken } from '../../utils/auth';
 import { logoutAll } from '../../utils/temporary';
 
-let provider;
+let token;
 
 function init(config) {
-    provider = new Api(config.BASE_URL, 'crm', config.token);
+    token = config.token;
 }
 
 const ACCOUNTS_STORAGE_KEY = 'accounts';
@@ -46,7 +45,6 @@ export const actions = {
             commit('SAVE_TO_STORAGE');
         } else {
             // если аккаунт найден при загрузке мы проверяем его данные на изменения
-            console.log('checking account for changes on add');
             await dispatch('CHECK_CHANGE_ACCOUNT');
         }
     },
@@ -68,7 +66,6 @@ export const actions = {
             commit('SET_ACCOUNTS', accounts);
             commit('SAVE_TO_STORAGE');
         } else {
-            console.log('accounts none');
             logoutAll();
         }
     },
@@ -96,12 +93,9 @@ export const actions = {
         // если аккаунт с текущим ид есть в локал сторейдже
         if (!!storedAccount) {
             const currentAccount = { ...getters.CURRENT_ACCOUNT };
-            console.log('storedAccount', storedAccount);
-            console.log('currentAccount', currentAccount);
             const isChanged = JSON.stringify(storedAccount) !== JSON.stringify(currentAccount);
             // и если в нем было изменено хотя бы одно поле (включая токен)
             if (isChanged) {
-                console.log('change account detected');
                 // обновляем хранмые аднные о текущем аккаунте
                 await dispatch('UPDATE_CURRENT_ACCOUNT');
             }
@@ -112,10 +106,8 @@ export const actions = {
 export const getters = {
     ACCOUNTS: (state) => state.accounts,
     CURRENT_ACCOUNT: (state, getters, rootState, rootGetters) => {
-        console.log('rootGetters', rootGetters);
         const currentProfile = rootGetters.USER_INFO;
         const currentNotifications = rootGetters.UNREAD;
-        console.log('currentNotifications', currentNotifications);
         const name = currentProfile.name;
         const profileAddress = currentProfile.addresses[0];
         let address = '';
@@ -125,9 +117,9 @@ export const getters = {
         const avatar = currentProfile.avatar;
         const notifications = currentNotifications;
         const userID = currentProfile.userID;
-        const token = provider.provider.token;
-        console.log('token', provider.provider.token);
-        return { userID, name, address, avatar, notifications, token };
+        const tokenAuth = token;
+        console.log('token', tokenAuth);
+        return { userID, name, address, avatar, notifications, token: tokenAuth };
     },
 };
 
