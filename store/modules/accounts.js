@@ -118,7 +118,10 @@ export const getters = {
         console.log('currentNotifications', currentNotifications);
         const name = currentProfile.name;
         const profileAddress = currentProfile.addresses[0];
-        const address = `${currentProfile.location.name}, ${profileAddress.street}, ${profileAddress.house}`;
+        let address = '';
+        address += profileAddress.city.name ? `${profileAddress.city.name}, ` : '';
+        address += profileAddress.street ? `${profileAddress.street}, ` : '';
+        address += profileAddress.house ? `${profileAddress.house}` : '';
         const avatar = currentProfile.avatar;
         const notifications = currentNotifications;
         const userID = currentProfile.userID;
