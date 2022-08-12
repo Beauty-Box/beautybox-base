@@ -1,5 +1,5 @@
-import { setAuthToken } from '../../utils/auth';
-import { logoutAll } from '../../utils/temporary';
+import {setAuthToken} from '../../utils/auth';
+import {logoutAll} from '../../utils/temporary';
 
 let token;
 
@@ -117,9 +117,7 @@ export const getters = {
         const avatar = currentProfile.avatar;
         const notifications = currentNotifications;
         const userID = currentProfile.userID;
-        const tokenAuth = token;
-        console.log('token', tokenAuth);
-        return { userID, name, address, avatar, notifications, token: tokenAuth };
+        return { userID, name, address, avatar, notifications, token: token };
     },
 };
 
