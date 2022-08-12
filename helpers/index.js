@@ -9,7 +9,7 @@ export * from './getFirstAndLastDayOfMonthAsRange';
 export * from './getFirstAndLastDayOfYearAsRange';
 export * from './hoursLocalTest';
 export * from './serviceLocalTest';
-export * from './genArrayTime15min';
+export * from './genArrayTimeIntervalMin';
 export * from './convertMinutesToHours';
 export * from './genNumberArray';
 export * from './genNumberStringArray';
