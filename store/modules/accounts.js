@@ -1,5 +1,5 @@
-import {setAuthToken} from '../../utils/auth';
-import {logoutAll} from '../../utils/temporary';
+import { setAuthToken } from '../../utils/auth';
+import { logoutAll } from '../../utils/temporary';
 
 let token;
 
