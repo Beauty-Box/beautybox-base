@@ -7,13 +7,11 @@ import { hoursLocalTest } from './hoursLocalTest';
  * */
 
 /**
- * @description genArrayTimeIntervalMin Возвращает массив формата [{text: 15 минут, value: 15}]
+ * @description genArrayTime15min Возвращает массив формата [{text: 15 минут, value: 15}]
  * @param {Number} number лимит от 0 до 99 включительно
- * @param {Number} interval интервал в минутах
- * @param {boolean} short флаг показывающий нужно ли сокращенное слово "минуты"
  * @return { Array<DateItem> }
  * */
-function genArrayTimeIntervalMin(number, interval = 15, short = false) {
+function genArrayTime15min(number) {
     if (!Number.isInteger(number)) {
         throw new TypeError('Аргумент number должен быть целым');
     }
@@ -29,16 +27,16 @@ function genArrayTimeIntervalMin(number, interval = 15, short = false) {
     if (number < 15) {
         return [];
     }
-    let steps = Math.floor(number / interval);
+    let steps = Math.floor(number / 15);
     let array = [];
 
     for (let i = 1; i <= steps; i++) {
-        const step = i * interval;
+        const step = i * 15;
         const hours = Math.floor(step / 60);
         const minutes = step % 60;
         array.push({
             text: `${hours ? hours + ' ' + hoursLocalTest(hours) : ''}${
-                minutes ? ' ' + minutes + (short ? ' мин' : ' минут') : ''
+                minutes ? ' ' + minutes + ' минут' : ''
             }`,
             value: step,
         });
@@ -46,5 +44,5 @@ function genArrayTimeIntervalMin(number, interval = 15, short = false) {
     return array;
 }
 
-export { genArrayTimeIntervalMin };
-export default genArrayTimeIntervalMin;
+export { genArrayTime15min };
+export default genArrayTime15min;
