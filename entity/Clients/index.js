@@ -1,6 +1,6 @@
 import { Person } from '../Person';
 import { Provider } from '../Provider';
-import {joinQueryArray} from '../../helpers';
+import { joinQueryArray } from '../../helpers';
 
 export class Client extends Person {
     constructor(id) {
@@ -23,12 +23,14 @@ export class Client extends Person {
         this.profit = 0;
         this.clientTypeID = 0;
         this.blockingOnline = 0;
+        this.notificationsDisabled = 0;
     }
 
     _initFormData(formData) {
         super._initFormData(formData);
         formData.append('clientTypeID', this.clientTypeID);
         formData.append('blockingOnline', this.blockingOnline);
+        formData.append('notificationsDisabled', this.notificationsDisabled);
         formData.append('sale', this.sale);
     }
 
