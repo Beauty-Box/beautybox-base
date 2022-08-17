@@ -60,6 +60,7 @@ export const getters = {
             return {};
         }
     },
+    CHECK_WHATSAPP_MODULE: (state) => state.userInfo.modules.includes('whatsapp_notification'),
 };
 
 export default { init, state, mutations, actions, getters };
