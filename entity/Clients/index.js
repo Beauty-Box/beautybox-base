@@ -139,10 +139,10 @@ export class Clients extends Provider {
     }
 
     async _getClients(args) {
-        const { clients = [], count = 0 } = await this._provider.get(
+        const { clients = [], count = 0, clientsIDs = [] } = await this._provider.get(
             `/clients?${this._getQuery(args)}`
         );
-        return { clients, count };
+        return { clients, count, clientsIDs };
     }
 
     _getQuery(args) {
@@ -186,12 +186,17 @@ export class Clients extends Provider {
         skip = 0,
         limit = 15
     ) {
-        const { clients = [], count = 0 } = await this._getClients([
+        const {
+            clients = [],
+            count = 0,
+            clientsIDs = [],
+        } = await this._getClients([
             { nameFilter, clientsTypeFilter, ...clientParams },
             skip,
             limit,
         ]);
         this.clients = [...clients];
         this.count = count || this.clients.length;
+        this.clientsIDs = [...clientsIDs];
     }
 }
