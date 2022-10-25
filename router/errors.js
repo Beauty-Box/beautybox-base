@@ -1,5 +1,5 @@
 const AppPageNotFound = () =>
-    import(/* webpackChunkName: "page-not-found" */ '@beautybox/static/src/pages/Errors/NotFound');
+    import(/* webpackChunkName: "page-not-found" */ '@types/static/src/pages/Errors/NotFound');
 
 const errorsRoutes = [
     {
