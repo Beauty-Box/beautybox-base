@@ -1,6 +1,6 @@
-function priceFilter(number) {
+function priceFilter(number, minimumFractionDigits = 0) {
     return new Intl.NumberFormat('ru-RU', {
-        minimumFractionDigits: 0,
+        minimumFractionDigits,
         style: 'currency',
         currency: 'RUB',
     }).format(number || 0);
