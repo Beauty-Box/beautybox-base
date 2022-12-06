@@ -4,4 +4,5 @@ export * from './minuteDeclension';
 export * from './serviceDeclension';
 export * from './clientDeclension';
 export * from './productDeclension';
+export * from './visitDeclension';
 export * from './saleDeclension';
