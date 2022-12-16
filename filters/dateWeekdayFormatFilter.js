@@ -1,8 +1,7 @@
 function dateWeekdayFormatFilter(date, weekdayType = 'short') {
     return new Intl.DateTimeFormat('ru-RU', {
         weekday: weekdayType,
-    })
-        .format(new Date(date))
+    }).format(new Date(date));
 }
 
 export { dateWeekdayFormatFilter };
