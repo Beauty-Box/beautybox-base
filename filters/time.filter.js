@@ -1,8 +1,8 @@
-function timeFilter(value, options) {
+function timeFilter(value) {
     return new Intl.DateTimeFormat('ru-RU', {
         hour: '2-digit',
         minute: '2-digit',
-    }).format(new Date(`${options}T${value}`));
+    }).format(new Date(value));
 }
 
 export { timeFilter };
