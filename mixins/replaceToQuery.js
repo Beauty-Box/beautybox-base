@@ -4,11 +4,11 @@ const replaceToQuery = {
             const index = this.$route.fullPath.indexOf('?');
             return index > -1 ? this.$route.fullPath.slice(index) : '';
         },
-        async replaceToQuery(query) {
+        async replaceToQuery(query, needEmit = true) {
             const newQuery = { ...query };
             const tempQuery = { ...this.$route.query };
 
-            Object.keys(newQuery).forEach(item => {
+            Object.keys(newQuery).forEach((item) => {
                 if (!Boolean(newQuery[item])) {
                     delete newQuery[item];
                 }
@@ -16,7 +16,9 @@ const replaceToQuery = {
 
             if (JSON.stringify(tempQuery) !== JSON.stringify(newQuery)) {
                 await this.$router.replace({ query: newQuery });
-                this.$bus.$emit('route-update');
+                if (needEmit) {
+                    this.$bus.$emit('route-update');
+                }
             }
         },
     },
