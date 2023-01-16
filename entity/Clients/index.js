@@ -21,6 +21,7 @@ export class Client extends Person {
         this.categories = [];
         this.totalVisits = {};
         this.profit = 0;
+        this.reviews = {};
         this.clientTypeID = 0;
         this.blockingOnline = 0;
         this.notificationsDisabled = 0;
@@ -119,9 +120,11 @@ export class Client extends Person {
     }
 
     async getAnalytics() {
-        ({ totalVisits: this.totalVisits, profit: this.profit } = await this._provider.get(
-            `/clients/${this.clientID}/analytics`
-        ));
+        ({
+            totalVisits: this.totalVisits,
+            profit: this.profit,
+            reviews: this.reviews,
+        } = await this._provider.get(`/clients/${this.clientID}/analytics`));
     }
 }
 
