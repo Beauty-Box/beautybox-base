@@ -80,6 +80,18 @@ export class Client extends Person {
         ));
     }
 
+    async updateFields(client) {
+        let formData = new FormData();
+        formData.append('_method', 'put');
+        Object.keys(client).forEach((key) => {
+            formData.append(key, client[key]);
+        });
+        ({ errors: this.errors = {} } = await this._provider.post(
+            `/clients/${this.clientID}`,
+            formData
+        ));
+    }
+
     async create() {
         let formData = new FormData();
         this._initFormData(formData);
