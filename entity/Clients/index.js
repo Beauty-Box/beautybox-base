@@ -18,6 +18,10 @@ export class Client extends Person {
             past: [],
             coming: [],
         };
+        this.products = {
+            count: 0,
+            products: [],
+        };
         this.categories = [];
         this.totalVisits = {};
         this.profit = 0;
@@ -51,6 +55,10 @@ export class Client extends Person {
 
     get uploadedBids() {
         return this.bids.past.length + this.bids.coming.length;
+    }
+
+    get uploadedProducts() {
+        return this.products.products.length;
     }
 
     async init(params = {}) {
@@ -125,6 +133,14 @@ export class Client extends Person {
         this.bids.coming = [...this.bids.coming, ...res.coming];
     }
 
+    async getProducts() {
+        const res = await this._provider.get(
+            `/clients/${this.clientID}/products?skip=${this.uploadedProducts}`
+        );
+        this.products.count = res.count;
+        this.products.products = [...this.products.products, ...res.products];
+    }
+
     async getCategories() {
         ({ categories: this.categories = [] } = await this._provider.get(
             '/clients/category/short'
@@ -154,9 +170,11 @@ export class Clients extends Provider {
     }
 
     async _getClients(args) {
-        const { clients = [], count = 0, clientsIDs = [] } = await this._provider.get(
-            `/clients?${this._getQuery(args)}`
-        );
+        const {
+            clients = [],
+            count = 0,
+            clientsIDs = [],
+        } = await this._provider.get(`/clients?${this._getQuery(args)}`);
         return { clients, count, clientsIDs };
     }
 
