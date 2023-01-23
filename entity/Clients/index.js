@@ -18,6 +18,17 @@ export class Client extends Person {
             past: [],
             coming: [],
         };
+        // visits V2
+        this.visits = {
+            past: {
+                count: 0,
+                visits: [],
+            },
+            coming: {
+                count: 0,
+                visits: [],
+            },
+        };
         this.products = {
             count: 0,
             products: [],
@@ -131,6 +142,14 @@ export class Client extends Person {
         this.bids.count = res.count;
         this.bids.past = [...this.bids.past, ...res.past];
         this.bids.coming = [...this.bids.coming, ...res.coming];
+    }
+
+    async getVisitsV2(type) {
+        let res = await this._provider.get(
+            `/clients/${this.clientID}/visitsV2?type=${type}&skip=${this.visits[type].visits.length}`
+        );
+        this.visits[type].count = res.count;
+        this.visits[type].visits = [...this.visits[type].visits, ...res.visits];
     }
 
     async getProducts() {
