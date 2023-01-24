@@ -7,6 +7,7 @@ export class Person extends Provider {
         this.name = '';
         this.phone = '';
         this.email = '';
+        this.avatar = '';
         this.gender = 0;
         this.birthday = {
             day: '',
