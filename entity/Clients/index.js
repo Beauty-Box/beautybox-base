@@ -33,6 +33,10 @@ export class Client extends Person {
             count: 0,
             products: [],
         };
+        this.sales = {
+            count: 0,
+            sales: [],
+        };
         this.categories = [];
         this.totalVisits = {};
         this.profit = 0;
@@ -70,6 +74,10 @@ export class Client extends Person {
 
     get uploadedProducts() {
         return this.products.products.length;
+    }
+
+    get uploadedSales() {
+        return this.sales.sales.length;
     }
 
     async init(params = {}) {
@@ -158,6 +166,14 @@ export class Client extends Person {
         );
         this.products.count = res.count;
         this.products.products = [...this.products.products, ...res.products];
+    }
+
+    async getSales() {
+        const res = await this._provider.get(
+            `/sales?clientID=${this.clientID}&skip=${this.uploadedSales}`
+        );
+        this.sales.count = res.count;
+        this.sales.sales = [...this.sales.sales, ...res.sales];
     }
 
     async getCategories() {
