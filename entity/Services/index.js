@@ -1,4 +1,5 @@
 import { Provider } from '../Provider';
+import { objectToURLParams } from '../../helpers';
 
 export class Categories extends Provider {
     constructor() {
@@ -114,6 +115,26 @@ export class Services extends Provider {
     async getServices(categoryID) {
         const { services = [] } = await this._provider.get(`/services?categoryID=${categoryID}`);
         return services;
+    }
+
+    /**
+     * getServicesList Метод для получения списка услуг без категорий
+     * */
+    async getServicesList({ skip = 0, filters = {} }) {
+        const params = {};
+        if (!!skip) {
+            params.skip = skip;
+        }
+
+        for (let key in filters) {
+            if (!!filters[key]) {
+                params[key] = filters[key];
+            }
+        }
+        const { services = [], count = 0 } = await this._provider.get(
+            `/services/listV2${objectToURLParams(params)}`
+        );
+        return { services, count };
     }
 
     /**
