@@ -80,6 +80,29 @@ export class Client extends Person {
         return this.sales.sales.length;
     }
 
+    clientAvatarStatus() {
+        if (!!this.blockingOnline) {
+            return { text: 'Заблокирован', icon: 'clients--blocked', fill: '#FF2D55' };
+        }
+        if (!!this.notificationsDisabled) {
+            return {
+                text: 'Уведомления отключены',
+                icon: 'notifications-off',
+                fill: '#FF2D55',
+            };
+        }
+        if (this.birthday) {
+            const birthDay = new Date(this.birthday);
+            const today = new Date();
+            const isBirthdayToday =
+                birthDay.getMonth() === today.getMonth() && birthDay.getDate() === today.getDate();
+            if (isBirthdayToday) {
+                return { text: 'День рождения', icon: 'birthday', fill: '#BF5AF2' };
+            }
+        }
+        return { text: '', icon: '', fill: '' };
+    }
+
     async init(params = {}) {
         let res = await this._provider.get('/clients/create');
         res = { ...res, ...params };
@@ -229,6 +252,10 @@ export class Clients extends Provider {
 
     get clientsCount() {
         return this.count;
+    }
+
+    static clientAvatarStatus(item) {
+        return Client.prototype.clientAvatarStatus.apply(item);
     }
 
     async getFilters() {
