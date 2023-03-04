@@ -1,12 +1,13 @@
 import { Api } from '../api';
+let provider;
+
+export function useApi() {
+    return { provider };
+}
 
 export default {
     install(Vue, options) {
-        Vue.prototype.$fetch = new Api(
-            options.BASE_URL,
-            options.module,
-            options.token,
-            options.secure
-        );
+        provider = new Api(options.BASE_URL, options.module, options.token, options.secure);
+        Vue.prototype.$fetch = provider;
     },
 };
