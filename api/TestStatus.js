@@ -71,7 +71,8 @@ export class TestStatus {
         return await this.getBody(response);
     }
     async s201(response) {
-        return { location: response.headers.get('Location') };
+        const body = await this.getBody(response);
+        return { location: response.headers.get('Location'), ...body };
     }
     async s203(response) {
         return await this.getBody(response);
