@@ -14,13 +14,17 @@ function removePrefixFromEnvKeys({ ...env }) {
         return acc;
     }, {});
 }
-
-let BUNDLER_AGNOSTIC_ENV = {};
-if (!!process) {
-    BUNDLER_AGNOSTIC_ENV = { ...process.env };
-} else {
-    BUNDLER_AGNOSTIC_ENV = removePrefixFromEnvKeys(import.meta.env);
+function getBundlerAgnosticEnv() {
+    let BUNDLER_AGNOSTIC_ENV = {};
+    if (!!process) {
+        BUNDLER_AGNOSTIC_ENV = { ...process.env };
+    } else {
+        BUNDLER_AGNOSTIC_ENV = removePrefixFromEnvKeys(import.meta.env);
+    }
+    return BUNDLER_AGNOSTIC_ENV;
 }
 
+const BUNDLER_AGNOSTIC_ENV = getBundlerAgnosticEnv();
+
 export { BUNDLER_AGNOSTIC_ENV };
-export default BUNDLER_AGNOSTIC_ENV;
+export default getBundlerAgnosticEnv();
