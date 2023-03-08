@@ -1,7 +1,6 @@
 import { Person } from '../Person';
 import { Provider } from '../Provider';
-import { joinQueryArray } from '../../helpers';
-import { BUNDLER_AGNOSTIC_ENV } from './../helpers';
+import { joinQueryArray, BUNDLER_AGNOSTIC_ENV } from '../../helpers';
 
 export class Client extends Person {
     constructor(id) {
