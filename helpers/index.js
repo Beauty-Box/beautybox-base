@@ -1,4 +1,5 @@
-export * from './bundlerAgnosticEnv';
+export * as b from './bundlerAgnosticEnv';
+console.log(b);
 export * from './IsoToRu';
 export * from './RuToIso';
 export * from './genTime';
