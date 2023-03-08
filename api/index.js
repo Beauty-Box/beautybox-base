@@ -1,5 +1,6 @@
 import { TestStatus } from './TestStatus';
 import { FetchApi as Provider } from './FetchApi';
+import { BUNDLER_AGNOSTIC_ENV } from './../helpers/bundlerAgnosticEnv';
 
 function parseJwt(token) {
     const base64Url = token.split('.')[1];
@@ -141,7 +142,7 @@ class ProviderClass {
     static createProvider(config) {
         testInputData(config);
         ProviderClass._provider = new Api(
-            config.baseUrl || process.env.BASE_URL,
+            config.baseUrl || BUNDLER_AGNOSTIC_ENV.BASE_URL,
             config.module,
             config.token || null
         );

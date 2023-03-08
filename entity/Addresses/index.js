@@ -1,9 +1,10 @@
 import { Provider } from '../Provider';
+import { BUNDLER_AGNOSTIC_ENV } from './../helpers/bundlerAgnosticEnv';
 
 export default class Addresses extends Provider {
     constructor() {
         super({
-            BASE_URL: process.env.BASE_URL || 'test',
+            BASE_URL: BUNDLER_AGNOSTIC_ENV.BASE_URL || 'test',
             module: 'test',
             token: 'test',
         });

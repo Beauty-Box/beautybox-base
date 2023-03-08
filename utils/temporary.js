@@ -1,12 +1,15 @@
 import { Api } from '../api';
+import { BUNDLER_AGNOSTIC_ENV } from './../helpers/bundlerAgnosticEnv';
 
 export async function logout(e) {
     e.preventDefault();
 
     try {
-        await new Api(process.env.BASE_URL, 'auth', localStorage.getItem('access_token')).post(
-            '/logout'
-        );
+        await new Api(
+            BUNDLER_AGNOSTIC_ENV.BASE_URL,
+            'auth',
+            localStorage.getItem('access_token')
+        ).post('/logout');
         if (this.$store.hasModule('Accounts')) {
             console.log('accounts module found');
             const currentUserID = this.$store.getters['USER_ID'];

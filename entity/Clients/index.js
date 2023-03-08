@@ -1,11 +1,12 @@
 import { Person } from '../Person';
 import { Provider } from '../Provider';
 import { joinQueryArray } from '../../helpers';
+import { BUNDLER_AGNOSTIC_ENV } from './../helpers/bundlerAgnosticEnv';
 
 export class Client extends Person {
     constructor(id) {
         super({
-            BASE_URL: process.env.BASE_URL,
+            BASE_URL: BUNDLER_AGNOSTIC_ENV.BASE_URL,
             module: 'crm',
             token: localStorage.getItem('access_token'),
         });
@@ -217,7 +218,7 @@ export class Client extends Person {
 export class Clients extends Provider {
     constructor() {
         super({
-            BASE_URL: process.env.BASE_URL,
+            BASE_URL: BUNDLER_AGNOSTIC_ENV.BASE_URL,
             module: 'crm',
             token: localStorage.getItem('access_token'),
         });
