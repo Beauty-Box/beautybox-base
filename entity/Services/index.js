@@ -1,6 +1,6 @@
 import { Provider } from '../Provider';
 import { objectToURLParams } from '../../helpers';
-import { BUNDLER_AGNOSTIC_ENV } from './../helpers/bundlerAgnosticEnv';
+import { BUNDLER_AGNOSTIC_ENV } from './../helpers';
 
 export class Categories extends Provider {
     constructor() {

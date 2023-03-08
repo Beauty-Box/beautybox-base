@@ -1,5 +1,5 @@
 import { Api } from '../api';
-import { BUNDLER_AGNOSTIC_ENV } from './../helpers/bundlerAgnosticEnv';
+import { BUNDLER_AGNOSTIC_ENV } from './../helpers';
 
 export async function logout(e) {
     e.preventDefault();

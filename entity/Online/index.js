@@ -1,5 +1,5 @@
 import { Provider } from '../Provider';
-import { BUNDLER_AGNOSTIC_ENV } from './../helpers/bundlerAgnosticEnv';
+import { BUNDLER_AGNOSTIC_ENV } from './../helpers';
 
 export class Online extends Provider {
     constructor(addressID) {

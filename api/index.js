@@ -1,6 +1,6 @@
 import { TestStatus } from './TestStatus';
 import { FetchApi as Provider } from './FetchApi';
-import { BUNDLER_AGNOSTIC_ENV } from './../helpers/bundlerAgnosticEnv';
+import { BUNDLER_AGNOSTIC_ENV } from './../helpers';
 
 function parseJwt(token) {
     const base64Url = token.split('.')[1];

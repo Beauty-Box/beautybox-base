@@ -1,4 +1,4 @@
-import { BUNDLER_AGNOSTIC_ENV } from './../helpers/bundlerAgnosticEnv';
+import { BUNDLER_AGNOSTIC_ENV } from './../helpers';
 
 function testInputData(params) {
     if (typeof params === 'undefined') {
