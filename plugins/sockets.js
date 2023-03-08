@@ -1,5 +1,7 @@
 import VueSocketIO from 'vue-socket.io';
 import SocketIO from 'socket.io-client';
+import { BUNDLER_AGNOSTIC_ENV } from './../helpers';
+
 let configSocket = {
     path: '/socket/notification',
     headers: new Headers({
@@ -12,7 +14,7 @@ export default {
         Vue.use(
             new VueSocketIO({
                 debug: false,
-                connection: SocketIO(process.env.SOCKET_NOTIFICATION, {
+                connection: SocketIO(BUNDLER_AGNOSTIC_ENV.SOCKET_NOTIFICATION, {
                     path: '/socket/notification',
                     query: {
                         token: localStorage.getItem('access_token'),
