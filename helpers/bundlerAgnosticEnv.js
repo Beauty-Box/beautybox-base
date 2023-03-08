@@ -16,7 +16,7 @@ function removePrefixFromEnvKeys({ ...env }) {
 }
 function getBundlerAgnosticEnv() {
     let BUNDLER_AGNOSTIC_ENV = {};
-    if (!!process) {
+    if (typeof process !== 'undefined') {
         BUNDLER_AGNOSTIC_ENV = { ...process.env };
     } else {
         BUNDLER_AGNOSTIC_ENV = removePrefixFromEnvKeys(import.meta.env);
