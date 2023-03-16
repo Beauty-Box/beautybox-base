@@ -19,8 +19,16 @@ export class Categories extends Provider {
      * getCategories Метод для получения категорий
      * @return {Array} categories массив категорий
      * */
-    async getCategories() {
-        ({ categories: this.categories = [] } = await this._provider.get('/categories'));
+    async getCategories({ query = {} }) {
+        const params = {};
+        Object.keys(query).forEach((key) => {
+            if (!!query[key]) {
+                params[key] = query[key];
+            }
+        });
+        ({ categories: this.categories = [] } = await this._provider.get(
+            `/v2/categories${objectToURLParams(params)}`
+        ));
         return this.categories;
     }
 
