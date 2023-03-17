@@ -30,10 +30,8 @@ export class Categories extends Provider {
         ({ categories: this.categories = [], errors: errors = {} } = await this._provider.get(
             `/v2/categories${objectToURLParams(params)}`
         ));
-        if (!!Object.keys(errors).length) {
-            return errors;
-        }
-        return this.categories;
+
+        return { categories: this.categories, errors };
     }
 
     /**
