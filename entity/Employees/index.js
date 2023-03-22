@@ -1,7 +1,6 @@
 import { Provider } from '../Provider';
 import { objectToURLParams } from '../../helpers';
 
-
 export class Employees extends Provider {
     constructor() {
         super({
