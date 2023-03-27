@@ -1,5 +1,5 @@
 import { Provider } from '../Provider';
-import { BUNDLER_AGNOSTIC_ENV } from './../../helpers';
+import { objectToURLParams, BUNDLER_AGNOSTIC_ENV } from '../../helpers';
 
 export class Employees extends Provider {
     constructor() {
@@ -10,7 +10,18 @@ export class Employees extends Provider {
         });
     }
 
-    employees() {
-        return this._provider.get('/employees');
+    employees({ filters = {}, skip = 0 } = {}) {
+        const params = {};
+        if (!!skip) {
+            params.skip = skip;
+        }
+
+        for (const filterKey in filters) {
+            if (!!filters[filterKey]) {
+                params[filterKey] = filters[filterKey];
+            }
+        }
+
+        return this._provider.get(`/employees${objectToURLParams(params)}`);
     }
 }

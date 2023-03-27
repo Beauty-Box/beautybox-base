@@ -17,36 +17,39 @@ export class Categories extends Provider {
 
     /**
      * getCategories Метод для получения категорий
-     * @param {Number} addressID
      * @return {Array} categories массив категорий
      * */
-    async getCategories(addressID) {
-        ({ categories: this.categories = [] } = await this._provider.get(
-            `/categories?addressID=${addressID}`
+    async getCategories({ query = {} }) {
+        const params = {};
+        Object.keys(query).forEach((key) => {
+            if (!!query[key]) {
+                params[key] = query[key];
+            }
+        });
+        let errors = {};
+        ({ categories: this.categories = [], errors: errors = {} } = await this._provider.get(
+            `/v2/categories${objectToURLParams(params)}`
         ));
-        return this.categories;
+
+        return { categories: this.categories, errors };
     }
 
     /**
      * getCategoriesShort Метод для получения сокращенных категорий
-     * @param {Number} addressID
      * @return {Array} categories массив категорий
      * */
-    async getCategoriesShort(addressID) {
-        ({ categories: this.categoriesShort = [] } = await this._provider.get(
-            `/categories-short?addressID=${addressID}`
-        ));
+    async getCategoriesShort() {
+        ({ categories: this.categoriesShort = [] } = await this._provider.get('/categories-short'));
         return this.categoriesShort;
     }
 
     /**
      * getRecommendedCategories Метод для получения рекомендуемых категорий
-     * @param {Number} addressID
      * @return {Array} recommendedCategories массив рекомендуемых категорий
      * */
-    async getRecommendedCategories(addressID) {
+    async getRecommendedCategories() {
         ({ recommendedCategories: this.categoriesRecommended = [] } = await this._provider.get(
-            `/categories/recommended?addressID=${addressID}`
+            '/categories/recommended'
         ));
         return this.categoriesRecommended;
     }
