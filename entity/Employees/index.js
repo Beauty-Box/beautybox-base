@@ -11,6 +11,7 @@ export class Employees extends Provider {
     }
 
     employees({ filters = {}, skip = 0 } = {}) {
+        console.log('BASE_URL employees', BUNDLER_AGNOSTIC_ENV.BASE_URL);
         const params = {};
         if (!!skip) {
             params.skip = skip;
