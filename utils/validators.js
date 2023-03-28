@@ -1,4 +1,4 @@
-import { maxLength, minLength, required, sameAs } from 'vuelidate/lib/validators';
+import { maxLength, minLength, required, sameAs } from '@vuelidate/validators';
 import { genFullTime } from './index';
 
 let timeArray = genFullTime();
@@ -41,12 +41,12 @@ function getIndex(first, last) {
     };
 }
 
-export const lowerIndex = time => value => {
+export const lowerIndex = (time) => (value) => {
     let { firstIndex: first, lastIndex: last } = getIndex(value, time);
     return first < last;
 };
 
-export const largeIndex = time => value => {
+export const largeIndex = (time) => (value) => {
     let { firstIndex: first, lastIndex: last } = getIndex(value, time);
     return first > last;
 };

@@ -1384,6 +1384,20 @@
   dependencies:
     eslint-config-prettier "^6.0.0"
 
+"@vuelidate/core@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@vuelidate/core/-/core-2.0.1.tgz#65aace31377accecf3b13dc404101437d4142644"
+  integrity sha512-seBfM7ZtQ+NzXEdJpwLPgX/GlY+R10VI3FSoXyEJH7p4kKcz06f5oloh2EDozCJVMxP0Um/FFcfjBCn8CtGNOQ==
+  dependencies:
+    vue-demi "^0.13.11"
+
+"@vuelidate/validators@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@vuelidate/validators/-/validators-2.0.1.tgz#b7d3be967cdf913cc411169f13e0557470138382"
+  integrity sha512-rlu14xo+r36ri2VMY6kLLgzIc3RKEIEKiyq/Nwvft3h8izt6jcBqOlDPkQL1d9qxn9mr2nVBcNlMBFMDrHpp/A==
+  dependencies:
+    vue-demi "^0.13.11"
+
 "@webassemblyjs/ast@1.9.0":
   version "1.9.0"
   resolved "https://registry.yarnpkg.com/@webassemblyjs/ast/-/ast-1.9.0.tgz#bd850604b4042459a5a41cd7d338cbed695ed964"
@@ -8217,6 +8231,11 @@ vm-browserify@^1.0.1:
   resolved "https://registry.yarnpkg.com/vm-browserify/-/vm-browserify-1.1.2.tgz#78641c488b8e6ca91a75f511e7a3b32a86e5dda0"
   integrity sha512-2ham8XPWTONajOR0ohOKOHXkm3+gaBmGut3SRuu75xLd/RRaY6vqgh8NBYYk7+RW3u5AtzPQZG8F10LHkl0lAQ==
 
+vue-demi@^0.13.11:
+  version "0.13.11"
+  resolved "https://registry.yarnpkg.com/vue-demi/-/vue-demi-0.13.11.tgz#7d90369bdae8974d87b1973564ad390182410d99"
+  integrity sha512-IR8HoEEGM65YY3ZJYAjMlKygDQn25D5ajNFNoKh9RSDMQtlzCxtfQjdQgv9jjK+m3377SsJXY8ysq8kLCZL25A==
+
 vue-eslint-parser@^7.0.0:
   version "7.11.0"
   resolved "https://registry.yarnpkg.com/vue-eslint-parser/-/vue-eslint-parser-7.11.0.tgz#214b5dea961007fcffb2ee65b8912307628d0daf"
@@ -8300,11 +8319,6 @@ vue@^2.6.12:
   version "2.6.14"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.6.14.tgz#e51aa5250250d569a3fbad3a8a5a687d6036e235"
   integrity sha512-x2284lgYvjOMj3Za7kqzRcUSxBboHqtgRE2zlos1qWaOye5yUmHn42LB1250NJBLRwEcdrB0JRwyPTEPhfQjiQ==
-
-vuelidate@^0.7.5:
-  version "0.7.7"
-  resolved "https://registry.yarnpkg.com/vuelidate/-/vuelidate-0.7.7.tgz#5df3930a63ddecf56fde7bdacea9dbaf0c9bf899"
-  integrity sha512-pT/U2lDI67wkIqI4tum7cMSIfGcAMfB+Phtqh2ttdXURwvHRBJEAQ0tVbUsW9Upg83Q5QH59bnCoXI7A9JDGnA==
 
 vuetify-loader@^1.6.0:
   version "1.7.3"
