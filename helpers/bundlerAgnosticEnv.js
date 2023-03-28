@@ -19,8 +19,10 @@ function getBundlerAgnosticEnv() {
     if (typeof process !== 'undefined') {
         BUNDLER_AGNOSTIC_ENV = { ...process.env };
     } else {
+        console.log('import meta env', import.meta.env);
         BUNDLER_AGNOSTIC_ENV = removePrefixFromEnvKeys(import.meta.env);
     }
+    console.log('BUNDLER_AGNOSTIC_ENV', BUNDLER_AGNOSTIC_ENV);
     return BUNDLER_AGNOSTIC_ENV;
 }
 
