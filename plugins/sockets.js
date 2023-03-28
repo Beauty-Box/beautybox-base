@@ -1,6 +1,5 @@
 import VueSocketIO from 'vue-socket.io';
 import SocketIO from 'socket.io-client';
-import { BUNDLER_AGNOSTIC_ENV } from './../helpers';
 
 let configSocket = {
     path: '/socket/notification',
