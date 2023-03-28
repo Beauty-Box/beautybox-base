@@ -1,12 +1,11 @@
 import { Api } from '../api';
-import { BUNDLER_AGNOSTIC_ENV } from './../helpers';
 
 export async function logout(e) {
     e.preventDefault();
 
     try {
         await new Api(
-            BUNDLER_AGNOSTIC_ENV.BASE_URL,
+            import.meta.env.VITE_BASE_URL,
             'auth',
             localStorage.getItem('access_token')
         ).post('/logout');

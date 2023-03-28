@@ -1,5 +1,3 @@
-import { BUNDLER_AGNOSTIC_ENV } from './../../helpers';
-
 function testInputData(params) {
     if (typeof params === 'undefined') {
         throw 'Не переданы входные параметры для создания экземпляра';
@@ -23,7 +21,7 @@ class ProviderClass {
     static createProvider(config = {}) {
         testInputData(config);
         ProviderClass._provider = new Api(
-            config.baseUrl || BUNDLER_AGNOSTIC_ENV.BASE_URL,
+            config.baseUrl || import.meta.env.VITE_BASE_URL,
             config.module,
             config.token || null
         );

@@ -1,10 +1,10 @@
 import { Provider } from '../Provider';
-import { objectToURLParams, BUNDLER_AGNOSTIC_ENV } from '../../helpers';
+import { objectToURLParams } from '../../helpers';
 
 export class Categories extends Provider {
     constructor() {
         super({
-            BASE_URL: BUNDLER_AGNOSTIC_ENV.BASE_URL,
+            BASE_URL: import.meta.env.VITE_BASE_URL,
             module: 'crm',
             token: localStorage.getItem('access_token'),
         });
@@ -104,7 +104,7 @@ export class Categories extends Provider {
 export class Services extends Provider {
     constructor() {
         super({
-            BASE_URL: BUNDLER_AGNOSTIC_ENV.BASE_URL,
+            BASE_URL: import.meta.env.VITE_BASE_URL,
             module: 'crm',
             token: localStorage.getItem('access_token'),
         });
@@ -152,7 +152,7 @@ export class Services extends Provider {
 export class Service extends Provider {
     constructor(id) {
         super({
-            BASE_URL: BUNDLER_AGNOSTIC_ENV.BASE_URL,
+            BASE_URL: import.meta.env.VITE_BASE_URL,
             module: 'crm',
             token: localStorage.getItem('access_token'),
         });

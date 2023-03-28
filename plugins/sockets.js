@@ -14,7 +14,7 @@ export default {
         Vue.use(
             new VueSocketIO({
                 debug: false,
-                connection: SocketIO(BUNDLER_AGNOSTIC_ENV.SOCKET_NOTIFICATION, {
+                connection: SocketIO(import.meta.env.VITE_SOCKET_NOTIFICATION, {
                     path: '/socket/notification',
                     query: {
                         token: localStorage.getItem('access_token'),
