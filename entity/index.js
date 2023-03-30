@@ -1,4 +1,2 @@
-const VisitStatus = {};
-
-export { VisitStatus };
-export default { VisitStatus };
+export {};
+export default {};
