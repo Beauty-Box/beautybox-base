@@ -44,14 +44,14 @@ function getIndex(first, last) {
 }
 
 export const lowerIndex = (time) =>
-    helpers.withParams({}, (value) => {
+    helpers.withParams({ value: time }, (value) => {
         let { firstIndex: first, lastIndex: last } = getIndex(value, time);
         console.log('first', first, 'last', last);
         return first < last;
     });
 
 export const largeIndex = (time) =>
-    helpers.withParams({}, (value) => {
+    helpers.withParams({ value: time }, (value) => {
         let { firstIndex: first, lastIndex: last } = getIndex(value, time);
         return first > last;
     });
