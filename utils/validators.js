@@ -3,6 +3,8 @@ import { genFullTime } from './index';
 
 let timeArray = genFullTime();
 
+console.log('timeArray', timeArray);
+
 export const validatorName = {
     required,
     minLength: minLength(3),
@@ -43,6 +45,7 @@ function getIndex(first, last) {
 
 export const lowerIndex = (time) => (value) => {
     let { firstIndex: first, lastIndex: last } = getIndex(value, time);
+    console.log('first', first, 'last', last);
     return first < last;
 };
 
