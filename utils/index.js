@@ -230,9 +230,7 @@ export function genDayArrayForSelect(to) {
 }
 
 export function getBaseUrl() {
-    return process.env.NODE_ENV === 'development'
-        ? process.env.FETCH_URL_DEVELOPMENT
-        : process.env.FETCH_URL;
+    return import.meta.env.VITE_FETCH_URL;
 }
 
 /**
