@@ -30,16 +30,18 @@ export class Online extends Provider {
         formData.append('recordNotLater', 1);
         formData.append('editableUntil', 6);
         formData.append('recordNotPrev', 1);
+        formData.append('clientRegistrationRequired', false);
         formData.append('active', 1);
 
         return this._provider.post('/settings/online', formData);
     }
 
-    update(settingsID, { recordNotPrev, editableUntil }) {
+    update(settingsID, { recordNotPrev, editableUntil, clientRegistrationRequired }) {
         return this._provider.put(`/settings/online/${settingsID}`, {
             addressID: this.addressID,
             recordNotPrev,
             editableUntil,
+            clientRegistrationRequired,
         });
     }
 }
