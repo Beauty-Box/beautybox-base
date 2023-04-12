@@ -4,31 +4,31 @@ import { genFullTime } from './index';
 let timeArray = genFullTime();
 
 export const validatorName = {
-    required,
-    minLength: minLength(3),
-    maxLength: maxLength(75),
+    required: helpers.withMessage('Введите имя', required),
+    minLength: helpers.withMessage('Имя должно быть минимум из 3-х букв', minLength(3)),
+    maxLength: helpers.withMessage('Имя может содержать не более 75 символов', maxLength(75)),
 };
 
 export const validatorPhone = {
-    required,
-    minLength: minLength(18),
+    required: helpers.withMessage('Введите номер', required),
+    minLength: helpers.withMessage('Введите корректный номер', minLength(18)),
 };
 
 export const validatorPassword = {
-    required,
-    minLength: minLength(6),
-    maxLength: maxLength(255),
+    required: helpers.withMessage('Введите пароль', required),
+    minLength: helpers.withMessage('Пароль должен быть не менее 6 символов', minLength(6)),
+    maxLength: helpers.withMessage('', maxLength(255)),
 };
 
 export function validatorPasswordRepeat(some) {
     return {
-        sameAs: sameAs(some),
+        sameAs: helpers.withMessage('', sameAs(some)),
     };
 }
 
 export const validatorTextarea = {
-    required,
-    minLength: minLength(3),
+    required: helpers.withMessage('Введите текст отзыва', required),
+    minLength: helpers.withMessage('Слишком короткий текст отзыва', minLength(3)),
 };
 
 function getIndex(first, last) {
