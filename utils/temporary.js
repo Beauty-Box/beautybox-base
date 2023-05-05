@@ -34,7 +34,6 @@ export function logoutAll() {
 function clearAuthCookies() {
     const cookies = document.cookie.split('; ');
     const filteredCookies = cookies.filter((cookie) => cookie.startsWith('auth.'));
-    console.log('filteredCookies with auth', filteredCookies);
     const domain = 'path=/';
     filteredCookies.forEach((cookieToDelete) => {
         document.cookie =
