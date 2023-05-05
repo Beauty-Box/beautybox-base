@@ -24,6 +24,18 @@ export async function logout(e) {
 
 export function logoutAll() {
     window.localStorage.clear();
+
+    clearAuthCookies();
+
     window.localStorage.setItem('from', window.location.href);
     window.location.replace(`${window.location.origin}/auth/sign-in`);
+}
+
+function clearAuthCookies() {
+    const cookies = document.cookie.split('; ');
+    const filteredCookies = cookies.filter((cookie) => cookie.startsWith('auth.'));
+    console.log('filteredCookies with auth', filteredCookies);
+    filteredCookies.foreEach((cookieToDelete) => {
+        document.cookie = cookieToDelete + ';expires=Thu, 01 Jan 1970 00:00:01 GMT';
+    });
 }
