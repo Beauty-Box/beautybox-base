@@ -1,4 +1,5 @@
 import { Api } from '../api';
+import { removeSubdomain } from './removeSubdomain';
 
 export async function logout(e) {
     e.preventDefault();
@@ -28,7 +29,10 @@ export function logoutAll() {
     clearAuthCookies();
 
     window.localStorage.setItem('from', window.location.href);
-    window.location.replace(`${window.location.origin}/auth/sign-in`);
+
+    const newOrigin = removeSubdomain();
+
+    window.location.replace(`${newOrigin}/auth/sign-in`);
 }
 
 function clearAuthCookies() {
