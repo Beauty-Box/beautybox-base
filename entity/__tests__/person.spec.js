@@ -29,12 +29,12 @@ describe('person testing', () => {
         person.clearError();
         expect(person.errors).toEqual({});
         person.errors = {
-            '1': 'TypeError',
-            '2': 'Syntax error',
+            1: 'TypeError',
+            2: 'Syntax error',
         };
         person.clearError('1');
         expect(person.errors).toEqual({
-            '2': 'Syntax error',
+            2: 'Syntax error',
         });
     });
 

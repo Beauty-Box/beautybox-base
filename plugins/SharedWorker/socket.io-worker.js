@@ -26,11 +26,11 @@ class SharedWorkerSocketIO {
             name: this.socketUri,
         });
         const port = this.worker.port || this.worker;
-        port.onmessage = event => {
+        port.onmessage = (event) => {
             this.log('<< worker received message:', event.data.type, event.data.message);
             this.events.emit(event.data.type, event.data.message);
         };
-        this.worker.onerror = event => {
+        this.worker.onerror = (event) => {
             this.log('worker error', event);
             this.events.emit('error', event);
         };
@@ -110,4 +110,4 @@ class SharedWorkerSocketIO {
 
 SharedWorkerSocketIO.prototype.log = console.log.bind(console);
 
-module.exports = global.wio = uri => new SharedWorkerSocketIO(uri);
+module.exports = global.wio = (uri) => new SharedWorkerSocketIO(uri);

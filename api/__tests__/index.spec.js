@@ -92,8 +92,7 @@ beforeEach(() => {
             ok: true,
             json: () =>
                 Promise.resolve({
-                    token:
-                        'lknaefqbjkebckwuebwvbuqbuequobfbueb.adcjaaecnqkuencqe.qaeveqecqefafa3rfq3fqe',
+                    token: 'lknaefqbjkebckwuebwvbuqbuequobfbueb.adcjaaecnqkuencqe.qaeveqecqefafa3rfq3fqe',
                     rates: { CAD: 1.42 },
                 }),
         })
@@ -107,7 +106,7 @@ describe('Api', () => {
         localStorage.setItem('access_token', token);
         api.updateToken(token);
     });
-    errorStatus.forEach(item => {
+    errorStatus.forEach((item) => {
         it(`Должен правильно обработать ${item}`, async () => {
             const spy = jest.spyOn(api, 'redirectTo');
             fetch.mockImplementation(() =>
@@ -131,7 +130,7 @@ describe('Api', () => {
             expect(spy).toBeCalledTimes(1);
         });
     });
-    methods.forEach(item => {
+    methods.forEach((item) => {
         it(`Должен вызвать метод ${item}`, async () => {
             const spy = jest.spyOn(api, 'refreshToken');
             await Promise.all([api[item]('test-request'), api[item]('test-request')]);
@@ -146,7 +145,7 @@ describe('Api', () => {
         const token = genValidToken();
         localStorage.setItem('access_token', token);
     });
-    methods.forEach(item => {
+    methods.forEach((item) => {
         it(`Должен вызвать метод ${item}`, async () => {
             const token = genInvalidToken();
             api.updateToken(token);
@@ -164,7 +163,7 @@ describe('Api', () => {
         localStorage.setItem('access_token', token);
         api.updateToken(token);
     });
-    methods.forEach(item => {
+    methods.forEach((item) => {
         it(`Должен вызвать метод ${item}`, async () => {
             const spy = jest.spyOn(api, 'refreshToken');
             await Promise.all([api[item]('test-request'), api[item]('test-request')]);
@@ -177,7 +176,7 @@ describe('Api', () => {
     beforeEach(() => {
         api = new Api(config);
     });
-    methods.forEach(item => {
+    methods.forEach((item) => {
         it(`Должен вызвать метод ${item}`, async () => {
             const spy = jest.spyOn(api, 'refreshToken');
             await Promise.all([api[item]('test-request'), api[item]('test-request')]);

@@ -19,7 +19,7 @@ function genRequest(status, data, contentType = 'application/json', ok = true) {
 const statuses = [200, 201, 203, 204, 400, 401, 403, 404, 422, 500, 501, 502, 503, 504];
 
 describe('TestStatus', () => {
-    statuses.forEach(item => {
+    statuses.forEach((item) => {
         it(`Должен вызвать метод ${item}`, async () => {
             const ok = item < 400;
             expect.assertions(ok ? 1 : 2);

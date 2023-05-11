@@ -124,18 +124,22 @@ class PayrollRules extends ProviderClass {
 
     /** Публичне методы работы с экземпляром класса */
     static async getRules() {
-        const { errors = {}, total = 0, payrollRules = [] } = await PayrollRules._provider.get(
-            '/payroll-rules'
-        );
+        const {
+            errors = {},
+            total = 0,
+            payrollRules = [],
+        } = await PayrollRules._provider.get('/payroll-rules');
         testInteger(total);
         testArray(payrollRules);
         return { errors, total, payrollRules };
     }
 
     static async addRules(payrollRulesLength = 0) {
-        const { errors = {}, total = 0, payrollRules = [] } = await PayrollRules._provider.get(
-            `/payroll-rules?skip=${payrollRulesLength}`
-        );
+        const {
+            errors = {},
+            total = 0,
+            payrollRules = [],
+        } = await PayrollRules._provider.get(`/payroll-rules?skip=${payrollRulesLength}`);
         testInteger(total);
         testArray(payrollRules);
         return { errors, total, payrollRules };

@@ -2,7 +2,7 @@
 const { resolve } = require('path');
 const { testOnMobile } = require(resolve(process.cwd(), 'utils', 'helpers'));
 
-module.exports.checkUserAgent = function(req, res, next) {
+module.exports.checkUserAgent = function (req, res, next) {
     try {
         // const isModuleCompatible = matchesUA(req.headers['user-agent'], {
         //     browsers: ['supports es6-module'],

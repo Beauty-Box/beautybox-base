@@ -54,9 +54,11 @@ class Products extends ProviderClass {
      * @param {String} queryString строка query запроса
      * */
     static async getProducts(queryString = '') {
-        const { errors = {}, products = [], total = 0 } = await Products._provider.get(
-            `/products${queryString}`
-        );
+        const {
+            errors = {},
+            products = [],
+            total = 0,
+        } = await Products._provider.get(`/products${queryString}`);
         return { errors, products, total };
     }
 
@@ -71,9 +73,11 @@ class Products extends ProviderClass {
      * @description getFavoritesProducts Получение массива избранных товаров
      * */
     static async getFavoritesProducts(queryString = '') {
-        const { errors = {}, favorites = [], total = 0 } = await Products._provider.get(
-            `/favorites${queryString}`
-        );
+        const {
+            errors = {},
+            favorites = [],
+            total = 0,
+        } = await Products._provider.get(`/favorites${queryString}`);
         return { errors, favorites, total };
     }
 

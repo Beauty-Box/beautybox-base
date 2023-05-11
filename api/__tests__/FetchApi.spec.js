@@ -1,9 +1,11 @@
 import { FetchApi } from '../FetchApi';
 
-jest.mock('node-fetch', () => () =>
-    Promise.resolve({
-        json: () => Promise.resolve({ rates: { CAD: 1.42 } }),
-    })
+jest.mock(
+    'node-fetch',
+    () => () =>
+        Promise.resolve({
+            json: () => Promise.resolve({ rates: { CAD: 1.42 } }),
+        })
 );
 
 import fetch from 'node-fetch';
