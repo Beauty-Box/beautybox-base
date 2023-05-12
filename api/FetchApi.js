@@ -16,8 +16,8 @@ export class FetchApi {
     }
     _genHeaders(data) {
         const opt = {};
+        console.log('get authorization header', this.token);
         if (this.token) {
-            console.log('get authorization header', this.token);
             opt['Authorization'] = 'Bearer ' + this.token;
         }
         if (toString.call(data).slice(8, -1) !== 'FormData') {
