@@ -66,7 +66,7 @@ class Api extends TestStatus {
                         const token = await window.refresh;
                         this.updateToken(token);
                         if (localStorage) {
-                            console.log('ls', localStorage.get('access_token'));
+                            console.log('ls', localStorage.getItem('access_token'));
                         }
                         console.log('token', this.provider.token);
                         Api.isRefreshRequestSend = false;
