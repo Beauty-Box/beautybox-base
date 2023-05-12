@@ -59,10 +59,8 @@ class Api extends TestStatus {
                 if (now >= exp) {
                     try {
                         Api.refresh = this.refreshToken();
-                        console.log('token expired init request', Api.refresh);
                         const token = await Api.refresh;
                         this.updateToken(token);
-                        console.log('token from main requests', this.provider.token);
                         return await request();
                     } catch (e) {
                         return this.redirectTo(e);
@@ -70,11 +68,8 @@ class Api extends TestStatus {
                 }
             } else {
                 try {
-                    console.log('token expired request exists', Api.refresh);
                     const token = await Api.refresh;
-                    console.log('token from secondary await', token);
                     this.updateToken(token);
-                    console.log('token from secondary requests', this.provider.token);
                     return await request();
                 } catch (e) {
                     return this.redirectTo(e);
