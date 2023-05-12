@@ -17,11 +17,10 @@ function parseJwt(token) {
 }
 
 class Api extends TestStatus {
-    static isRefreshRequestSend = false;
-
+    static refresh = null;
     constructor(baseUrl, module, token, secure = true) {
         super();
-        window.refresh = null;
+        // window.refresh = null;
         this.baseUrl = baseUrl;
         this.module = module;
         this.secure = secure;
@@ -53,23 +52,20 @@ class Api extends TestStatus {
                 return await request();
             }
 
-            if (!window.refresh && !Api.isRefreshRequestSend) {
+            if (!Api.refresh) {
                 const payload = parseJwt(this.provider.token);
                 const now = new Date().getTime();
                 const exp = parseInt(payload.exp) * 1000;
                 if (now >= exp) {
                     try {
-                        window.refresh = this.refreshToken();
-                        Api.isRefreshRequestSend = true;
-                        console.log('token expired init request', window.refresh);
-                        console.log('isRefreshRequestSend init', Api.isRefreshRequestSend);
-                        const token = await window.refresh;
+                        Api.refresh = this.refreshToken();
+                        console.log('token expired init request', Api.refresh);
+                        const token = await Api.refresh;
                         this.updateToken(token);
                         if (localStorage) {
                             console.log('ls', localStorage.getItem('access_token'));
                         }
-                        console.log('token', this.provider.token);
-                        Api.isRefreshRequestSend = false;
+                        console.log('token from main requests', this.provider.token);
                         return await request();
                     } catch (e) {
                         return this.redirectTo(e);
@@ -77,13 +73,10 @@ class Api extends TestStatus {
                 }
             } else {
                 try {
-                    console.log('token expired request exists', window.refresh);
-                    console.log('isRefreshRequestSend exists', Api.isRefreshRequestSend);
-                    // console.log('token .ls', localStorage.get('access_token'));
-                    const token = await window.refresh;
-                    this.updateToken(token);
+                    console.log('token expired request exists', Api.refresh);
+                    const token = await Api.refresh;
+                    // this.updateToken(token);
                     console.log('token from secondary requests', this.provider.token);
-                    Api.isRefreshRequestSend = false;
                     return await request();
                 } catch (e) {
                     return this.redirectTo(e);
@@ -139,11 +132,11 @@ class Api extends TestStatus {
                     localStorage.setItem('access_token', token);
                     console.log('token set to ls');
                 }
-                window.refresh = null;
+                Api.refresh = null;
                 resolve(token);
             } catch (e) {
                 console.log('e', JSON.stringify(e));
-                window.refresh = null;
+                Api.refresh = null;
                 reject(e);
             }
         });
