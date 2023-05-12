@@ -17,6 +17,8 @@ function parseJwt(token) {
 }
 
 class Api extends TestStatus {
+    static isRefreshRequestSend = false;
+
     constructor(baseUrl, module, token, secure = true) {
         super();
         window.refresh = null;
@@ -50,16 +52,19 @@ class Api extends TestStatus {
             if (!this.secure) {
                 return await request();
             }
-            
-            if (!window.refresh) {
+
+            if (!window.refresh && !Api.isRefreshRequestSend) {
                 const payload = parseJwt(this.provider.token);
                 const now = new Date().getTime();
                 const exp = parseInt(payload.exp) * 1000;
                 if (now >= exp) {
                     try {
                         window.refresh = this.refreshToken();
+                        Api.isRefreshRequestSend = true;
                         console.log('token expired init request', window.refresh);
+                        console.log('isRefreshRequestSend init', Api.isRefreshRequestSend);
                         const token = await window.refresh;
+                        Api.isRefreshRequestSend = false;
                         this.updateToken(token);
                         return await request();
                     } catch (e) {
@@ -69,7 +74,9 @@ class Api extends TestStatus {
             } else {
                 try {
                     console.log('token expired request exists', window.refresh);
+                    console.log('isRefreshRequestSend exists', Api.isRefreshRequestSend);
                     const token = await window.refresh;
+                    Api.isRefreshRequestSend = false;
                     this.updateToken(token);
                     return await request();
                 } catch (e) {
