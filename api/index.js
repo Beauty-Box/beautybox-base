@@ -123,7 +123,6 @@ class Api extends TestStatus {
                 this.updateToken(token);
                 if (localStorage) {
                     localStorage.setItem('access_token', token);
-                    console.log('token set to ls');
                 }
                 Api.refresh = null;
                 resolve(token);
