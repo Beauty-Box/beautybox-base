@@ -64,9 +64,11 @@ class Api extends TestStatus {
                         console.log('token expired init request', window.refresh);
                         console.log('isRefreshRequestSend init', Api.isRefreshRequestSend);
                         const token = await window.refresh;
-                        console.log('token', this.provider.token);
-                        console.log('token .ls', localStorage.get('access_token'));
                         this.updateToken(token);
+                        if (localStorage) {
+                            console.log('ls', localStorage.get('access_token'));
+                        }
+                        console.log('token', this.provider.token);
                         Api.isRefreshRequestSend = false;
                         return await request();
                     } catch (e) {
@@ -135,6 +137,7 @@ class Api extends TestStatus {
                 this.updateToken(token);
                 if (localStorage) {
                     localStorage.setItem('access_token', token);
+                    console.log('token set to ls');
                 }
                 window.refresh = null;
                 resolve(token);
