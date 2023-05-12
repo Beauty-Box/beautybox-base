@@ -50,7 +50,7 @@ class Api extends TestStatus {
             if (!this.secure) {
                 return await request();
             }
-            console.log(window.refresh);
+            
             if (!window.refresh) {
                 const payload = parseJwt(this.provider.token);
                 const now = new Date().getTime();
@@ -58,6 +58,7 @@ class Api extends TestStatus {
                 if (now >= exp) {
                     try {
                         window.refresh = this.refreshToken();
+                        console.log('token expired init request', window.refresh);
                         const token = await window.refresh;
                         this.updateToken(token);
                         return await request();
@@ -67,6 +68,7 @@ class Api extends TestStatus {
                 }
             } else {
                 try {
+                    console.log('token expired request exists', window.refresh);
                     const token = await window.refresh;
                     this.updateToken(token);
                     return await request();
