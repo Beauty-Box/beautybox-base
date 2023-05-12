@@ -80,8 +80,8 @@ class Api extends TestStatus {
                     // console.log('token', this.provider.token);
                     // console.log('token .ls', localStorage.get('access_token'));
                     const token = await window.refresh;
-                    Api.isRefreshRequestSend = false;
                     this.updateToken(token);
+                    Api.isRefreshRequestSend = false;
                     return await request();
                 } catch (e) {
                     return this.redirectTo(e);
