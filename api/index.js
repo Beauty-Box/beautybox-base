@@ -62,9 +62,6 @@ class Api extends TestStatus {
                         console.log('token expired init request', Api.refresh);
                         const token = await Api.refresh;
                         this.updateToken(token);
-                        if (localStorage) {
-                            console.log('ls', localStorage.getItem('access_token'));
-                        }
                         console.log('token from main requests', this.provider.token);
                         return await request();
                     } catch (e) {
@@ -75,6 +72,7 @@ class Api extends TestStatus {
                 try {
                     console.log('token expired request exists', Api.refresh);
                     const token = await Api.refresh;
+                    console.log('token from secondary await', token);
                     // this.updateToken(token);
                     console.log('token from secondary requests', this.provider.token);
                     return await request();
