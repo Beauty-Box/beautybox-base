@@ -63,6 +63,8 @@ class Api extends TestStatus {
                         Api.isRefreshRequestSend = true;
                         console.log('token expired init request', window.refresh);
                         console.log('isRefreshRequestSend init', Api.isRefreshRequestSend);
+                        console.log('token', this.provider.token);
+                        console.log('token .ls', localStorage.get('access_token'));
                         const token = await window.refresh;
                         Api.isRefreshRequestSend = false;
                         this.updateToken(token);
@@ -75,6 +77,8 @@ class Api extends TestStatus {
                 try {
                     console.log('token expired request exists', window.refresh);
                     console.log('isRefreshRequestSend exists', Api.isRefreshRequestSend);
+                    // console.log('token', this.provider.token);
+                    // console.log('token .ls', localStorage.get('access_token'));
                     const token = await window.refresh;
                     Api.isRefreshRequestSend = false;
                     this.updateToken(token);
