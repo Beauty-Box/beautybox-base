@@ -50,6 +50,7 @@ class Api extends TestStatus {
             if (!this.secure) {
                 return await request();
             }
+            console.log(window.refresh);
             if (!window.refresh) {
                 const payload = parseJwt(this.provider.token);
                 const now = new Date().getTime();
