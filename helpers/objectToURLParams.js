@@ -4,7 +4,10 @@
  * @return {String}
  */
 function objectToURLParams(object) {
-    return '?' + new URLSearchParams(object);
+    const newObject = Object.fromEntries(
+        Object.entries(object).filter(([, value]) => value !== null && value !== undefined)
+    );
+    return '?' + new URLSearchParams(newObject).toString();
 }
 
 export { objectToURLParams };
