@@ -24,6 +24,7 @@ class Api extends TestStatus {
         this.baseUrl = baseUrl;
         this.module = module;
         this.secure = secure;
+        this.refresh = null;
         this._setProvider(baseUrl, module, token);
 
         return new Proxy(this, {
