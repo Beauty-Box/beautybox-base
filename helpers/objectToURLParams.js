@@ -4,6 +4,7 @@
  * @return {String}
  */
 function objectToURLParams(object) {
+    // TODO Лучше когда пустые параметры выкидываются при подстановке параметров
     const newObject = Object.fromEntries(
         Object.entries(object).filter(([, value]) => value !== null && value !== undefined)
     );

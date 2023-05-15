@@ -24,6 +24,8 @@ class Api extends TestStatus {
         this.baseUrl = baseUrl;
         this.module = module;
         this.secure = secure;
+        // TODO ссылка на промис рефреш запроса должна быть не статической
+        // должен существовать единственный инстант апи
         this.refresh = null;
         this._setProvider(baseUrl, module, token);
 
