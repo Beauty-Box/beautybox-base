@@ -1,5 +1,5 @@
 import { Api } from '../api';
-import { removeSubdomain } from './subdomains';
+import { removeSubdomain, getHostWithNewSubdomain } from './subdomains';
 
 export async function logout(e) {
     e.preventDefault();
