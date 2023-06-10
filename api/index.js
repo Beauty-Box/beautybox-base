@@ -98,9 +98,6 @@ class Api extends TestStatus {
             if (result.code === 100) {
                 return;
             }
-            // window.location.replace(
-            //     `${window.location.origin}/auth/sign-in?from=${window.location.href}`
-            // );
 
             let newHost = removeSubdomain(true);
 
