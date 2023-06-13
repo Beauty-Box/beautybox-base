@@ -1,5 +1,5 @@
 import { Api } from '../api';
-import { removeSubdomain } from './removeSubdomain';
+import { removeSubdomain, getHostWithNewSubdomain } from './subdomains';
 
 export async function logout(e) {
     e.preventDefault();
@@ -30,7 +30,13 @@ export function logoutAll() {
 
     window.localStorage.setItem('from', window.location.href);
 
-    const newOrigin = removeSubdomain();
+    let newHost = removeSubdomain(true);
+
+    newHost = getHostWithNewSubdomain(newHost, 'auth');
+
+    const protocol = window.location.protocol;
+
+    const newOrigin = `${protocol}//${newHost}`;
 
     window.location.replace(`${newOrigin}/auth/sign-in`);
 }

@@ -1,5 +1,6 @@
 import { TestStatus } from './TestStatus';
 import { FetchApi as Provider } from './FetchApi';
+import { removeSubdomain, getHostWithNewSubdomain } from '../utils/subdomains';
 
 function parseJwt(token) {
     const base64Url = token.split('.')[1];
@@ -97,9 +98,20 @@ class Api extends TestStatus {
             if (result.code === 100) {
                 return;
             }
-            window.location.replace(
-                `${window.location.origin}/auth/sign-in?from=${window.location.href}`
-            );
+
+            let newHost = removeSubdomain(true);
+
+            newHost = getHostWithNewSubdomain(newHost, 'auth');
+
+            const protocol = window.location.protocol;
+
+            const newOrigin = `${protocol}//${newHost}`;
+
+            // убран параметр from потому что с авторизации нужно редиректить на роут установки токена,
+            // а не напрямую на страницу.
+            // этот роут разный для двух проектов
+
+            window.location.replace(`${newOrigin}/auth/sign-in`);
         }
         if (result.status === 403) {
             document.dispatchEvent(new Event('forbidden'));

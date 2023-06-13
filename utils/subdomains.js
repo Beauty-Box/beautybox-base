@@ -1,6 +1,6 @@
 // функция убирает любой поддомен первого уровня из адреса хоста, если есть
 // возвращает новый ориджин
-export function removeSubdomain() {
+export function removeSubdomain(onlyHost = false) {
     let host = location.host;
     const countDots = host.split('.').length;
 
@@ -13,7 +13,22 @@ export function removeSubdomain() {
         // то уберет все до .ru
         host = host.replace(/^[^.]+\./g, '');
     }
+    if (onlyHost) {
+        return host;
+    }
     return `${window.location.protocol}//${host}`;
 }
 
-export default removeSubdomain;
+export function getHostWithNewSubdomain(host, subdomain) {
+    if (!!subdomain.length) {
+        // добавить поддомен subdomain. если его нету только в прод режиме
+        if (import.meta.env.PROD && window.location.host !== 'localhost') {
+            if (!host.startsWith(`${subdomain}.`)) {
+                return `${subdomain}.${host}`;
+            }
+        }
+    }
+    return host;
+}
+
+export default { removeSubdomain, getHostWithNewSubdomain };
