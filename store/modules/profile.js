@@ -1,4 +1,5 @@
 import { Api } from '../../api';
+import { normalizeTimestamp } from '../../helpers/normalizeTimestamp';
 
 let provider;
 
@@ -61,6 +62,59 @@ export const getters = {
         }
     },
     CHECK_WHATSAPP_MODULE: (state) => state.userInfo.modules.includes('whatsapp_notification'),
+    TARIFF: (state) => state.userInfo?.tariff ?? {},
+    IS_TARIFF_FREE: (state, getters) => {
+        return (
+            getters.TARIFF.id === 0 &&
+            !getters.TARIFF.expirationTrialDate &&
+            !getters.TARIFF.expirationDate
+        );
+    },
+    IS_TARIFF_TRIAL: (state, getters) => {
+        return getters.TARIFF.id !== 0 && !!getters.TARIFF.expirationTrialDate;
+    },
+    IS_TARIFF_STANDART: (state, getters) => {
+        return getters.TARIFF.id !== 0 && !!getters.TARIFF.expirationDate;
+    },
+    IS_TARIFF_EXPIRED: (state, getters) => {
+        if (getters.IS_TARIFF_FREE) {
+            return false;
+        }
+        const now = new Date();
+        let canceledTimestamp = getters.TARIFF.canceledDate;
+        let canceledDate = null;
+        if (!!canceledTimestamp) {
+            canceledTimestamp = normalizeTimestamp(canceledTimestamp);
+            canceledDate = new Date(canceledTimestamp);
+        }
+        if (getters.IS_TARIFF_TRIAL) {
+            let expirationTrialTimestamp = getters.TARIFF.expirationTrialDate;
+            let expirationTrialDate = null;
+            if (!!expirationTrialTimestamp) {
+                expirationTrialTimestamp = normalizeTimestamp(expirationTrialTimestamp);
+                expirationTrialDate = new Date(expirationTrialTimestamp);
+            }
+
+            if (canceledDate) {
+                return now > canceledDate;
+            }
+            return now > expirationTrialDate;
+        }
+        if (getters.IS_TARIFF_STANDART) {
+            let expirationTimestamp = getters.TARIFF.expirationDate;
+            let expirationDate = null;
+            if (!!expirationTimestamp) {
+                expirationTimestamp = normalizeTimestamp(expirationTimestamp);
+                expirationDate = new Date(expirationTimestamp);
+            }
+
+            if (canceledDate) {
+                return now > canceledDate;
+            }
+            return now > expirationDate;
+        }
+        return true;
+    },
 };
 
 export default { init, state, mutations, actions, getters };

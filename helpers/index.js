@@ -27,4 +27,5 @@ export * from './getCoordinatesFromYandex';
 export * from './parsePhone';
 export * from './keyReflactor';
 export * from './deepEqual';
+export * from './normalizeTimestamp';
 export * from './declensions';
