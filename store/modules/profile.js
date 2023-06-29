@@ -70,6 +70,9 @@ export const getters = {
             !getters.TARIFF.expirationDate
         );
     },
+    IS_TARIFF_CANCELED: (state, getters) => {
+        return getters.TARIFF.id !== 0 && !!getters.TARIFF.canceledDate;
+    },
     IS_TARIFF_TRIAL: (state, getters) => {
         return getters.TARIFF.id !== 0 && !!getters.TARIFF.expirationTrialDate;
     },
