@@ -88,14 +88,16 @@ export const getters = {
         let canceledDate = null;
         if (!!canceledTimestamp) {
             canceledTimestamp = normalizeTimestamp(canceledTimestamp);
-            canceledDate = new Date(canceledTimestamp);
+            canceledDate = new Date(`${canceledTimestamp}${getters.TARIFF.timezone}`);
         }
         if (getters.IS_TARIFF_TRIAL) {
             let expirationTrialTimestamp = getters.TARIFF.expirationTrialDate;
             let expirationTrialDate = null;
             if (!!expirationTrialTimestamp) {
                 expirationTrialTimestamp = normalizeTimestamp(expirationTrialTimestamp);
-                expirationTrialDate = new Date(expirationTrialTimestamp);
+                expirationTrialDate = new Date(
+                    `${expirationTrialTimestamp}${getters.TARIFF.timezone}`
+                );
             }
 
             if (canceledDate) {
@@ -108,7 +110,7 @@ export const getters = {
             let expirationDate = null;
             if (!!expirationTimestamp) {
                 expirationTimestamp = normalizeTimestamp(expirationTimestamp);
-                expirationDate = new Date(expirationTimestamp);
+                expirationDate = new Date(`${expirationTimestamp}${getters.TARIFF.timezone}`);
             }
 
             if (canceledDate) {
@@ -117,6 +119,33 @@ export const getters = {
             return now > expirationDate;
         }
         return true;
+    },
+    IS_TARIFF_NEAREST_END_DATE: (state, getters) => {
+        if (getters.IS_TARIFF_FREE) {
+            return null;
+        }
+
+        if (getters.IS_TARIFF_CANCELED) {
+            return new Date(
+                `${normalizeTimestamp(getters.TARIFF.canceledDate)}${getters.TARIFF.timezone}`
+            );
+        }
+
+        if (getters.IS_TARIFF_TRIAL) {
+            return new Date(
+                `${normalizeTimestamp(getters.TARIFF.expirationTrialDate)}${
+                    getters.TARIFF.timezone
+                }`
+            );
+        }
+
+        if (getters.IS_TARIFF_STANDART) {
+            return new Date(
+                `${normalizeTimestamp(getters.TARIFF.expirationDate)}${getters.TARIFF.timezone}`
+            );
+        }
+
+        return null;
     },
 };
 
