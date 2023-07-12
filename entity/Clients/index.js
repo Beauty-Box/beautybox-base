@@ -49,7 +49,15 @@ export class Client extends Person {
 
     _initFormData(formData) {
         super._initFormData(formData);
-        formData.append('clientTypeID', this.clientTypeID);
+        // formData.append('clientTypeID', this.clientTypeID);
+        if (!!this.clientTypes.length) {
+            for (const clientType of this.clientTypes) {
+                formData.append('clientTypes[]', clientType);
+            }
+        } else {
+            formData.append('clientTypes[]', '');
+        }
+
         formData.append('blockingOnline', this.blockingOnline);
         formData.append('notificationsDisabled', this.notificationsDisabled);
         formData.append('sale', this.sale);
@@ -117,6 +125,7 @@ export class Client extends Person {
 
     async edit() {
         let res = await this._provider.get(`/clients/${this.clientID}/edit`);
+        res.clientTypes = res.clientTypes.map((clientType) => clientType.clientTypeID);
         this._resConvert(res);
     }
 
