@@ -42,6 +42,7 @@ export class Client extends Person {
         this.profit = 0;
         this.reviews = {};
         this.clientTypeID = 0;
+        this.clientTypes = [];
         this.blockingOnline = 0;
         this.notificationsDisabled = 0;
     }
