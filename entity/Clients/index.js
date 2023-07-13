@@ -49,7 +49,6 @@ export class Client extends Person {
 
     _initFormData(formData) {
         super._initFormData(formData);
-        // formData.append('clientTypeID', this.clientTypeID);
         if (!!this.clientTypes.length) {
             for (const clientType of this.clientTypes) {
                 formData.append('clientTypes[]', clientType);
@@ -266,10 +265,6 @@ export class Clients extends Provider {
 
     static clientAvatarStatus(item) {
         return Client.prototype.clientAvatarStatus.apply(item);
-    }
-
-    async getFilters() {
-        ({ categories: this.types = [] } = await this._provider.get('/clients/category/short'));
     }
 
     async getClients(
