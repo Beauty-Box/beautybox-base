@@ -267,13 +267,9 @@ export class Clients extends Provider {
         return Client.prototype.clientAvatarStatus.apply(item);
     }
 
-    async getClients(
-        { nameFilter = '', clientsTypeFilter = 0, ...clientParams } = {},
-        skip = 0,
-        limit = 15
-    ) {
+    async getClients({ ...clientParams } = {}, skip = 0, limit = 15) {
         const { clients = [], count = 0 } = await this._getClients([
-            { nameFilter, clientsTypeFilter, ...clientParams },
+            { ...clientParams },
             skip,
             limit,
         ]);
@@ -281,20 +277,12 @@ export class Clients extends Provider {
         this.count = count || this.clients.length;
     }
 
-    async searchClients(
-        { nameFilter = '', clientsTypeFilter = 0, ...clientParams } = {},
-        skip = 0,
-        limit = 15
-    ) {
+    async searchClients({ ...clientParams } = {}, skip = 0, limit = 15) {
         const {
             clients = [],
             count = 0,
             clientsIDs = [],
-        } = await this._getClients([
-            { nameFilter, clientsTypeFilter, ...clientParams },
-            skip,
-            limit,
-        ]);
+        } = await this._getClients([{ ...clientParams }, skip, limit]);
         this.clients = [...clients];
         this.count = count || this.clients.length;
         this.clientsIDs = [...clientsIDs];
