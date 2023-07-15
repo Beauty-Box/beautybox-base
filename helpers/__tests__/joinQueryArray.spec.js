@@ -31,7 +31,6 @@ describe('regular expression for query params', () => {
 
     it('should return encoded object', () => {});
     it('should return encoded array', () => {
-        console.log(joinQueryArray(containArray));
         expect(joinQueryArray(containArray)).toEqual(
             'customerActivity=permanent&visitPeriodFrom=2022-08-01&visitPeriodTo=2022-08-17&visitExists=false&visitOnline=true&visitStatus=cancel&clientGender=2&clientBirthdayFrom=2022-08-03&clientBirthdayTo=2022-08-03&clientAgeFrom=7&clientAgeTo=20&employees[]=48683&employees[]=36718&employees[]=11877&employees[]=48557&employees[]=31598&profitFrom=10&averageCheckTo=10000000'
         );

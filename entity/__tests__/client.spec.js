@@ -55,31 +55,31 @@ describe('client testing', () => {
         addGetSuccess(Api, clientCreateSuccess);
         try {
             await client.init();
-            //expect(toString.call(client).slice(8, -1) === 'Object').toBe(true);
-            expect(Object.keys(client)).toHaveLength(20);
         } catch (e) {
             console.log(e);
         }
+
+        expect(Object.keys(client)).toHaveLength(28);
     });
 
     it('Должен возвращать json просмотра указанного клиента', async () => {
         addGetSuccess(Api, clientShowSuccess);
         try {
             await client.show();
-            expect(Object.keys(client)).toHaveLength(23);
         } catch (e) {
             console.log(e);
         }
+        expect(Object.keys(client)).toHaveLength(31);
     });
 
     it('Должен возвращать json редактируемого клиента', async () => {
         addGetSuccess(Api, clientEditSuccess);
         try {
             await client.edit();
-            expect(Object.keys(client)).toHaveLength(20);
         } catch (e) {
             console.log(e);
         }
+        expect(Object.keys(client)).toHaveLength(28);
     });
 
     it('Должна возвращатся ошибка при апдейте', async () => {

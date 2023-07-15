@@ -58,7 +58,6 @@ export class Person extends Provider {
     parseBirthday(birthday) {
         if (!!birthday) {
             const date = new Date(birthday);
-            console.log('birthdate', date);
             return {
                 day: date.getDate().toString().padStart(2, '0'),
                 month: (date.getMonth() + 1).toString().padStart(2, '0'),
