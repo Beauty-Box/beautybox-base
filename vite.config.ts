@@ -21,6 +21,9 @@ export default defineConfig(({ mode }) => {
                 reporter: ['text', 'json', 'html', 'lcov'],
                 all: true,
             },
+            env: {
+                TZ: 'Europe/Samara',
+            },
         },
     };
 });
