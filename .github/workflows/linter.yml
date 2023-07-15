@@ -24,3 +24,5 @@ jobs:
 
       - name: eslint
         run: make test
+        env:
+          TZ: Europe/Samara
