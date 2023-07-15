@@ -7,10 +7,10 @@ function genValidToken() {
     return genToken(timeStamp);
 }
 
-jest.mock('node-fetch');
+vi.mock('node-fetch');
 
 import fetch from 'node-fetch';
-const mockResponse = jest.fn();
+const mockResponse = vi.fn();
 Object.defineProperty(window, 'location', {
     value: {
         hash: {
@@ -108,7 +108,7 @@ describe('Api', () => {
     });
     errorStatus.forEach((item) => {
         it(`Должен правильно обработать ${item}`, async () => {
-            const spy = jest.spyOn(api, 'redirectTo');
+            const spy = vi.spyOn(api, 'redirectTo');
             fetch.mockImplementation(() =>
                 Promise.resolve({
                     status: item,
@@ -132,7 +132,7 @@ describe('Api', () => {
     });
     methods.forEach((item) => {
         it(`Должен вызвать метод ${item}`, async () => {
-            const spy = jest.spyOn(api, 'refreshToken');
+            const spy = vi.spyOn(api, 'refreshToken');
             await Promise.all([api[item]('test-request'), api[item]('test-request')]);
             expect(spy).toBeCalledTimes(0);
         });
@@ -149,7 +149,7 @@ describe('Api', () => {
         it(`Должен вызвать метод ${item}`, async () => {
             const token = genInvalidToken();
             api.updateToken(token);
-            const spy = jest.spyOn(api, 'refreshToken');
+            const spy = vi.spyOn(api, 'refreshToken');
             await Promise.all([api[item]('test-request'), api[item]('test-request')]);
             expect(spy).toBeCalledTimes(0);
         });
@@ -165,7 +165,7 @@ describe('Api', () => {
     });
     methods.forEach((item) => {
         it(`Должен вызвать метод ${item}`, async () => {
-            const spy = jest.spyOn(api, 'refreshToken');
+            const spy = vi.spyOn(api, 'refreshToken');
             await Promise.all([api[item]('test-request'), api[item]('test-request')]);
             expect(spy).toBeCalledTimes(1);
         });
@@ -178,7 +178,7 @@ describe('Api', () => {
     });
     methods.forEach((item) => {
         it(`Должен вызвать метод ${item}`, async () => {
-            const spy = jest.spyOn(api, 'refreshToken');
+            const spy = vi.spyOn(api, 'refreshToken');
             await Promise.all([api[item]('test-request'), api[item]('test-request')]);
             expect(spy).toBeCalledTimes(0);
         });

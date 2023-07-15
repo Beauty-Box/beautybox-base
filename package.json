@@ -12,8 +12,8 @@
         "access": "restricted"
     },
     "scripts": {
-        "test": "jest",
-        "test:watch": "jest -u --watch",
+        "test": "vitest run",
+        "test:silent": "vitest run --coverage --silent",
         "generate-docs": "jsdoc ./helpers -c jsdoc.json -r"
     },
     "husky": {
@@ -42,7 +42,12 @@
         "stylelint-config-standard": "^20.0.0",
         "stylelint-order": "^4.0.0",
         "stylelint-scss": "^3.16.0",
-        "stylelint-selector-bem-pattern": "^2.1.0"
+        "stylelint-selector-bem-pattern": "^2.1.0",
+        "typescript": "^4.8.4",
+        "vite": "^4.2.1",
+        "vitest": "^0.29.8",
+        "jsdom": "^21.1.1",
+        "@vitest/coverage-c8": "^0.29.8"
     },
     "dependencies": {
         "cross-env": "^7.0.3",

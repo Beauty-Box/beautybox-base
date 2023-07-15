@@ -1,0 +1,43 @@
+{
+    "compilerOptions": {
+        "allowJs": true,
+        "target": "es5",
+        "module": "esnext",
+        // this enables stricter inference for data properties on `this`
+        "strict": true,
+        "jsx": "preserve",
+        "moduleResolution": "node",
+        // for vite type checking
+        "skipLibCheck": true,
+        "importHelpers": true,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "sourceMap": true,
+        "baseUrl": ".",
+        "types": [
+            "vite/client",
+            "vitest/globals"
+        ],
+        "paths": {
+            "@/*": [
+                "./*"
+            ]
+        },
+        "lib": [
+            "esnext",
+            "dom",
+            "dom.iterable",
+            "scripthost"
+        ]
+    },
+    "include": [
+        "./**/*.ts",
+        "./**/*.tsx",
+        "./**/*.vue"
+    ],
+    "exclude": [
+        "node_modules"
+    ],
+    "files": [
+    ]
+}

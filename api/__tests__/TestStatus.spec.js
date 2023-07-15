@@ -23,7 +23,7 @@ describe('TestStatus', () => {
         it(`Должен вызвать метод ${item}`, async () => {
             const ok = item < 400;
             expect.assertions(ok ? 1 : 2);
-            const spy = jest.spyOn(testStatus, `s${item}`);
+            const spy = vi.spyOn(testStatus, `s${item}`);
             try {
                 await testStatus.statusHandler(
                     genRequest(item, item < 500 ? requestData : errorsData, 'application/json', ok)
@@ -45,7 +45,7 @@ describe('TestStatus', () => {
     });
     it('Должен вызвать s200', async () => {
         expect.assertions(1);
-        const spy = jest.spyOn(testStatus, 's200');
+        const spy = vi.spyOn(testStatus, 's200');
         try {
             await testStatus.statusHandler(genRequest(200, requestData, 'no-data'));
             expect(spy).toHaveBeenCalled();
