@@ -246,9 +246,7 @@ export class Clients extends Provider {
     }
 
     _getQuery(args) {
-        let query = `skip=${args[1]}&limit=${args[2]}`;
-
-        query += '&' + joinQueryArray(args[0]);
+        let query = joinQueryArray({ skip: args[1], limit: args[2], ...args[0] });
         query += `${
             this.sortBy ? `&sortBy=${this.sortBy}&sortOrder=${this.sortOrder ? 'desc' : 'asc'}` : ''
         }`;

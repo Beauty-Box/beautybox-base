@@ -1,18 +1,20 @@
 import { Api, ProviderClass } from '../index';
 
-function genValidToken() {
-    const date = new Date();
-    date.setHours(date.getHours() + 1);
-    const timeStamp = parseInt((date.getTime() / 1000).toFixed(0));
-    return genToken(timeStamp);
-}
-
 vi.mock('node-fetch');
 
-import fetch from 'node-fetch';
+// global.fetch = vi.fn(() =>
+//     Promise.resolve({
+//         json: () => Promise.resolve({}),
+//     })
+// );
+
+// import fetch from 'node-fetch';
+
 const mockResponse = vi.fn();
-Object.defineProperty(window, 'location', {
+
+Object.defineProperty(global, 'location', {
     value: {
+        host: 'beautybox.ru',
         hash: {
             endsWith: mockResponse,
             includes: mockResponse,
@@ -66,6 +68,13 @@ function genToken(time) {
     return partOne + jsonPayload + partTree;
 }
 
+function genValidToken() {
+    const date = new Date();
+    date.setHours(date.getHours() + 1);
+    const timeStamp = parseInt((date.getTime() / 1000).toFixed(0));
+    return genToken(timeStamp);
+}
+
 function genInvalidToken() {
     const date = new Date();
     date.setHours(date.getHours() - 1);
@@ -81,7 +90,7 @@ const config = {
 let api;
 
 beforeEach(() => {
-    fetch.mockImplementation(() =>
+    global.fetch = vi.fn(() =>
         Promise.resolve({
             status: 200,
             headers: {
@@ -101,7 +110,7 @@ beforeEach(() => {
 // module Api
 describe('Api', () => {
     beforeEach(() => {
-        api = new Api(config);
+        api = new Api(config.BASE_URL, config.module, config.token);
         const token = genValidToken();
         localStorage.setItem('access_token', token);
         api.updateToken(token);
@@ -109,7 +118,8 @@ describe('Api', () => {
     errorStatus.forEach((item) => {
         it(`Должен правильно обработать ${item}`, async () => {
             const spy = vi.spyOn(api, 'redirectTo');
-            fetch.mockImplementation(() =>
+            // fetch.mockImplementation(() =>
+            global.fetch = vi.fn(() =>
                 Promise.resolve({
                     status: item,
                     headers: {
@@ -126,14 +136,14 @@ describe('Api', () => {
                         }),
                 })
             );
-            await api.get('test-request');
+            await api.get('/test-request');
             expect(spy).toBeCalledTimes(1);
         });
     });
     methods.forEach((item) => {
         it(`Должен вызвать метод ${item}`, async () => {
             const spy = vi.spyOn(api, 'refreshToken');
-            await Promise.all([api[item]('test-request'), api[item]('test-request')]);
+            await Promise.all([api[item]('/test-request'), api[item]('/test-request')]);
             expect(spy).toBeCalledTimes(0);
         });
     });
@@ -141,7 +151,7 @@ describe('Api', () => {
 
 describe('Api', () => {
     beforeEach(() => {
-        api = new Api(config);
+        api = new Api(config.BASE_URL, config.module, config.token);
         const token = genValidToken();
         localStorage.setItem('access_token', token);
     });
@@ -150,23 +160,30 @@ describe('Api', () => {
             const token = genInvalidToken();
             api.updateToken(token);
             const spy = vi.spyOn(api, 'refreshToken');
-            await Promise.all([api[item]('test-request'), api[item]('test-request')]);
+            await Promise.all([api[item]('/test-request'), api[item]('/test-request')]);
             expect(spy).toBeCalledTimes(0);
         });
     });
 });
 
-describe('Api', () => {
+describe('Api with invalid token', () => {
     beforeEach(() => {
-        api = new Api(config);
+        api = new Api(config.BASE_URL, config.module, config.token);
         const token = genInvalidToken();
         localStorage.setItem('access_token', token);
         api.updateToken(token);
+
+        api.statusHandler = vi.fn(() =>
+            Promise.resolve({
+                access_token: genValidToken(),
+            })
+        );
     });
+
     methods.forEach((item) => {
         it(`Должен вызвать метод ${item}`, async () => {
             const spy = vi.spyOn(api, 'refreshToken');
-            await Promise.all([api[item]('test-request'), api[item]('test-request')]);
+            await Promise.all([api[item]('/test-request'), api[item]('/test-request')]);
             expect(spy).toBeCalledTimes(1);
         });
     });
@@ -174,12 +191,12 @@ describe('Api', () => {
 
 describe('Api', () => {
     beforeEach(() => {
-        api = new Api(config);
+        api = new Api(config.BASE_URL, config.module, config.token);
     });
     methods.forEach((item) => {
         it(`Должен вызвать метод ${item}`, async () => {
             const spy = vi.spyOn(api, 'refreshToken');
-            await Promise.all([api[item]('test-request'), api[item]('test-request')]);
+            await Promise.all([api[item]('/test-request'), api[item]('/test-request')]);
             expect(spy).toBeCalledTimes(0);
         });
     });

@@ -1,7 +1,5 @@
 import { parsePhone } from '../parsePhone';
 
-import { describe, it, expect } from '@jest/globals';
-
 describe('parsePhone testing', () => {
     it('should return empty string', () => {
         expect(parsePhone()).toEqual('');

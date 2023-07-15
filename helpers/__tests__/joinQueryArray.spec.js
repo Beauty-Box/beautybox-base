@@ -1,5 +1,4 @@
 import { joinQueryArray } from '../joinQueryArray';
-import { beforeEach, describe, expect, it } from '@jest/globals';
 
 describe('regular expression for query params', () => {
     let containObject;

@@ -1,9 +1,13 @@
 {
-    "countBids": {
+    "totalVisits": {
         "new": 0,
         "done": 0,
         "canceled": 0,
         "all": 0
     },
-    "profit": 450
+    "profit": 450,
+    "reviews": {
+        "average": 5,
+        "total": 2
+    }
 }

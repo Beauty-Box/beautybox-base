@@ -4,10 +4,9 @@ import statisticsEmptyParamsSuccess from '../__fixtures__/statisticsEmptyParamsS
 import occupancyEmptyParamsSuccess from '../__fixtures__/occupancyEmptyParamsSuccess.json';
 import recoverabilityEmptyParamsSuccess from '../__fixtures__/recoverabilityEmptyParamsSuccess.json';
 import client_statisticsEmptyParamsSuccess from '../__fixtures__/client_statisticsEmptyParamsSuccess.json';
-import { describe, expect, it } from '@jest/globals';
 
 import { Api } from '../../../api';
-jest.mock('../../../api/index.js');
+vi.mock('../../../api/index.js');
 import { addGetSuccess } from '../../../api/mockHelper';
 
 const config = {

@@ -1,8 +1,7 @@
-import { describe, it, expect, beforeEach } from '@jest/globals';
 import { Api } from '../../api';
 import { addGetSuccess, addGetError, addPostSuccess, addDelete } from '../../api/mockHelper';
 
-jest.mock('../../api/index.js');
+vi.mock('../../api/index.js');
 
 import { Clients } from '../Clients';
 
@@ -23,23 +22,23 @@ describe('clients testing', () => {
             0,
             15,
         ];
-        const resultString = 'skip=0&limit=15';
+        const resultString = 'limit=15';
         expect(clientsInstance._getQuery(args)).toEqual(resultString);
         const args2 = [
             {
                 nameFilter: 'test',
                 clientsTypeFilter: 1,
             },
-            0,
+            15,
             15,
         ];
         clientsInstance.sortBy = 'test';
         const resultString2 =
-            'skip=0&limit=15&nameFilter=test&clientsTypeFilter=1&sortBy=test&sortOrder=asc';
+            'skip=15&limit=15&nameFilter=test&clientsTypeFilter=1&sortBy=test&sortOrder=asc';
         expect(clientsInstance._getQuery(args2)).toEqual(resultString2);
         clientsInstance.sortOrder = true;
         const resultString3 =
-            'skip=0&limit=15&nameFilter=test&clientsTypeFilter=1&sortBy=test&sortOrder=desc';
+            'skip=15&limit=15&nameFilter=test&clientsTypeFilter=1&sortBy=test&sortOrder=desc';
         expect(clientsInstance._getQuery(args2)).toEqual(resultString3);
     });
 
