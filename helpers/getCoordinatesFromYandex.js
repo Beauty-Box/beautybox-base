@@ -6,7 +6,9 @@
 async function getCoordinatesFromYandex(address = '') {
     try {
         let coordinates = await fetch(
-            `https://geocode-maps.yandex.ru/1.x/?format=json&apikey=${process.env.YANDEX_API_KEY}&geocode=${address}`,
+            `https://geocode-maps.yandex.ru/1.x/?format=json&apikey=${
+                import.meta.env.VITE_YANDEX_API_KEY
+            }&geocode=${address}`,
             {
                 method: 'GET',
                 cors: true,
@@ -14,7 +16,9 @@ async function getCoordinatesFromYandex(address = '') {
         );
         if (coordinates.ok) {
             let { response } = await coordinates.json();
-            return response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos.split(' ');
+            return response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos
+                .split(' ')
+                .reverse();
         } else {
             console.log('--- getCoordinatesFromYandex', coordinates.status);
         }

@@ -1,5 +1,6 @@
 import { TestStatus } from './TestStatus';
 import { FetchApi as Provider } from './FetchApi';
+import { removeSubdomain, getHostWithNewSubdomain } from '../utils/subdomains';
 
 function parseJwt(token) {
     const base64Url = token.split('.')[1];
@@ -7,7 +8,7 @@ function parseJwt(token) {
     const jsonPayload = decodeURIComponent(
         atob(base64)
             .split('')
-            .map(function(c) {
+            .map(function (c) {
                 return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
             })
             .join('')
@@ -17,9 +18,10 @@ function parseJwt(token) {
 }
 
 class Api extends TestStatus {
+    static refresh = null;
     constructor(baseUrl, module, token, secure = true) {
         super();
-        window.refresh = null;
+        // window.refresh = null;
         this.baseUrl = baseUrl;
         this.module = module;
         this.secure = secure;
@@ -50,14 +52,15 @@ class Api extends TestStatus {
             if (!this.secure) {
                 return await request();
             }
-            if (!window.refresh) {
+
+            if (!Api.refresh) {
                 const payload = parseJwt(this.provider.token);
                 const now = new Date().getTime();
                 const exp = parseInt(payload.exp) * 1000;
                 if (now >= exp) {
                     try {
-                        window.refresh = this.refreshToken();
-                        const token = await window.refresh;
+                        Api.refresh = this.refreshToken();
+                        const token = await Api.refresh;
                         this.updateToken(token);
                         return await request();
                     } catch (e) {
@@ -66,7 +69,7 @@ class Api extends TestStatus {
                 }
             } else {
                 try {
-                    const token = await window.refresh;
+                    const token = await Api.refresh;
                     this.updateToken(token);
                     return await request();
                 } catch (e) {
@@ -95,9 +98,20 @@ class Api extends TestStatus {
             if (result.code === 100) {
                 return;
             }
-            window.location.replace(
-                `${window.location.origin}/auth/sign-in?from=${window.location.href}`
-            );
+
+            let newHost = removeSubdomain(true);
+
+            newHost = getHostWithNewSubdomain(newHost, 'auth');
+
+            const protocol = window.location.protocol;
+
+            const newOrigin = `${protocol}//${newHost}`;
+
+            // убран параметр from потому что с авторизации нужно редиректить на роут установки токена,
+            // а не напрямую на страницу.
+            // этот роут разный для двух проектов
+
+            window.location.replace(`${newOrigin}/auth/sign-in`);
         }
         if (result.status === 403) {
             document.dispatchEvent(new Event('forbidden'));
@@ -122,11 +136,11 @@ class Api extends TestStatus {
                 if (localStorage) {
                     localStorage.setItem('access_token', token);
                 }
-                window.refresh = null;
+                Api.refresh = null;
                 resolve(token);
             } catch (e) {
                 console.log('e', JSON.stringify(e));
-                window.refresh = null;
+                Api.refresh = null;
                 reject(e);
             }
         });
@@ -141,7 +155,7 @@ class ProviderClass {
     static createProvider(config) {
         testInputData(config);
         ProviderClass._provider = new Api(
-            config.baseUrl || process.env.BASE_URL,
+            config.baseUrl || import.meta.env.VITE_BASE_URL,
             config.module,
             config.token || null
         );

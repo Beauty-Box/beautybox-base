@@ -9,7 +9,7 @@ import wordDeclension from './wordDeclension';
  * @return { String } Возвращает правильное склонение слова "Час"
  * */
 function hourDeclension(total) {
-    return wordDeclension(total, { single: 'час', plural: 'часа', pluralMoreFive: 'часов'  });
+    return wordDeclension(total, { single: 'час', plural: 'часа', pluralMoreFive: 'часов' });
 }
 
 export { hourDeclension };

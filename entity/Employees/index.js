@@ -4,7 +4,7 @@ import { objectToURLParams } from '../../helpers';
 export class Employees extends Provider {
     constructor() {
         super({
-            BASE_URL: process.env.BASE_URL,
+            BASE_URL: import.meta.env.VITE_BASE_URL,
             module: 'crm',
             token: localStorage.getItem('access_token'),
         });

@@ -1,7 +1,5 @@
 import { objectToURLParams } from '../objectToURLParams';
 
-import { describe, it, expect } from '@jest/globals';
-
 describe('testing URL querystring built from object', () => {
     it('should return query string', () => {
         expect(

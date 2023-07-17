@@ -1,6 +1,6 @@
 function getTokenFromCookie() {
     let cookie = document.cookie.split(';');
-    let crm_token = cookie.find(item => item.includes('crm_token'));
+    let crm_token = cookie.find((item) => item.includes('crm_token'));
     if (crm_token) {
         let token = crm_token.slice(11);
         window.localStorage.setItem('access_token', token);
@@ -25,7 +25,7 @@ function parseJwt(token = '') {
         let jsonPayload = decodeURIComponent(
             atob(base64)
                 .split('')
-                .map(c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2))
+                .map((c) => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2))
                 .join('')
         );
         return JSON.parse(jsonPayload);

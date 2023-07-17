@@ -1,4 +1,3 @@
-import { describe, it, expect } from '@jest/globals';
 import { dateMonthYearFormatFilter } from '../dateMonthYearFormatFilter';
 
 describe('date month year locale testing', () => {

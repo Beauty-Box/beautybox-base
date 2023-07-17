@@ -127,7 +127,7 @@
         "vue/no-v-html": "error"
     },
     "parserOptions": {
-        "parser": "babel-eslint",
+        "parser": "@typescript-eslint/parser",
         "sourceType": "module",
         "ecmaVersion": 2018
     },

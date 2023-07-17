@@ -7,9 +7,7 @@ function parsePhone(phone = '') {
         return phone;
     }
     let pattern = new RegExp('');
-    return String(phone)
-        .replace(/^\+7/, '8')
-        .replace(/\W/g, '');
+    return String(phone).replace(/^\+7/, '8').replace(/\W/g, '');
     // [0-9- ]
 }
 

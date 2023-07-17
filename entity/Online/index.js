@@ -3,7 +3,7 @@ import { Provider } from '../Provider';
 export class Online extends Provider {
     constructor(addressID) {
         super({
-            BASE_URL: process.env.BASE_URL,
+            BASE_URL: import.meta.env.VITE_BASE_URL,
             module: 'crm',
             token: localStorage.getItem('access_token'),
         });
@@ -30,16 +30,18 @@ export class Online extends Provider {
         formData.append('recordNotLater', 1);
         formData.append('editableUntil', 6);
         formData.append('recordNotPrev', 1);
+        formData.append('clientRegistrationRequired', false);
         formData.append('active', 1);
 
         return this._provider.post('/settings/online', formData);
     }
 
-    update(settingsID, { recordNotPrev, editableUntil }) {
+    update(settingsID, { recordNotPrev, editableUntil, clientRegistrationRequired }) {
         return this._provider.put(`/settings/online/${settingsID}`, {
             addressID: this.addressID,
             recordNotPrev,
             editableUntil,
+            clientRegistrationRequired,
         });
     }
 }

@@ -1,4 +1,3 @@
-import { describe, it, expect } from '@jest/globals';
 import { priceFilter } from '../price.filter';
 
 describe('price filter testing', () => {

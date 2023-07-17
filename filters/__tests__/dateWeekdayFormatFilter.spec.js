@@ -1,4 +1,3 @@
-import { describe, it, expect } from '@jest/globals';
 import { dateWeekdayFormatFilter } from '../dateWeekdayFormatFilter';
 
 describe('date weekday locale testing', () => {

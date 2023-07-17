@@ -21,7 +21,7 @@ class ProviderClass {
     static createProvider(config = {}) {
         testInputData(config);
         ProviderClass._provider = new Api(
-            config.baseUrl || process.env.BASE_URL,
+            config.baseUrl || import.meta.env.VITE_BASE_URL,
             config.module,
             config.token || null
         );

@@ -230,9 +230,7 @@ export function genDayArrayForSelect(to) {
 }
 
 export function getBaseUrl() {
-    return process.env.NODE_ENV === 'development'
-        ? process.env.FETCH_URL_DEVELOPMENT
-        : process.env.FETCH_URL;
+    return import.meta.env.VITE_FETCH_URL;
 }
 
 /**
@@ -283,7 +281,7 @@ export function joinQuery(uri = '', key = '', value = '') {
  * @return {Array} Отфильтрованный и отсортированный массив
  * */
 export function SortArrayByArray(fromArr = [], onArr = []) {
-    return onArr.filter(item => {
+    return onArr.filter((item) => {
         let result = fromArr.indexOf(item);
         if (result !== -1) {
             fromArr.splice(result, 1);
@@ -330,7 +328,9 @@ export function isNumber(string = '') {
 export async function getCoordinatesFromYandex(address = '') {
     try {
         let coordinates = await fetch(
-            `https://geocode-maps.yandex.ru/1.x/?format=json&apikey=${process.env.YANDEX_API_KEY}&geocode=${address}`,
+            `https://geocode-maps.yandex.ru/1.x/?format=json&apikey=${
+                import.meta.env.VITE_YANDEX_API_KEY
+            }&geocode=${address}`,
             {
                 method: 'GET',
                 cors: true,
@@ -355,7 +355,5 @@ export async function getCoordinatesFromYandex(address = '') {
  * @param {String} phone
  * */
 export function parsePhone(phone = '') {
-    return String(phone)
-        .replace(/^\+7/, '8')
-        .replace(/\W/g, '');
+    return String(phone).replace(/^\+7/, '8').replace(/\W/g, '');
 }

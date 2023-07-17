@@ -44,11 +44,15 @@ describe('genArrayTimeIntervalMin', () => {
     });
 
     it('Должен выбросить исключение при передаче нецелого числа', () => {
-        expect(() => genArrayTimeIntervalMin(75.5)).toThrowError('Аргумент number должен быть целым');
+        expect(() => genArrayTimeIntervalMin(75.5)).toThrowError(
+            'Аргумент number должен быть целым'
+        );
     });
 
     it('Должен выбросить исключение при передаче нецелого отрицательного числа', () => {
-        expect(() => genArrayTimeIntervalMin(-75.5)).toThrowError('Аргумент number должен быть целым');
+        expect(() => genArrayTimeIntervalMin(-75.5)).toThrowError(
+            'Аргумент number должен быть целым'
+        );
     });
 
     it('Должен выбросить исключение при передаче отрицалетьного числа', () => {
@@ -66,11 +70,15 @@ describe('genArrayTimeIntervalMin', () => {
     });
 
     it('Должен выбросить исключение при передаче строки ввиде целого числа', () => {
-        expect(() => genArrayTimeIntervalMin('75')).toThrowError('Аргумент number должен быть целым');
+        expect(() => genArrayTimeIntervalMin('75')).toThrowError(
+            'Аргумент number должен быть целым'
+        );
     });
 
     it('Должен выбросить исключение при передаче boolean значения', () => {
-        expect(() => genArrayTimeIntervalMin(true)).toThrowError('Аргумент number должен быть целым');
+        expect(() => genArrayTimeIntervalMin(true)).toThrowError(
+            'Аргумент number должен быть целым'
+        );
     });
 
     it('Должен выбросить исключение при передаче массива', () => {

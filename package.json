@@ -12,8 +12,8 @@
         "access": "restricted"
     },
     "scripts": {
-        "test": "cross-env NODE_ICU_DATA=node_modules/full-icu jest",
-        "test:watch": "jest -u --watch",
+        "test": "vitest run",
+        "test:silent": "vitest run --coverage --silent",
         "generate-docs": "jsdoc ./helpers -c jsdoc.json -r"
     },
     "husky": {
@@ -29,22 +29,15 @@
         ]
     },
     "devDependencies": {
-        "@babel/plugin-proposal-export-default-from": "^7.12.1",
-        "@babel/plugin-syntax-dynamic-import": "^7.8.3",
-        "@babel/plugin-transform-runtime": "^7.12.1",
-        "@babel/preset-env": "^7.12.7",
         "@vue/eslint-config-prettier": "^6.0.0",
-        "babel-eslint": "^10.0.1",
-        "babel-jest": "^26.6.3",
-        "babel-plugin-require-context-hook": "^1.0.0",
+        "@typescript-eslint/parser": "^5.40.1",
         "docdash": "^1.2.0",
         "eslint": "^7.8.0",
         "eslint-config-prettier": "^6.11.0",
         "eslint-plugin-import": "^2.20.2",
         "eslint-plugin-prettier": "^3.1.3",
         "eslint-plugin-vue": "^6.2.2",
-        "full-icu": "^1.3.1",
-        "jest": "^26.6.3",
+        "prettier": "^2.1.1",
         "jsdoc": "^3.6.6",
         "stylelint": "^13.7.0",
         "stylelint-config-prettier": "^8.0.1",
@@ -52,68 +45,22 @@
         "stylelint-order": "^4.0.0",
         "stylelint-scss": "^3.16.0",
         "stylelint-selector-bem-pattern": "^2.1.0",
-        "stylelint-webpack-plugin": "^2.0.0",
-        "vue-jest": "^3.0.7",
-        "vue-template-compiler": "^2.6.12"
+        "typescript": "^4.8.4",
+        "vite": "^4.2.1",
+        "vitest": "^0.29.8",
+        "jsdom": "^21.1.1",
+        "@vitest/coverage-c8": "^0.29.8"
     },
     "dependencies": {
-        "@jest/globals": "^26.6.2",
-        "babel-loader": "^8.2.1",
         "cross-env": "^7.0.3",
-        "css-loader": "^5.0.1",
-        "mini-css-extract-plugin": "^0.11.0",
         "node-fetch": "^2.6.1",
         "plural-ru": "^2.0.2",
-        "preload-webpack-plugin": "3.0.0-beta.3",
-        "sass": "^1.26.11",
-        "sass-loader": "^10.0.5",
-        "script-ext-html-webpack-plugin": "^2.1.4",
         "socket.io-client": "^2.3.0",
-        "style-loader": "^2.0.0",
-        "svg-sprite-loader": "^5.0.0",
-        "vue": "^2.6.12",
-        "vue-loader": "^15.9.3",
+        "vue": "^2.7.14",
         "vue-socket.io": "^3.0.9",
         "vue-toasted": "^1.1.28",
-        "vuelidate": "^0.7.5",
-        "vuetify": "^2.3.17",
-        "vuetify-loader": "^1.6.0",
-        "vuex": "^3.6.0",
-        "webpack": "^4.44.2"
-    },
-    "jest": {
-        "coverageThreshold": {
-            "global": {
-                "branches": 41.27,
-                "functions": 32,
-                "lines": 37.98,
-                "statements": 38.68
-            }
-        },
-        "collectCoverage": true,
-        "collectCoverageFrom": [
-            "api/**/*.js",
-            "entity/**/*.js",
-            "filters/**/*.js",
-            "helpers/**/*.js",
-            "mixins/**/*.js",
-            "plugins/**/*.js"
-        ],
-        "transform": {
-            "^.+\\.js$": "babel-jest",
-            "^.+\\.vue$": "vue-jest"
-        },
-        "transformIgnorePatterns": [],
-        "moduleNameMapper": {
-            "^.+\\.(css|less|scss|sass|svg)$": "babel-jest"
-        },
-        "moduleFileExtensions": [
-            "js",
-            "json",
-            "vue"
-        ],
-        "moduleDirectories": [
-            "node_modules"
-        ]
+        "@vuelidate/core": "^2.0.1",
+        "@vuelidate/validators": "^2.0.1",
+        "vuex": "^3.6.2"
     }
 }

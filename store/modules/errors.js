@@ -36,8 +36,8 @@ export const actions = {
 };
 
 export const getters = {
-    ERROR: state => state.error,
-    TYPE: state => state.type,
+    ERROR: (state) => state.error,
+    TYPE: (state) => state.type,
 };
 
 export default { state, mutations, actions, getters };

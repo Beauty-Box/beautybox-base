@@ -16,18 +16,18 @@ const SharedWorker = () => {
         socketConnected = false;
 
     // handle shared webworker clients already with ports
-    socket.on('connect', function(msg) {
+    socket.on('connect', function (msg) {
         socketConnected = true;
-        ports.forEach(function(port) {
+        ports.forEach(function (port) {
             port.postMessage({
                 type: 'connect',
                 message: msg,
             });
         });
     });
-    socket.on('disconnect', function(msg) {
+    socket.on('disconnect', function (msg) {
         socketConnected = false;
-        ports.forEach(function(port) {
+        ports.forEach(function (port) {
             port.postMessage({
                 type: 'disconnect',
                 message: msg,
@@ -36,18 +36,18 @@ const SharedWorker = () => {
     });
 
     // shared worker handle new clients
-    addEventListener('connect', function(event) {
+    addEventListener('connect', function (event) {
         const port = event.ports[0];
         ports.push(port);
         port.start();
 
         log('client connected to shared worker', event);
 
-        port.addEventListener('message', event => handleMessage(event, port));
+        port.addEventListener('message', (event) => handleMessage(event, port));
     });
 
     // regular worker handle messages
-    addEventListener('message', event => handleMessage(event, self));
+    addEventListener('message', (event) => handleMessage(event, self));
     if (typeof Worker !== 'undefined') {
         setTimeout(() =>
             postMessage({
@@ -75,7 +75,7 @@ const SharedWorker = () => {
                 if (eventName == 'disconnect') {
                     break;
                 }
-                socket.on(eventName, function(msg) {
+                socket.on(eventName, function (msg) {
                     log('socket received message', msg);
                     port.postMessage({
                         type: eventName,

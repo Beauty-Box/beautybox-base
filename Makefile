@@ -7,5 +7,5 @@ setup:
 lint-fix:
 	npx eslint --fix .
 
-test:
-	yarn run test
+tests:
+	yarn test:silent

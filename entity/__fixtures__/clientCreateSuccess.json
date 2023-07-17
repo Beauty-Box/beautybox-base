@@ -3,11 +3,7 @@
     "email": "",
     "phone": "",
     "gender": 0,
-    "birthday": {
-        "day": "",
-        "month": "",
-        "year": ""
-    },
+    "birthday": "1998-01-01",
     "status": 0,
     "sale": "",
     "comment": "",

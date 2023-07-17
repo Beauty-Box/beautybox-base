@@ -5,7 +5,7 @@ import { joinQueryArray } from '../../helpers';
 export class Client extends Person {
     constructor(id) {
         super({
-            BASE_URL: process.env.BASE_URL,
+            BASE_URL: import.meta.env.VITE_BASE_URL,
             module: 'crm',
             token: localStorage.getItem('access_token'),
         });
@@ -42,13 +42,21 @@ export class Client extends Person {
         this.profit = 0;
         this.reviews = {};
         this.clientTypeID = 0;
+        this.clientTypes = [];
         this.blockingOnline = 0;
         this.notificationsDisabled = 0;
     }
 
     _initFormData(formData) {
         super._initFormData(formData);
-        formData.append('clientTypeID', this.clientTypeID);
+        if (!!this.clientTypes.length) {
+            for (const clientType of this.clientTypes) {
+                formData.append('clientTypes[]', clientType);
+            }
+        } else {
+            formData.append('clientTypes[]', '');
+        }
+
         formData.append('blockingOnline', this.blockingOnline);
         formData.append('notificationsDisabled', this.notificationsDisabled);
         formData.append('sale', this.sale);
@@ -116,6 +124,7 @@ export class Client extends Person {
 
     async edit() {
         let res = await this._provider.get(`/clients/${this.clientID}/edit`);
+        res.clientTypes = res.clientTypes.map((clientType) => clientType.clientTypeID);
         this._resConvert(res);
     }
 
@@ -217,7 +226,7 @@ export class Client extends Person {
 export class Clients extends Provider {
     constructor() {
         super({
-            BASE_URL: process.env.BASE_URL,
+            BASE_URL: import.meta.env.VITE_BASE_URL,
             module: 'crm',
             token: localStorage.getItem('access_token'),
         });
@@ -237,9 +246,7 @@ export class Clients extends Provider {
     }
 
     _getQuery(args) {
-        let query = `skip=${args[1]}&limit=${args[2]}`;
-
-        query += '&' + joinQueryArray(args[0]);
+        let query = joinQueryArray({ skip: args[1], limit: args[2], ...args[0] });
         query += `${
             this.sortBy ? `&sortBy=${this.sortBy}&sortOrder=${this.sortOrder ? 'desc' : 'asc'}` : ''
         }`;
@@ -258,17 +265,9 @@ export class Clients extends Provider {
         return Client.prototype.clientAvatarStatus.apply(item);
     }
 
-    async getFilters() {
-        ({ categories: this.types = [] } = await this._provider.get('/clients/category/short'));
-    }
-
-    async getClients(
-        { nameFilter = '', clientsTypeFilter = 0, ...clientParams } = {},
-        skip = 0,
-        limit = 15
-    ) {
+    async getClients({ ...clientParams } = {}, skip = 0, limit = 15) {
         const { clients = [], count = 0 } = await this._getClients([
-            { nameFilter, clientsTypeFilter, ...clientParams },
+            { ...clientParams },
             skip,
             limit,
         ]);
@@ -276,20 +275,12 @@ export class Clients extends Provider {
         this.count = count || this.clients.length;
     }
 
-    async searchClients(
-        { nameFilter = '', clientsTypeFilter = 0, ...clientParams } = {},
-        skip = 0,
-        limit = 15
-    ) {
+    async searchClients({ ...clientParams } = {}, skip = 0, limit = 15) {
         const {
             clients = [],
             count = 0,
             clientsIDs = [],
-        } = await this._getClients([
-            { nameFilter, clientsTypeFilter, ...clientParams },
-            skip,
-            limit,
-        ]);
+        } = await this._getClients([{ ...clientParams }, skip, limit]);
         this.clients = [...clients];
         this.count = count || this.clients.length;
         this.clientsIDs = [...clientsIDs];

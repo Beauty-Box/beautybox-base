@@ -12,7 +12,7 @@ function SortArrayByArray(fromArr = [], onArr = []) {
     if (toString.call(onArr).slice(8, -1) !== 'Array') {
         throw new TypeError('Эталонный параметр не является массивом');
     }
-    return onArr.filter(item => {
+    return onArr.filter((item) => {
         let result = fromArr.indexOf(item);
         if (result !== -1) {
             fromArr.splice(result, 1);

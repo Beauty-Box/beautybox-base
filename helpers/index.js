@@ -1,3 +1,4 @@
+export * from './bundlerAgnosticEnv';
 export * from './IsoToRu';
 export * from './RuToIso';
 export * from './genTime';
@@ -25,4 +26,6 @@ export * from './isNumber';
 export * from './getCoordinatesFromYandex';
 export * from './parsePhone';
 export * from './keyReflactor';
+export * from './deepEqual';
+export * from './normalizeTimestamp';
 export * from './declensions';

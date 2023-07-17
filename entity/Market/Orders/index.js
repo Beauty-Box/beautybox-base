@@ -52,9 +52,11 @@ class Orders extends ProviderClass {
 
     /** Получение списка покупок */
     static async getOrders(queryString = '') {
-        const { errors = {}, count = 0, orders = [] } = await Orders._provider.get(
-            `/orders${queryString}`
-        );
+        const {
+            errors = {},
+            count = 0,
+            orders = [],
+        } = await Orders._provider.get(`/orders${queryString}`);
         return { errors, count, orders };
     }
 
