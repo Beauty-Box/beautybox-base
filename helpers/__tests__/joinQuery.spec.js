@@ -1,5 +1,4 @@
 import { joinQuery } from '../joinQuery';
-import { beforeEach, describe, expect, it } from '@jest/globals';
 
 let uri;
 let uri2;

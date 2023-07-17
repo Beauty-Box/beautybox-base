@@ -1,6 +1,4 @@
-import { describe, it, expect, beforeEach } from '@jest/globals';
-
-jest.mock('../../api/index.js');
+vi.mock('../../api/index.js');
 
 import { Person } from '../Person';
 
@@ -42,6 +40,6 @@ describe('person testing', () => {
         person._resConvert({
             error: 'TypeError',
         });
-        expect(Object.keys(person)).toHaveLength(9);
+        expect(Object.keys(person)).toHaveLength(10);
     });
 });

@@ -1,4 +1,3 @@
-import { describe, it, expect } from '@jest/globals';
 import { dateFullFormat } from '../dateFullFormat.filter';
 
 describe('full date testing', () => {

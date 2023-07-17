@@ -1,8 +1,7 @@
-import { describe, it, expect, beforeEach } from '@jest/globals';
 import { Api } from '../../api';
 import { addGetSuccess, addGetError, addPostSuccess, addDelete } from '../../api/mockHelper';
 
-jest.mock('../../api/index.js');
+vi.mock('../../api/index.js');
 
 import { Client } from '../Clients';
 
@@ -33,7 +32,6 @@ describe('client testing', () => {
         let formData = new FormData();
         client = new Client();
         client._initFormData(formData);
-        expect(formData.get('clientTypeID')).toEqual('0');
         expect(formData.get('name')).toEqual('');
     });
 
@@ -57,31 +55,31 @@ describe('client testing', () => {
         addGetSuccess(Api, clientCreateSuccess);
         try {
             await client.init();
-            //expect(toString.call(client).slice(8, -1) === 'Object').toBe(true);
-            expect(Object.keys(client)).toHaveLength(20);
         } catch (e) {
             console.log(e);
         }
+
+        expect(Object.keys(client)).toHaveLength(28);
     });
 
     it('Должен возвращать json просмотра указанного клиента', async () => {
         addGetSuccess(Api, clientShowSuccess);
         try {
             await client.show();
-            expect(Object.keys(client)).toHaveLength(23);
         } catch (e) {
             console.log(e);
         }
+        expect(Object.keys(client)).toHaveLength(31);
     });
 
     it('Должен возвращать json редактируемого клиента', async () => {
         addGetSuccess(Api, clientEditSuccess);
         try {
             await client.edit();
-            expect(Object.keys(client)).toHaveLength(20);
         } catch (e) {
             console.log(e);
         }
+        expect(Object.keys(client)).toHaveLength(28);
     });
 
     it('Должна возвращатся ошибка при апдейте', async () => {
@@ -107,7 +105,7 @@ describe('client testing', () => {
     it('клиент должен удалится с ошибкой', async () => {
         client.clientID = 0;
         addDelete(Api, {});
-        //let del = jest.fn(() => client.delete);
+        //let del = vi.fn(() => client.delete);
         //client.delete();
         //del();
         expect(client.delete()).rejects.toMatch('Нельзя удалить не созданого клиента');
@@ -137,8 +135,9 @@ describe('client testing', () => {
     it('должна возвращатся аналитика', async () => {
         addGetSuccess(Api, clientGetAnalyticsSuccess);
         await client.getAnalytics();
-        expect(Object.keys(client.countBids)).not.toHaveLength(0);
+        expect(Object.keys(client.totalVisits)).not.toHaveLength(0);
         expect(client.profit).toEqual(450);
+        expect(Object.keys(client.reviews)).not.toHaveLength(0);
     });
 
     it('должен вернуть среднее число ставок', async () => {

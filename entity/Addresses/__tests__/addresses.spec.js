@@ -1,10 +1,9 @@
 import FixtureSuccess from '../__fixtures__/addressSuccess.json';
 
 import Addresses from '../index';
-import { describe, it, expect } from '@jest/globals';
 import { addGetSuccess } from '../../../api/mockHelper';
 import { Api } from '../../../api';
-jest.mock('../../../api/index.js');
+vi.mock('../../../api/index.js');
 
 const config = {
     baseUrl: 'test',

@@ -2,7 +2,7 @@ import FixturesSuccess from '../__fixtures__/payrollRulesSuccess.json';
 import FixturesError from '../__fixtures__/payrollRulesError.json';
 import FixturesBrokenData from '../__fixtures__/payrollBrokenData.json';
 import { Api } from '../../../api';
-jest.mock('../../../api/index.js');
+vi.mock('../../../api/index.js');
 import { addGetSuccess, addPostSuccess, addPut, addDelete } from '../../../api/mockHelper';
 
 import { PayrollRules, PayrollRule } from '../index';

@@ -1,0 +1,66 @@
+name: lint and test
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+    branches:
+      - 'stage'
+      - 'master'
+    tags:
+      - '**'
+
+jobs:
+  app-lint:
+    name: Lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: set node version
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: setup
+        run: make setup
+
+      - name: eslint
+        run: make lint
+
+  app-test:
+    name: Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: set node version
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+        #      - name: SSH private client
+        #        uses: webfactory/ssh-agent@v0.5.4
+        #        with:
+        #            ssh-private-key: ${{ secrets.ACTIONS_GITHUB }}
+
+      - name: setup
+        run: make setup
+
+      # - name: Run tests covarage
+      #   uses: paambaati/codeclimate-action@v2.6.0
+      #   env:
+      #     CC_TEST_REPORTER_ID: ${{ secrets.CRM_CLIMAT_ID }}
+      #     TZ: Europe/Samara
+      #   with:
+      #     coverageCommand: make tests
+      #     coverageLocations: ${{github.workplace}}/coverage/lcov.info:lcov
+      #     debug: true
+
+      - name: tests
+        run: make tests
+        env:
+          TZ: Europe/Samara
