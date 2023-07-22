@@ -20,9 +20,10 @@ function convertMinutesToHours(number, short = false) {
     const hours = Math.floor(number / 60);
     const minute = hours * 60;
     const remainder = (number - minute) % 60;
-    return `${hours ? hours + ' ' + (short ? 'ч' : hoursLocalTest(hours)) : ''}${
+    const result = `${hours ? hours + ' ' + (short ? 'ч' : hoursLocalTest(hours)) : ''}${
         remainder ? ' ' + remainder + (short ? ' мин' : ' минут') : ''
     }`;
+    return result.trim();
 }
 
 export { convertMinutesToHours };

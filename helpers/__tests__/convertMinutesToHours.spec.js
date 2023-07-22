@@ -17,6 +17,14 @@ describe('convertMinutesToHours', () => {
         const hours = convertMinutesToHours(1000000000000);
         expect(hours).toBe('16666666666 часов 40 минут');
     });
+    it('Должен вернуть текст времени в минутах', () => {
+        const hours = convertMinutesToHours(45);
+        expect(hours).toBe('45 минут');
+    });
+    it('Должен вернуть текст времени в минутах сокращенных', () => {
+        const hours = convertMinutesToHours(45, true);
+        expect(hours).toBe('45 мин');
+    });
 
     it('Должен вернуть строку 0 при передаче числа 0', () => {
         const hours = convertMinutesToHours(0);
