@@ -1,7 +1,7 @@
 import { maxLength, minLength, required, sameAs, helpers } from '@vuelidate/validators';
 import { genFullTime } from './index';
 
-let timeArray = genFullTime();
+let timeArray = genFullTime(0, 5);
 
 export const validatorName = {
     required: helpers.withMessage('Введите имя', required),
