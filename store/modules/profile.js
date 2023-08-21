@@ -61,7 +61,11 @@ export const getters = {
             return {};
         }
     },
-    CHECK_WHATSAPP_MODULE: (state) => state.userInfo.modules.includes('whatsapp_notification'),
+    CHECK_WHATSAPP_MODULE: (state) => {
+        return !!state.userInfo?.integrations?.find((integration) => {
+            return integration.alias === 'whatsapp_notification';
+        });
+    },
     TARIFF: (state) => state.userInfo?.tariff ?? {},
     IS_TARIFF_FREE: (state, getters) => {
         return (
