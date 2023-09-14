@@ -28,6 +28,7 @@ export const actions = {
         if (!Object.keys(errors).length) {
             commit('SET_USER_INFO', response);
         }
+        return response;
     },
 };
 
