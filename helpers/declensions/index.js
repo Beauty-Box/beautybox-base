@@ -8,3 +8,4 @@ export * from './visitDeclension';
 export * from './saleDeclension';
 export * from './financialDeclension';
 export * from './employeeDeclension';
+export * from './dayDeclension';
