@@ -22,8 +22,9 @@ async function getCoordinatesFromYandex(address = '') {
         } else {
             console.log('--- getCoordinatesFromYandex', coordinates.status);
         }
-    } catch (e) {
-        console.log('--- getCoordinatesFromYandex', e);
+    } catch (error) {
+        console.log('--- getCoordinatesFromYandex', error);
+        throw error;
     }
 }
 
