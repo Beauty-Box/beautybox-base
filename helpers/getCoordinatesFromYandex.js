@@ -21,6 +21,7 @@ async function getCoordinatesFromYandex(address = '') {
                 .reverse();
         } else {
             console.log('--- getCoordinatesFromYandex', coordinates.status);
+            throw new Error('Не удалось получить адрес');
         }
     } catch (error) {
         console.log('--- getCoordinatesFromYandex', error);
