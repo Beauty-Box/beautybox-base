@@ -29,6 +29,7 @@ export function validatorPasswordRepeat(some) {
 export const validatorTextarea = {
     required: helpers.withMessage('Введите текст отзыва', required),
     minLength: helpers.withMessage('Слишком короткий текст отзыва', minLength(3)),
+    maxLength: helpers.withMessage('Слишком длинный текст отзыва', maxLength(500)),
 };
 
 function getIndex(first, last) {
