@@ -234,15 +234,14 @@ export class Clients extends Provider {
         this.sortBy = '';
         this.clients = [];
         this.count = 0;
+        this.clientsIDs = [];
     }
 
     async _getClients(args) {
-        const {
-            clients = [],
-            count = 0,
-            clientsIDs = [],
-        } = await this._provider.get(`/clients?${this._getQuery(args)}`);
-        return { clients, count, clientsIDs };
+        const { clients = [], count = 0 } = await this._provider.get(
+            `/v2/clients?${this._getQuery(args)}`
+        );
+        return { clients, count };
     }
 
     _getQuery(args) {
@@ -276,13 +275,30 @@ export class Clients extends Provider {
     }
 
     async searchClients({ ...clientParams } = {}, skip = 0, limit = 15) {
-        const {
-            clients = [],
-            count = 0,
-            clientsIDs = [],
-        } = await this._getClients([{ ...clientParams }, skip, limit]);
+        const { clients = [], count = 0 } = await this._getClients([
+            { ...clientParams },
+            skip,
+            limit,
+        ]);
         this.clients = [...clients];
         this.count = count || this.clients.length;
-        this.clientsIDs = [...clientsIDs];
+        // this.clientsIDs = [...clientsIDs];
+    }
+
+    async getClientsIDs({ ...clientParams } = {}) {
+        let clientsIDs = [];
+        try {
+            clientsIDs = await this.provider.get(`/clients/ids?${this._getQuery(clientParams)}`);
+
+            if (clientsIDs.errors && Object.keys(clientsIDs.errors).length) {
+                console.log('clientsIDs failed validation', clientsIDs.errors);
+                throw new Error('Не удалось получить всех клиентов');
+            }
+
+            this.clientsIDs = [...clientsIDs];
+        } catch (error) {
+            console.log('clientsIDs failed', error);
+            throw new Error('Не удалось получить всех клиентов');
+        }
     }
 }
