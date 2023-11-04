@@ -1,0 +1,10 @@
+{
+    "errors": {
+        "visitPeriodTo": [
+            {
+                "code": "8",
+                "message": "Поле формата даты yyyy-mm-dd"
+            }
+        ]
+    }
+}

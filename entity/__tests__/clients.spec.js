@@ -6,6 +6,8 @@ vi.mock('../../api/index.js');
 import { Clients } from '../Clients';
 
 import clientsFilteredGetSuccess from '../__fixtures__/clientsFilteredGetSuccess.json';
+import clientsIdsFilteredGetSuccess from '../__fixtures__/clientsIdsFilteredGetSuccess.json';
+import clientsIdsFilteredGetError from '../__fixtures__/clientsIdsFilteredGetError.json';
 
 describe('clients testing', () => {
     let clientsInstance;
@@ -60,5 +62,34 @@ describe('clients testing', () => {
     it('геттеры должны возвращать список текущих клиентов и их количество', () => {
         expect(clientsInstance.clientsList).toEqual([]);
         expect(clientsInstance.clientsCount).toEqual(0);
+    });
+
+    it('должны успешно возвращаться клиент ИД', async () => {
+        addGetSuccess(Api, clientsIdsFilteredGetSuccess);
+        const args = {
+            nameFilter: '+7 (937)',
+        };
+
+        await clientsInstance.getClientsIDs(args);
+        expect(clientsInstance.clientsIDs.length).toBeGreaterThan(0);
+    });
+
+    it('должна возвращаться ошибка валидации при запросе на клиент ИД', async () => {
+        addGetSuccess(Api, clientsIdsFilteredGetError);
+        const args = {
+            nameFilter: '+7 (937)',
+        };
+
+        await expect(() => clientsInstance.getClientsIDs(args)).rejects.toThrowError();
+    });
+
+    it('должна возвращаться ошибка на уровне Api при запросе на клиент ИД', async () => {
+        addGetError(Api, clientsIdsFilteredGetError);
+        const args = {
+            nameFilter: '+7 (937)',
+        };
+
+        await expect(() => clientsInstance.getClientsIDs(args)).rejects.toThrowError();
+        expect(clientsInstance.clientsIDs.length).toEqual(0);
     });
 });
