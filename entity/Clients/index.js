@@ -284,7 +284,6 @@ export class Clients extends Provider {
         ]);
         this.clients = [...clients];
         this.count = count || this.clients.length;
-        // this.clientsIDs = [...clientsIDs];
     }
 
     async getClientsIDs({ ...clientParams } = {}) {
