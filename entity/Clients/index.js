@@ -272,6 +272,8 @@ export class Clients extends Provider {
         ]);
         this.clients = [...this.clients, ...clients];
         this.count = count || this.clients.length;
+
+        return clients;
     }
 
     async searchClients({ ...clientParams } = {}, skip = 0, limit = 15) {
