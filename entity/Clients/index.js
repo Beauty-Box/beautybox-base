@@ -290,7 +290,7 @@ export class Clients extends Provider {
     async getClientsIDs({ ...clientParams } = {}) {
         let clientsIDs = [];
         try {
-            clientsIDs = await this._provider.get(`/clients/ids?${this._getQuery(clientParams)}`);
+            clientsIDs = await this._provider.get(`/clients/ids?${this._getQuery([clientParams])}`);
         } catch (error) {
             console.log('clientsIDs failed', error);
             throw new Error('Не удалось получить всех клиентов');
