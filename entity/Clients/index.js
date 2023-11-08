@@ -288,17 +288,22 @@ export class Clients extends Provider {
 
     async getClientsIDs({ ...clientParams } = {}) {
         let clientsIDs = [];
+        let response = null;
         try {
-            clientsIDs = await this._provider.get(`/clients/ids?${this._getQuery([clientParams])}`);
+            response = await this._provider.get(`/clients/ids?${this._getQuery([clientParams])}`);
         } catch (error) {
             console.log('clientsIDs failed', error);
             throw new Error('Не удалось получить всех клиентов');
         }
 
-        if (clientsIDs.errors && Object.keys(clientsIDs.errors).length) {
-            console.log('clientsIDs failed validation', clientsIDs.errors);
+        if (response.errors && Object.keys(response.errors).length) {
+            console.log('clientsIDs failed validation', response.errors);
             throw new Error('Не удалось получить всех клиентов');
         }
+
+        ({
+            body: { ids: clientsIDs = [] },
+        } = response);
 
         this.clientsIDs = [...clientsIDs];
     }
