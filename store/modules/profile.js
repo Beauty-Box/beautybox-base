@@ -62,6 +62,10 @@ export const getters = {
             return {};
         }
     },
+    /**
+     * @deprecated так как интеграция с WA рассылками переехала на pinia store
+     * используйте isWhatsappIntegrationActive из profieStore
+     */
     CHECK_WHATSAPP_MODULE: (state) => {
         const whatsappIntegration = state.userInfo?.integrations?.find((integration) => {
             return integration.alias === 'whatsapp_notification';
