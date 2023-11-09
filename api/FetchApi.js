@@ -1,8 +1,8 @@
 function fetchFactory() {
     if (typeof window !== 'undefined') {
-        return window.fetch || require('node-fetch');
+        return window.fetch;
     } else if (typeof global !== 'undefined') {
-        return require('node-fetch');
+        return global.fetch;
     } else {
         new TypeError('class Fetch is not defined');
     }
