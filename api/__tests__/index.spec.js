@@ -1,15 +1,5 @@
 import { Api, ProviderClass } from '../index';
 
-vi.mock('node-fetch');
-
-// global.fetch = vi.fn(() =>
-//     Promise.resolve({
-//         json: () => Promise.resolve({}),
-//     })
-// );
-
-// import fetch from 'node-fetch';
-
 const mockResponse = vi.fn();
 
 Object.defineProperty(global, 'location', {

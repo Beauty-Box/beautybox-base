@@ -1,17 +1,5 @@
 import { FetchApi } from '../FetchApi';
 
-vi.mock('node-fetch', async (importOriginal) => {
-    const original = await importOriginal();
-    return {
-        ...original,
-        default: vi.fn(() =>
-            Promise.resolve({
-                json: () => Promise.resolve({ rates: { CAD: 1.42 } }),
-            })
-        ),
-    };
-});
-
 // модуль апи берет fetch из window, а window получатеся кода vitest превращает global в window внутри теста
 global.fetch = vi.fn(() =>
     Promise.resolve({
